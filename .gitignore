@@ -1,0 +1,9 @@
+.env
+.DS_Store
+
+sandbox.js
+node_modules/
+frontend/public/build/
+
+access.log
+error.log
