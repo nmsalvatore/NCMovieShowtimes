@@ -1,5 +1,9 @@
 <script>
+    import { activeRouteID } from '$lib/stores.js'
+
     export let data
+
+    $activeRouteID = 2
 </script>
 
 <div class="all-movies-container">

@@ -1,21 +1,16 @@
 <script>
-    let activeID = 1
+    import { activeRouteID } from '$lib/stores.js'
 
     const links = [
         { id: 1, href: '/calendar', label: 'Calendar'},
         { id: 2, href: '/movies', label: 'All Movies'}
     ]
-
-    function setActive(id) {
-        activeID = id
-    }
 </script>
 
 <nav>
     {#each links as link}
-    <a href={link.href} 
-        on:click={() => setActive(link.id)}
-        class:active={activeID === link.id}>
+    <a href={link.href}
+        class:active={$activeRouteID === link.id}>
         {link.label}
     </a>
     {/each}
