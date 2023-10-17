@@ -1,8 +1,8 @@
 <script>
 	import Dates from './Dates.svelte'
 	import Showings from './Showings.svelte'
-    import { getTodayDateString } from '$lib/helpers/datesHelpers.js';
     import { activeRouteID } from '$lib/stores.js'
+    import { updateShowingsData } from '$lib/helpers/showings';
 
     export let data
 
@@ -10,13 +10,11 @@
 
     let showings = data.showings
     let dates = data.dates
-    let activeDate = getTodayDateString()
 
-	async function updateCalendar(e) {
-		activeDate = e.detail
-        showings = await updateShowingsData(activeDate)
-	}
+    async function updateCalendar(e) {
+        showings = await updateShowingsData(e.detail)
+    }
 </script>
 
-<Dates {dates} {activeDate} on:updateActiveDate={updateCalendar} />
-<Showings {showings} {activeDate} />
+<Dates {dates} on:updateActiveDate={updateCalendar}/>
+<Showings {showings} />

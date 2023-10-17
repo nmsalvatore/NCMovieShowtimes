@@ -1,8 +1,8 @@
 <script>
-    import { convertDateToLongString } from "$lib/helpers/datesHelpers.js"
-    import { formatShowingsByVenue, getCurrentDatetime } from "$lib/helpers/showingsHelpers.js";
+    import { convertDateToLongString } from "$lib/helpers/dates.js"
+    import { formatShowingsByVenue, getCurrentDatetime } from "$lib/helpers/showings.js";
+    import { activeDate } from '$lib/stores.js'
 
-	export let activeDate
     export let showings = []
 
     let now
@@ -21,12 +21,12 @@
         {#each showings.showings as showing}
         <a class="buy-tickets" href={showing.url} target="_blank">
             <span class="movie-title">{showing.title}</span>
-            <span class="showdate">{convertDateToLongString(activeDate)}</span>
+            <span class="showdate">{convertDateToLongString($activeDate)}</span>
             <div class="showtimes">
 
                 {#each showing.times as showtime}
 
-                {#if new Date(`${activeDate} ${showtime.time}`) > now}
+                {#if new Date(`${$activeDate} ${showtime.time}`) > now}
                 <a href={showtime.url} target="_blank" class="showtime">{showtime.time}</a>
                 {:else}
                 <a href={showtime.url} target="_blank" class="showtime old">{showtime.time}</a>
@@ -113,7 +113,6 @@
         padding: 24px;
         margin: 12px 0;
         border-radius: 8px;
-        /* border: 1px solid #f6f8f8; */
         color: #555;
         background: #fcfafa;
     }

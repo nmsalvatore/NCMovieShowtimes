@@ -1,10 +1,9 @@
 <script>
-    import { onMount } from 'svelte'
-    import { createEventDispatcher } from 'svelte'
-    import { convertToAbbreviatedDateString, enableSideScroll } from '$lib/helpers/datesHelpers.js'
+    import { onMount, createEventDispatcher } from 'svelte'
+    import { convertToAbbreviatedDateString, enableSideScroll } from '$lib/helpers/dates.js'
+    import { activeDate } from '$lib/stores.js'
 
     export let dates = []
-    export let activeDate
 
     let scrollContainer;
     onMount(async () => {
@@ -12,8 +11,9 @@
     });
 
     const dispatch = createEventDispatcher()
-    function dispatchActiveDate(date) {
-        dispatch('updateActiveDate', date)
+    function handleButtonClick(date) {
+        $activeDate = date;
+        dispatch('updateActiveDate', $activeDate);
     }
 </script>
   
@@ -22,43 +22,43 @@
 
     {#each dates as date}
     <button 
-        class:active={activeDate === date}
-        on:click={() => activeDate = date}
-        on:click={() => dispatchActiveDate(date)}>
+        class:active={$activeDate === date}
+        on:click={() => handleButtonClick(date)}>
         {convertToAbbreviatedDateString(new Date(date))}
     </button>
     {/each}
 
 </nav>
 
+
 <style>
     nav {
-		overflow-x: auto;
+        overflow-x: auto;
         white-space: nowrap;
-		cursor: grab;
+        cursor: grab;
         scrollbar-width: none;
         -ms-overflow-style: none;
         padding: 2rem;
-	}
+    }
 
     nav::-webkit-scrollbar {
         display: none;
     }
 
-	button {
+    button {
         cursor: pointer;
-		padding: 12px;
-		width: 140px;
-		border: none;
-		border-radius: 5px;
-		margin-right: 12px;
-		color: #aaa;
+        padding: 12px;
+        width: 140px;
+        border: none;
+        border-radius: 5px;
+        margin-right: 12px;
+        color: #aaa;
         font-size: 16px;
         font-weight: 300;
         font-family: Helvetica, sans-serif;
         background: #f4f4f4;
         letter-spacing: 0.3px;
-	}
+    }
 
     button.active {
         background: lightcoral;
@@ -79,8 +79,8 @@
     }
 
     @media only screen and (min-width: 1080px) {
-		nav {
+        nav {
             padding: 2rem 0;
         }
-	}
+    }
 </style>

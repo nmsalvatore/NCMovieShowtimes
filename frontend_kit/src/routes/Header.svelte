@@ -1,6 +1,5 @@
 <script>
     import Navbar from './Navbar.svelte'
-    import { activeRouteID } from '$lib/stores.js'
 </script>
 
 <header>
