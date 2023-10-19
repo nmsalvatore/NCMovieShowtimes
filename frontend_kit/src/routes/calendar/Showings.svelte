@@ -82,24 +82,27 @@
     }
 
     .showtimes {
-        margin-top: 2rem;
+        margin-top: 20px;
         margin-bottom: 12px;
     }
 
     .showtime {
         cursor: pointer;
-        border: 1px solid rgba(0, 0, 0, 0.15);
+        display: inline-block;
+        background: rgba(0, 0, 0, 0.06);
         color: rgba(0, 0, 0, 0.6);
         font-size: 12px;
         padding: 0.7rem 1rem;
         border-radius: 5px;
         margin-right: 12px;
+        margin-top: 12px;
+        width: 90px;
+        text-align: center;
         text-decoration: none;
     }
 
     .showtime.old {
         color: rgba(0, 0, 0, 0.15);
-        border: 1px solid rgba(0, 0, 0, 0.07);
         pointer-events: none;
     }
 
