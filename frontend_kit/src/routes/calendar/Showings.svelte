@@ -124,8 +124,8 @@
     }
 
     @media only screen and (min-width: 1080px) {
-		.venue-showings {
+        .venue-showings {
             padding: 0;
         }
-	}
+    }
 </style>

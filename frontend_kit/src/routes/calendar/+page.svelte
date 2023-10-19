@@ -1,6 +1,6 @@
 <script>
-	import Dates from './Dates.svelte'
-	import Showings from './Showings.svelte'
+    import Dates from './Dates.svelte'
+    import Showings from './Showings.svelte'
     import { activeRouteID } from '$lib/stores.js'
     import { updateShowingsData } from '$lib/helpers/showings';
 

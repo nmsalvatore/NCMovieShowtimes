@@ -5,4 +5,3 @@
         window.location.href = '/calendar';
     }
 </script>
-

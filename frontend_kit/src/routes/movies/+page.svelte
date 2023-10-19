@@ -59,8 +59,8 @@
     }
 
     @media only screen and (min-width: 1080px) {
-		.all-movies-container {
+        .all-movies-container {
             margin: 2rem 0;
         }
-	}
+    }
 </style>
