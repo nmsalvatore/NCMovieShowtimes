@@ -67,7 +67,7 @@
     }
 
 
-    @media only screen and (max-width: 480px) {
+    @media only screen and (max-width: 600px) {
         nav {
             padding: 1rem;
         }

@@ -17,6 +17,12 @@
 </nav>
 
 <style>
+    nav {
+        display: flex;
+        flex-direction: row;
+        width: fit-content;
+    }
+
     a {
         display: inline-block;
         text-align: center;
@@ -43,11 +49,13 @@
         color: rgba(255, 255, 255, 0.98);
     }
 
-    @media only screen and (max-width: 480px) {
+    @media only screen and (max-width: 600px) {
+        nav {
+            width: 100%;
+        }
+
         a {
-            padding: 8px;
-            font-size: 14px;
-            width: 100px;
+            width: 100%;
         }
     }
 </style>

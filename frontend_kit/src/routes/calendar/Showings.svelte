@@ -120,7 +120,7 @@
         background: #fcfafa;
     }
 
-    @media only screen and (max-width: 480px) {
+    @media only screen and (max-width: 600px) {
         .venue-showings {
             padding: 1rem;
         }

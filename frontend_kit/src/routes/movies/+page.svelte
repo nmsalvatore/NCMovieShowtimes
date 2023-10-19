@@ -51,7 +51,7 @@
         color: #666;
     }
 
-    @media only screen and (max-width: 480px) {
+    @media only screen and (max-width: 600px) {
         .all-movies-container {
             margin: 1rem;
             padding: 3rem 2rem;
