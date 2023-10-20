@@ -82,6 +82,7 @@ async function getDaysShowings(page) {
             // Get film-specific data
             const title = getTitle($film)
             const venue = getVenue($film)
+            const address = getAddress(venue)
             const date = getDate(showdate)
 
             // Get all showtimes for film
@@ -101,7 +102,7 @@ async function getDaysShowings(page) {
                 pageShowings.push({
                     title: title,
                     venue: venue,
-                    city: 'Grass Valley',
+                    city: address,
                     date: date,
                     time: time,
                     url: url,
@@ -131,3 +132,20 @@ const getTime = showtime => showtime.prop('children')[0].data
 
 
 const getUrl = showtime => showtime.attr('href')
+
+
+const getAddress = venue => {
+    const locations = [
+        {
+            venue: 'Del Oro Theatre',
+            address: '165 Mill Street, Grass Valley, CA 95945'
+        },
+        {
+            venue: 'Sutton Cinemas',
+            address: '399 Sutton Way, Grass Valley, CA 95945'
+        }
+    ]
+
+    const result = locations.find(location => location.venue === venue)
+    return result.address || null
+}

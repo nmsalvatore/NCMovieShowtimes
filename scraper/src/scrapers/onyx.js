@@ -46,7 +46,7 @@ async function getShowings() {
                 // Get film data
                 const title = getTitle(element)
                 const venue = getVenue(element)
-                const city = 'Nevada City'
+                const address = getAddress(venue)
                 const date = getDate(element)
                 const time = getTime(element)
                 const url = getURL(href)
@@ -55,7 +55,7 @@ async function getShowings() {
                 showings.push({
                     'title': title,
                     'venue': venue,
-                    'city': city,
+                    'city': address,
                     'date': date,
                     'time': time,
                     'url': url,
@@ -116,4 +116,20 @@ const getURL = link => {
     const ROOT_URL = 'https://prod5.agileticketing.net/websales/pages/'
     const url = ROOT_URL + link.attr('href')
     return url
+}
+
+const getAddress = venue => {
+    const locations = [
+        {
+            venue: 'The Onyx Theatre',
+            address: '107 Argall Way, Nevada City, CA 95959'
+        },
+        {
+            venue: 'Onyx Downtown',
+            address: '401 Broad Street, Nevada City, CA 95959'
+        }
+    ]
+
+    const result = locations.find(location => location.venue === venue)
+    return result.address || null
 }

@@ -38,7 +38,7 @@ async function getShowings() {
             showings.push({
                 title: title,
                 venue: 'Mystic Theater',
-                city: 'Nevada City',
+                city: '240 Commercial Street, Nevada City, CA 95959',
                 date: date,
                 time: time,
                 url: url
