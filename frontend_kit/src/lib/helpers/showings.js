@@ -9,6 +9,7 @@ export function formatShowingsByVenue(showings) {
 
     return [...venues].map(venue => {
         const showingsWithTimes = []
+        const address = showings.find(showing => showing.venue_name === venue).city
         const venueShowings = showings.filter(showing => showing.venue_name === venue);
         const venueShowingsAllTitles = venueShowings.map(showing => showing.movie_title)
         const venueShowingsTitles = new Set(venueShowingsAllTitles)
@@ -21,7 +22,8 @@ export function formatShowingsByVenue(showings) {
         })
         
         return {
-            venue: venue, 
+            venue: venue,
+            venue_address: address,
             showings: showingsWithTimes
         }
     })
