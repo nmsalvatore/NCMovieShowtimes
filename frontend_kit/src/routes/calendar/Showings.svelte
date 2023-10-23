@@ -17,10 +17,12 @@
     {#each showingsByVenue as showings}
     <div class="venue-showings">
         <h2>{showings.venue}</h2>
+        <small>{showings.venue_address}</small>
 
         {#each showings.showings as showing}
-        <a class="buy-tickets" href={showing.url} target="_blank">
+        <div class="movie-container">
             <span class="movie-title">{showing.title}</span>
+
             <span class="showdate">{convertDateToLongString($activeDate)}</span>
             <div class="showtimes">
 
@@ -35,7 +37,7 @@
                 {/each}
 
             </div>
-        </a>
+        </div>
         {/each}
 
     </div>
@@ -50,14 +52,24 @@
 
 <style>
     h2 {
-        margin-bottom: 26px;
+        margin-bottom: 10px;
         color: #555;
         margin-left: 4px;
     }
 
+    small {
+        font-variant: all-small-caps;
+        margin-left: 6px;
+        letter-spacing: 1px;
+        color: #ccc;
+        font-weight: 600;
+        display: block;
+        margin-bottom: 40px;
+    }
+
     .venue-showings {
         padding: 0 2rem;
-        margin-bottom: 3rem;
+        margin-bottom: 5rem;
         margin-top: 2rem;
     }
 
@@ -70,20 +82,20 @@
     .movie-title {
         display: block;
         margin-right: 12px;
-        font-weight: 500;
-        margin-bottom: 20px;
+        font-weight: 600;
+        margin-bottom: 16px;
     }
 
     .showdate {
         display: block;
         font-weight: 300;
-        font-size: 14px;
+        font-size: 12px;
         color: #777;
     }
 
     .showtimes {
         margin-top: 20px;
-        margin-bottom: 12px;
+        margin-bottom: 6px;
     }
 
     .showtime {
@@ -92,6 +104,7 @@
         background: rgba(0, 0, 0, 0.06);
         color: rgba(0, 0, 0, 0.6);
         font-size: 12px;
+        font-weight: 500;
         padding: 0.7rem 1rem;
         border-radius: 5px;
         margin-right: 12px;
@@ -110,19 +123,21 @@
         margin-right: none;
     }
 
-    .buy-tickets {
+    .movie-container {
         text-decoration: none;
         display: block;
-        padding: 24px;
+        padding: 30px;
         margin: 12px 0;
         border-radius: 8px;
         color: #555;
         background: #fcfafa;
+        border: 1px solid #fbf9f9;
     }
 
     @media only screen and (max-width: 600px) {
         .venue-showings {
             padding: 1rem;
+            margin-bottom: 2rem;
         }
     }
 

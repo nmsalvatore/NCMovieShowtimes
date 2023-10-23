@@ -1,13 +1,12 @@
 import { updateShowingsData } from '$lib/helpers/showings.js';
-import { updateDatesData } from '$lib/helpers/dates.js';
-import { activeDate } from '$lib/stores.js'
-
-let date
-activeDate.subscribe(val => date = val)
+import { updateDatesData, getTodayDateString } from '$lib/helpers/dates.js';
 
 export async function load() {
+    const today = getTodayDateString()
+
     return {
-        showings: updateShowingsData(date),
-        dates: updateDatesData()
+        showings: await updateShowingsData(today),
+        dates: await updateDatesData(),
+        activeDateValue: today
     }
 }
