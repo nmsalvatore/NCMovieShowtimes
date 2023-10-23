@@ -35,8 +35,8 @@
 
     .movie-title {
         font-size: 18px;
-        font-weight: 600;
-        margin-bottom: 18px;
+        font-weight: 700;
+        margin-bottom: 16px;
         color: #555;
     }
 
