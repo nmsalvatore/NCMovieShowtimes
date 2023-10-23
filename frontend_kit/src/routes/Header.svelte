@@ -30,7 +30,6 @@
         header {
             flex-direction: column;
             padding: 0 1rem;
-            margin-bottom: 3rem;
             height: auto;
         }
 
