@@ -32,6 +32,7 @@
         padding: 8px;
         width: 120px;
         font-size: 16px;
+        font-weight: 400;
         border-radius: 5px;
         background: white;
         margin-right: 12px;
@@ -46,6 +47,7 @@
     a.active {
         background: #6d7a8b;
         border: 1px solid #6d7a8b;
+        font-weight: 500;
         color: rgba(255, 255, 255, 0.98);
     }
 

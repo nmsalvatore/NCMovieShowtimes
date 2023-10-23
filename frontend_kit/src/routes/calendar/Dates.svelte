@@ -39,6 +39,7 @@
         scrollbar-width: none;
         -ms-overflow-style: none;
         padding: 2rem;
+        margin-bottom: 3rem;
     }
 
     nav::-webkit-scrollbar {
@@ -52,10 +53,10 @@
         border: none;
         border-radius: 5px;
         margin-right: 12px;
-        color: #aaa;
+        color: #ccc;
         font-size: 16px;
-        font-weight: 300;
-        font-family: Helvetica, sans-serif;
+        font-weight: 400;
+        font-family: inherit;
         background: #f4f4f4;
         letter-spacing: 0.3px;
     }
@@ -63,7 +64,7 @@
     button.active {
         background: lightcoral;
         color: rgba(255, 255, 255, 0.98);
-        font-weight: 400;
+        font-weight: 500;
     }
 
 

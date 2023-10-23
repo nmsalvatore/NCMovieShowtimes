@@ -16,11 +16,12 @@
         height: 100px;
         padding: 0 2rem;
         margin-top: 1rem;
+        margin-bottom: 1rem;
     }
 
     h1 {
         font-size: 1rem;
-        font-weight: 400;
+        font-weight: 600;
         color: #555;
         text-align: left;
     }
