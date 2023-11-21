@@ -16,7 +16,7 @@ async function getAllShowings() {
 
     // Concatenate showings data in a single array
     const showings = [].concat(
-        onyxShowings, 
+        onyxShowings,
         sierraShowings,
         mysticShowings
     )

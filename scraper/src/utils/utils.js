@@ -19,6 +19,9 @@ export function formatTime(time) {
     }
 }
 
+export function convertToLosAngelesDateString(date) {
+    return date.toLocaleDateString('en-US', { timeZone: 'America/Los_Angeles', month: '2-digit', day: '2-digit', year: 'numeric' })
+}
 
 export function formatDate(date) {
     let [year, month, day] = date.split('-')
@@ -35,18 +38,32 @@ export function formatDate(date) {
 }
 
 
-export function formatOnyxDate(date) {
-    let [month, day, year] = date.split('/')
+export function formatOnyxDate(dateString) {
+    const today = new Date()
+    const fullYear = new Date().getFullYear()
+    const fullDateString = `${dateString}, ${fullYear}`
+    const date = new Date(fullDateString)
+    const formattedDateString = convertToLosAngelesDateString(date)
 
-    if (Number(month) < 10) {
-        month = '0' + Number(month)
+    let showdate
+
+    if (today < date) {
+        showdate = convertToLosAngelesDateString(date)
+    } else {
+        let [month, day, year] = formattedDateString.split('/')
+        
+        if (Number(month) < 10) {
+            month = '0' + Number(month)
+        }
+    
+        if (Number(day) < 10) {
+            day = '0' + Number(day)
+        }
+
+        showdate = `${month}/${day}/${++year}`
     }
 
-    if (Number(day) < 10) {
-        day = '0' + Number(day)
-    }
-
-    return `${month}/${day}/${year}`
+    return showdate
 }
 
 
