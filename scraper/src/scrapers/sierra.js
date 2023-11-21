@@ -102,7 +102,7 @@ async function getDaysShowings(page) {
                 pageShowings.push({
                     title: title,
                     venue: venue,
-                    city: address,
+                    address: address,
                     date: date,
                     time: time,
                     url: url,

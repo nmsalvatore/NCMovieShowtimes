@@ -78,7 +78,7 @@ const getDaysShowingsData = async (page, button) => {
         const title = getTitle($movie)
         const date = getShowdate($movie)
         const venue = getVenue($movie)
-        const city = getAddress(venue)
+        const address = getAddress(venue)
 
         // Get showtimes
         const showtimes = getShowtimes($movie)
@@ -95,7 +95,7 @@ const getDaysShowingsData = async (page, button) => {
             pageShowings.push({
                 title,
                 venue,
-                city,
+                address,
                 date,
                 time,
                 url

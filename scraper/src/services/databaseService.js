@@ -32,7 +32,7 @@ async function insertShowingsData(showings) {
     for (const showing of showings) {
         let venueID = await getVenueID(showing.venue)
         if (!venueID) {
-            venueID = await addVenue(showing.venue, showing.city)
+            venueID = await addVenue(showing.venue, showing.address)
         }
 
         let movieID = await getMovieID(showing.title)
