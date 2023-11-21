@@ -109,7 +109,6 @@ const getDaysShowingsData = async (page, button) => {
 
 const getTitle = el => el.find('a.css-erexzk').first().attr('title')
 
-
 const getVenue = el => {
     const venueBlurb = el.find('.css-93dbvy').first().text()
     const regex = /Onyx Theatre|Nevada Theatre/
@@ -148,37 +147,6 @@ const getShowtimes = el => el.find('a.css-1ouxaa0');
 const getTime = el => el.text()
 
 const getURL = el => el.attr().href
-
-    // const showtimes = []
-
-    // times.each(function() {
-    //     const href = this.attribs.href;
-    //     const timeString = $(this).text();
-
-    //     if (timeString) {
-    //         showtimes.push(timeString)
-    //     }
-    // });
-
-    // return showtimes
-
-
-
-// -------------------------------------------------
-
-
-const getDatetime = el => {
-    const date = `${el.attribs['data-agl_date']}M`
-    return new Date(date)
-}
-
-
-const getDate = el => {
-    const datetime = getDatetime(el)
-    const date = datetime.toLocaleDateString()
-    return utils.formatOnyxDate(date)
-}
-
 
 const getAddress = venue => {
     const locations = [
