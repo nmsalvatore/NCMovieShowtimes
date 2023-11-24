@@ -3,7 +3,7 @@
 </script>
 
 <header>
-    <h1>Nevada County Movie Showtimes</h1>
+    <img src="logo.png" alt="NCMS Logo">
     <Navbar />
 </header>
 
@@ -19,8 +19,11 @@
         margin-bottom: 1rem;
     }
 
-    h1 {
-        font-size: 1rem;
+    img {
+        position: relative;
+        left: -8px;
+        height: 64px;
+        filter: invert(17%) sepia(0%) saturate(1%) hue-rotate(218deg) brightness(94%) contrast(88%);
         font-weight: 600;
         color: #555;
         text-align: left;
@@ -28,13 +31,13 @@
 
     @media only screen and (max-width: 600px) {
         header {
-            flex-direction: column;
-            padding: 0 1rem;
+            /* flex-direction: column; */
+            padding: 0rem 1rem 2rem 1rem;
             height: auto;
         }
 
-        h1 {
-            display: none;
+        img {
+            height: 54px;
         }
     }
 
