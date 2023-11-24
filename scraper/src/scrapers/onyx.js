@@ -79,6 +79,8 @@ const getDaysShowingsData = async (page, button) => {
         const date = getShowdate($movie)
         const venue = getVenue($movie)
         const address = getAddress(venue)
+        const rating = getRating($movie)
+        const runtime = getRuntime($movie)
 
         // Get showtimes
         const showtimes = getShowtimes($movie)
@@ -94,6 +96,8 @@ const getDaysShowingsData = async (page, button) => {
             // Add film data to showings array for page
             pageShowings.push({
                 title,
+                rating,
+                runtime,
                 venue,
                 address,
                 date,
@@ -162,4 +166,30 @@ const getAddress = venue => {
 
     const result = locations.find(location => location.venue === venue)
     return result.address || null
+}
+
+const getRating = el => {
+    const rating = el.find('div.css-uyt4dk').first().text();
+    const regex = /G|PG|PG-13|NR|UR|NC-17|R/
+    const match = rating.match(regex)
+
+    if (match) {
+        return rating
+    }
+}
+
+const getRuntime = el => {
+    const first = el.find('div.css-uyt4dk').first().text().replace('•', '').trim()
+    const next = el.find('div.css-uyt4dk').next().text().replace('•', '').trim()
+    const regex = /hr|min/
+
+    let runtime
+    
+    if (first.match(regex)) {
+        runtime = first
+    } else if (next.match(regex)) {
+        runtime = next
+    }
+
+    return runtime
 }

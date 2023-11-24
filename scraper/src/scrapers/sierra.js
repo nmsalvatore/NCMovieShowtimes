@@ -6,7 +6,6 @@ import { notify } from '../utils/notify.js'
 
 export const sierra = { getShowings }
 
-
 async function getShowings() {
     // Launch headless browser
     const browser = await puppeteer.launch({ headless: 'new' })
@@ -81,6 +80,8 @@ async function getDaysShowings(page) {
 
             // Get film-specific data
             const title = getTitle($film)
+            const rating = getRating($film)
+            const runtime = getRuntime($film)
             const venue = getVenue($film)
             const address = getAddress(venue)
             const date = getDate(showdate)
@@ -100,12 +101,14 @@ async function getDaysShowings(page) {
 
                 // Add film data to showings array for page
                 pageShowings.push({
-                    title: title,
-                    venue: venue,
-                    address: address,
-                    date: date,
-                    time: time,
-                    url: url,
+                    title,
+                    rating,
+                    runtime,
+                    venue,
+                    address,
+                    date,
+                    time,
+                    url,
                 })
             }
         }
@@ -121,6 +124,18 @@ const getTitle = film => {
     return utils.removeRating(title)
 }
 
+const getRating = film => {
+    const title = film.find('span.times-title').first().text()
+    const regex = /\((?<rating>G|PG|PG-13|R|NC-17)\)/
+    const match = regex.exec(title)
+    return match.groups.rating
+}
+
+const getRuntime = film => {
+    const runtime = film.find('span.times-runtime').first().text()
+    const runtimeFormatted = runtime.replace('Runtime:', '').replaceAll('.', '').trim()
+    return runtimeFormatted
+}
 
 const getVenue = film => film.find('div.choice-house > mark').first().text()
 

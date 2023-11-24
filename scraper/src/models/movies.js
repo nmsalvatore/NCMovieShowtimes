@@ -1,11 +1,11 @@
 import * as db from '../config/db.js'
 
 
-export async function addMovie(title) {
+export async function addMovie(title, rating, runtime) {
     try {
         const result = await db.client.query(
-            'INSERT INTO movies (movie_title) VALUES ($1) ON CONFLICT (movie_title) DO NOTHING RETURNING movie_id',
-            [title]
+            'INSERT INTO movies (movie_title, rating, runtime) VALUES ($1, $2, $3) ON CONFLICT (movie_title) DO NOTHING RETURNING movie_id',
+            [title, rating, runtime]
         )
 
         const movieID = result.rows[0].movie_id

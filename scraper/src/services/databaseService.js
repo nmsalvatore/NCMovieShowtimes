@@ -37,7 +37,7 @@ async function insertShowingsData(showings) {
 
         let movieID = await getMovieID(showing.title)
         if (!movieID) {
-            movieID = await addMovie(showing.title)
+            movieID = await addMovie(showing.title, showing.rating, showing.runtime)
         }
 
         const showingID = await getShowingID(movieID, venueID, showing.date, showing.time, showing.url)
