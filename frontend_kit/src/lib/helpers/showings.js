@@ -11,14 +11,16 @@ export function formatShowingsByVenue(showings) {
         const showingsWithTimes = []
         const address = showings.find(showing => showing.venue_name === venue).address
         const venueShowings = showings.filter(showing => showing.venue_name === venue);
-        const venueShowingsAllTitles = venueShowings.map(showing => showing.movie_title)
-        const venueShowingsTitles = new Set(venueShowingsAllTitles)
 
-        venueShowingsTitles.forEach(title => {
-            showingsWithTimes.push({
-                title: title,
-                times: getTimesByTitle(title, venueShowings)
-            })
+        venueShowings.forEach(showing => {
+            if (!showingsWithTimes.some(arr => arr.title === showing.movie_title)) {
+                showingsWithTimes.push({
+                    title: showing.movie_title,
+                    rating: showing.rating,
+                    runtime: showing.runtime,
+                    times: getTimesByTitle(showing.movie_title, venueShowings)
+                })
+            }
         })
         
         return {

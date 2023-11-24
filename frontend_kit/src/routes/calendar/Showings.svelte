@@ -23,6 +23,15 @@
         <div class="movie-container">
             <span class="movie-title">{showing.title}</span>
 
+            {#if (showing.rating && showing.runtime)}
+                <span class="rating">{showing.rating},</span>
+                <span class="runtime">{showing.runtime}</span>
+            {:else if showing.rating}
+                <span class="rating">{showing.rating}</span>
+            {:else if showing.runtime}
+                <span class="runtime">{showing.runtime}</span>
+            {/if}
+
             <span class="showdate">{convertDateToLongString($activeDate)}</span>
             <div class="showtimes">
 
@@ -83,18 +92,31 @@
         display: block;
         margin-right: 12px;
         font-weight: 600;
-        margin-bottom: 16px;
+        font-size: 16px;
+        margin-bottom: 10px;
     }
 
     .showdate {
         display: block;
-        font-weight: 300;
-        font-size: 12px;
+        font-weight: 500;
+        font-size: 16px;
+        letter-spacing: 0.4px;
+        color: #b4b4b4;
+        margin-top: 24px;
+        margin-left: 1px;
+        font-variant: all-small-caps;
+    }
+
+    .rating,
+    .runtime {
+        display: inline-block;
+        font-size: 13px;
+        margin-left: 1px;
         color: #777;
     }
 
     .showtimes {
-        margin-top: 20px;
+        margin-top: 14px;
         margin-bottom: 6px;
     }
 
@@ -108,7 +130,7 @@
         padding: 0.7rem 1rem;
         border-radius: 5px;
         margin-right: 12px;
-        margin-top: 12px;
+        /* margin-top: 12px; */
         width: 90px;
         text-align: center;
         text-decoration: none;
@@ -138,6 +160,10 @@
         .venue-showings {
             padding: 1rem;
             margin-bottom: 2rem;
+        }
+
+        .movie-container {
+            padding: 24px;
         }
     }
 
