@@ -2,6 +2,7 @@
     import { convertDateToLongString } from "$lib/helpers/dates.js"
     import { formatShowingsByVenue, getCurrentDatetime } from "$lib/helpers/showings.js";
     import { activeDate } from '$lib/stores.js'
+    import { getPosterUrl } from '$lib/helpers/posters.js'
 
     export let showings = []
 
@@ -21,30 +22,33 @@
 
         {#each showings.showings as showing}
         <div class="movie-container">
-            <span class="movie-title">{showing.title}</span>
+            <img crossorigin="true" src={getPosterUrl(showing.title)} alt="{showing.title} Movie Poster">
 
-            {#if (showing.rating && showing.runtime)}
-                <span class="rating">{showing.rating},</span>
-                <span class="runtime">{showing.runtime}</span>
-            {:else if showing.rating}
-                <span class="rating">{showing.rating}</span>
-            {:else if showing.runtime}
-                <span class="runtime">{showing.runtime}</span>
-            {/if}
+            <div>
+                <span class="movie-title">{showing.title}</span>
 
-            <span class="showdate">{convertDateToLongString($activeDate)}</span>
-            <div class="showtimes">
-
-                {#each showing.times as showtime}
-
-                {#if new Date(`${$activeDate} ${showtime.time}`) > now}
-                <a href={showtime.url} target="_blank" class="showtime">{showtime.time}</a>
-                {:else}
-                <a href={showtime.url} target="_blank" class="showtime old">{showtime.time}</a>
+                {#if (showing.rating && showing.runtime)}
+                    <span class="rating">{showing.rating},</span>
+                    <span class="runtime">{showing.runtime}</span>
+                {:else if showing.rating}
+                    <span class="rating">{showing.rating}</span>
+                {:else if showing.runtime}
+                    <span class="runtime">{showing.runtime}</span>
                 {/if}
-
-                {/each}
-
+    
+                <span class="showdate">{convertDateToLongString($activeDate)}</span>
+                <div class="showtimes">
+    
+                    {#each showing.times as showtime}
+    
+                    {#if new Date(`${$activeDate} ${showtime.time}`) > now}
+                    <a href={showtime.url} target="_blank" class="showtime">{showtime.time}</a>
+                    {:else}
+                    <a href={showtime.url} target="_blank" class="showtime old">{showtime.time}</a>
+                    {/if}
+    
+                    {/each}
+                </div>
             </div>
         </div>
         {/each}
@@ -74,6 +78,16 @@
         font-weight: 600;
         display: block;
         margin-bottom: 40px;
+    }
+
+    img {
+        width: auto;
+        height: auto;
+        max-width: 160px;
+        height: 100%;
+        border-radius: 5px;
+        opacity: 0.85;
+        margin-right: 2rem;
     }
 
     .venue-showings {
@@ -116,7 +130,6 @@
     }
 
     .showtimes {
-        margin-top: 14px;
         margin-bottom: 6px;
     }
 
@@ -130,7 +143,7 @@
         padding: 0.7rem 1rem;
         border-radius: 5px;
         margin-right: 12px;
-        /* margin-top: 12px; */
+        margin-top: 14px;
         width: 90px;
         text-align: center;
         text-decoration: none;
@@ -147,7 +160,7 @@
 
     .movie-container {
         text-decoration: none;
-        display: block;
+        display: flex;
         padding: 30px;
         margin: 12px 0;
         border-radius: 8px;
@@ -157,13 +170,52 @@
     }
 
     @media only screen and (max-width: 600px) {
-        .venue-showings {
+       .venue-showings {
             padding: 1rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
+            margin-top: 0rem;
         }
 
         .movie-container {
-            padding: 24px;
+            padding: 12px;
+        }
+
+        .movie-title {
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .runtime,
+        .rating {
+            font-size: 11px;
+        }
+
+        .showdate {
+            font-size: 14px;
+            margin-top: 20px;
+            margin-bottom: 4px;
+        }
+
+        .showtime {
+            margin-right: 6px;
+            margin-top: 6px;
+            width: 62px;
+            padding: 12px 0;
+            font-size: 9px;
+        }
+
+        small {
+            margin-bottom: 32px;
+        }
+
+        img {
+            margin-right: 1rem;
+            max-width: 120px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 4px;
         }
     }
 

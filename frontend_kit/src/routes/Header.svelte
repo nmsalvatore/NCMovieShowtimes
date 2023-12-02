@@ -34,10 +34,11 @@
             /* flex-direction: column; */
             padding: 0rem 1rem 2rem 1rem;
             height: auto;
+            margin-bottom: 0;
         }
 
         img {
-            height: 54px;
+            height: 48px;
         }
     }
 
