@@ -12,6 +12,7 @@ import 'dotenv/config'
 import moviesRouter from './routes/movies.js'
 import datesRouter from './routes/dates.js'
 import showingsRouter from './routes/showings.js'
+import postersRouter from './routes/posters.js'
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -48,6 +49,7 @@ app.use(limiter)
 app.use('/api/movies', moviesRouter)
 app.use('/api/dates', datesRouter)
 app.use('/api/showings', showingsRouter)
+app.use('/api/posters', postersRouter)
 app.use((err, req, res, next) => {
     const errorLogEntry = `${new Date().toISOString()}\n${err.stack || err.message}\n\n`
     errorLogStream.write(errorLogEntry);

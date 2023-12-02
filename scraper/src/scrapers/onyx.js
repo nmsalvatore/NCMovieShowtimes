@@ -2,6 +2,7 @@ import puppeteer from 'puppeteer'
 import * as cheerio from 'cheerio'
 import * as utils from '../utils/utils.js'
 import { notify } from '../utils/notify.js'
+import { downloadMoviePoster } from '../utils/posters.js'
 
 
 export const onyx = { getShowings }
@@ -48,12 +49,12 @@ async function getShowings() {
     } catch(error) {
         console.error(error)
 
-        notify.sendEmail(
-            'Web Scraper Error: The Onyx Theatre', `
-            <p>An error occurred:<p>
-            <pre>${error.message}</pre>
-            <p>Please view the systemd journal for error details.</p>`
-        )
+        // notify.sendEmail(
+        //     'Web Scraper Error: The Onyx Theatre', `
+        //     <p>An error occurred:<p>
+        //     <pre>${error.message}</pre>
+        //     <p>Please view the systemd journal for error details.</p>`
+        // )
 
         return []
     }
@@ -81,6 +82,10 @@ const getDaysShowingsData = async (page, button) => {
         const address = getAddress(venue)
         const rating = getRating($movie)
         const runtime = getRuntime($movie)
+
+        // Download movie poster
+        const posterUrl = getPosterUrl($movie)
+        downloadMoviePoster(posterUrl, title + '.jpg')
 
         // Get showtimes
         const showtimes = getShowtimes($movie)
@@ -192,4 +197,9 @@ const getRuntime = el => {
     }
 
     return runtime
+}
+
+const getPosterUrl = el => {
+    const url = el.find('.css-bi7rho').first().attr('src')
+    return url
 }

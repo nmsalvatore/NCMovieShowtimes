@@ -2,6 +2,7 @@ import puppeteer from 'puppeteer'
 import * as cheerio from 'cheerio'
 import * as utils from '../utils/utils.js'
 import { notify } from '../utils/notify.js'
+import { downloadMoviePoster } from '../utils/posters.js'
 
 
 export const sierra = { getShowings }
@@ -85,6 +86,9 @@ async function getDaysShowings(page) {
             const venue = getVenue($film)
             const address = getAddress(venue)
             const date = getDate(showdate)
+            const posterUrl = getPosterUrl($film)
+
+            downloadMoviePoster(posterUrl, title + '.jpg')
 
             // Get all showtimes for film
             const showtimes = $(film).find('a.showtime-active')
@@ -163,4 +167,9 @@ const getAddress = venue => {
 
     const result = locations.find(location => location.venue === venue)
     return result.address || null
+}
+
+const getPosterUrl = el => {
+    const url = el.find('aside.times-side > a > img').first().attr('src')
+    return url
 }
