@@ -3,6 +3,7 @@
 
 sandbox.js
 node_modules/
+posters/
 frontend/public/build/
 
 access.log
