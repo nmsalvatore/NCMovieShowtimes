@@ -69,14 +69,14 @@
     .movie-title {
         font-size: 16px;
         font-weight: 600;
-        margin-bottom: 20px;
+        margin-bottom: 28px;
         color: #555;
     }
 
     .movie-specs,
     .movie-date-range,
     .movie-venue {
-        font-size: 13px;
+        font-size: 12px;
         color: #777;
         margin-bottom: 4px;
     }
@@ -89,12 +89,13 @@
 
        .movie-title {
             font-size: 14px;
+            margin-bottom: 20px;
         }
 
         .movie-date-range,
         .movie-venue,
         .movie-specs {
-            font-size: 12px;
+            font-size: 10px;
         }
 
         .movie-container {
