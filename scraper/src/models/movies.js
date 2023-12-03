@@ -37,6 +37,6 @@ export async function getMovieTitle(movie_id) {
 export async function resetMoviesTable() {
     const dbShowings = await db.client.query('SELECT * FROM showings')
     if (dbShowings.rows.length > 0) {
-        await db.client.query('TRUNCATE movies RESTART IDENTITY CASCADE')
+        await db.client.query('DELETE FROM movies')
     }
 }
