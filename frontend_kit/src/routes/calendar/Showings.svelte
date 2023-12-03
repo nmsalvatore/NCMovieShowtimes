@@ -65,9 +65,10 @@
 
 <style>
     h2 {
-        margin-bottom: 10px;
+        margin-bottom: 8px;
         color: #555;
         margin-left: 4px;
+        font-size: 26px;
     }
 
     small {
@@ -83,7 +84,7 @@
     img {
         width: auto;
         height: auto;
-        max-width: 160px;
+        max-width: 120px;
         height: 100%;
         border-radius: 5px;
         opacity: 0.85;
