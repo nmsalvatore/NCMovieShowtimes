@@ -125,11 +125,11 @@
         }
 
         .left-arrow {
-            left: 21px;
+            left: 30px;
         }
 
         .right-arrow {
-            right: 21px;
+            right: 30px;
         }
     }
 
