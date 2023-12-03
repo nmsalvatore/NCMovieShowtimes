@@ -6,7 +6,21 @@
     export let dates = []
 
     let scrollContainer;
+
     onMount(async () => {
+        const leftArrow = document.querySelector('.left-arrow');
+        const rightArrow = document.querySelector('.right-arrow');
+
+        const scrollAmount = 500; // Adjust this value based on your needs
+
+        leftArrow.addEventListener('click', () => {
+            scrollContainer.scrollLeft -= scrollAmount;
+        });
+
+        rightArrow.addEventListener('click', () => {
+            scrollContainer.scrollLeft += scrollAmount;
+        });
+
         enableSideScroll(scrollContainer)
     });
 
@@ -18,28 +32,62 @@
 </script>
   
 
-<nav bind:this={scrollContainer}>
-
-    {#each dates as date}
-    <button 
-        class:active={$activeDate === date}
-        on:click={() => handleButtonClick(date)}>
-        {convertToAbbreviatedDateString(new Date(date))}
-    </button>
-    {/each}
-
-</nav>
+<div class="nav-wrapper">
+    <button class="left-arrow">←</button>
+    <nav class="nav-container" bind:this={scrollContainer}>
+        {#each dates as date}
+        <button 
+            class:active={$activeDate === date}
+            on:click={() => handleButtonClick(date)}>
+            {convertToAbbreviatedDateString(new Date(date))}
+        </button>
+        {/each}
+    </nav>
+    <button class="right-arrow">→</button>
+</div>
 
 
 <style>
+    .nav-wrapper {
+        position: relative;
+    }
+
+    .left-arrow, 
+    .right-arrow {
+        position: absolute;
+        top: 95%;
+        transform: translateY(-50%);
+        opacity: 0.8;
+        background: none;
+        z-index: 10;
+        margin: 0;
+        width: auto;
+        padding: 8px
+    }
+
+    .left-arrow:hover,
+    .right-arrow:hover {
+        color: #555;
+    }
+
+    .left-arrow {
+        left: 0;
+    }
+
+    .right-arrow {
+        right: 0;
+    }
+
     nav {
         overflow-x: auto;
         white-space: nowrap;
         cursor: grab;
         scrollbar-width: none;
         -ms-overflow-style: none;
-        padding: 2rem;
-        margin-bottom: 3rem;
+        padding: 2rem 0;
+        margin-bottom: 54px;
+        position: relative;
+        scroll-behavior: smooth;
     }
 
     nav::-webkit-scrollbar {
@@ -61,12 +109,29 @@
         letter-spacing: 0.3px;
     }
 
+    button:last-child {
+        margin-right: 0;
+    }
+
     button.active {
         background: lightcoral;
         color: rgba(255, 255, 255, 0.98);
         font-weight: 500;
     }
 
+    @media only screen and (max-width: 1080px) {
+        nav {
+            padding: 2rem;
+        }
+
+        .left-arrow {
+            left: 21px;
+        }
+
+        .right-arrow {
+            right: 21px;
+        }
+    }
 
     @media only screen and (max-width: 600px) {
         nav {
@@ -80,11 +145,10 @@
             font-size: 12px;
             padding: 10px;
         }
-    }
 
-    @media only screen and (min-width: 1080px) {
-        nav {
-            padding: 2rem 0;
+        .left-arrow,
+        .right-arrow {
+            display: none;
         }
     }
 </style>
