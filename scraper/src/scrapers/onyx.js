@@ -19,6 +19,13 @@ async function getShowings() {
         const url = 'https://theonyxtheatre.com/showtimes'
         await page.goto(url)
 
+        // Deny cookies
+        await new Promise(r => setTimeout(r, 5000))
+        const agreeButton = await page.$('#didomi-notice-agree-button')
+        if (agreeButton) {
+            agreeButton.click()
+        }
+
         // Collect all showdate buttons
         await page.waitForSelector('[data-role="card"]', { visible: true })
         await new Promise(r => setTimeout(r, 5000))
@@ -49,12 +56,12 @@ async function getShowings() {
     } catch(error) {
         console.error(error)
 
-        // notify.sendEmail(
-        //     'Web Scraper Error: The Onyx Theatre', `
-        //     <p>An error occurred:<p>
-        //     <pre>${error.message}</pre>
-        //     <p>Please view the systemd journal for error details.</p>`
-        // )
+        notify.sendEmail(
+            'Web Scraper Error: The Onyx Theatre', `
+            <p>An error occurred:<p>
+            <pre>${error.message}</pre>
+            <p>Please view the systemd journal for error details.</p>`
+        )
 
         return []
     }
@@ -120,9 +127,14 @@ const getTitle = el => el.find('a.css-erexzk').first().attr('title')
 
 const getVenue = el => {
     const venueBlurb = el.find('.css-93dbvy').first().text()
-    const regex = /Onyx Theatre|Nevada Theatre/
-    const match = venueBlurb.match(regex)
-    const venue = 'The ' + match[0]
+    let venue = 'The Onyx Theatre'
+
+    if (venueBlurb) {
+        const regex = /Onyx Theatre|Nevada Theatre/
+        const match = venueBlurb.match(regex)
+        venue = 'The ' + match[0]
+    }
+
     return venue
 }
 
