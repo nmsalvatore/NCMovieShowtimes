@@ -141,8 +141,8 @@
         }
 
         button {
-            width: 108px;
-            font-size: 12px;
+            width: 120px;
+            font-size: 14px;
             padding: 10px;
         }
 

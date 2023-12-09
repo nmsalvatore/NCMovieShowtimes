@@ -51,9 +51,9 @@
 
     @media only screen and (max-width: 600px) {
         a {
-            padding: 8px;
-            font-size: 12px;
-            width: 84px;
+            padding: 9px;
+            font-size: 14px;
+            width: 96px;
         }
     }
 </style>
