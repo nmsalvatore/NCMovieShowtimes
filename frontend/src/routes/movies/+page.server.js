@@ -1,9 +1,12 @@
-import { getTodayDateString } from "../helpers/datesHelpers.js"
+import { getTodayDateString } from "$lib/helpers/dates.js"
 
-export async function updateMovieData() {
-    const res = await fetch('http://localhost:3000/api/movies')
+export async function load() {
+    const apiUrl = import.meta.env.VITE_API_URL
+    const res = await fetch(`${apiUrl}/api/movies`)
+
     let movies = await res.json()
     const data = []
+    const titles = []
 
     movies = await movies.sort((a, b) => {
         const dateComparison = new Date(a.date) - new Date(b.date)
@@ -14,18 +17,27 @@ export async function updateMovieData() {
     })
 
     movies = movies.filter(movie => movie.date >= getTodayDateString())
-    const titles = new Set(movies.map(movie => movie.movie_title))
-    for (let title of titles) {
-        const dateRange = getMovieDateRange(title, movies)
-        const venue = getVenue(title, movies)
-        data.push({
-            title: title,
-            dateRange: dateRange,
-            venue: venue,
-        })
-    }
 
-    return data
+    movies.forEach(movie => {
+        if (!titles.some(title => title === movie.movie_title)) {
+            titles.push(movie.movie_title)
+
+            const title = movie.movie_title
+            const rating = movie.rating
+            const runtime = movie.runtime
+            const dateRange = getMovieDateRange(title, movies)
+            const venue = getVenue(title, movies)
+    
+            data.push({
+                title,
+                dateRange,
+                venue,
+                rating,
+                runtime
+            })
+        }})
+
+    return { data }
 }
 
 function getMovieDateRange(title, data) {

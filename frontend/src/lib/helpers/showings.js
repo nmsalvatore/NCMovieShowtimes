@@ -1,5 +1,6 @@
 export async function updateShowingsData(date) {
-    const response = await fetch(`http://localhost:3000/api/showings?date=${date}`)
+    const apiUrl = import.meta.env.VITE_API_URL
+    const response = await fetch(`${apiUrl}/api/showings?date=${date}`)
     const data = response.json()
     return data
 }
@@ -9,19 +10,23 @@ export function formatShowingsByVenue(showings) {
 
     return [...venues].map(venue => {
         const showingsWithTimes = []
+        const address = showings.find(showing => showing.venue_name === venue).address
         const venueShowings = showings.filter(showing => showing.venue_name === venue);
-        const venueShowingsAllTitles = venueShowings.map(showing => showing.movie_title)
-        const venueShowingsTitles = new Set(venueShowingsAllTitles)
 
-        venueShowingsTitles.forEach(title => {
-            showingsWithTimes.push({
-                title: title,
-                times: getTimesByTitle(title, venueShowings)
-            })
+        venueShowings.forEach(showing => {
+            if (!showingsWithTimes.some(arr => arr.title === showing.movie_title)) {
+                showingsWithTimes.push({
+                    title: showing.movie_title,
+                    rating: showing.rating,
+                    runtime: showing.runtime,
+                    times: getTimesByTitle(showing.movie_title, venueShowings)
+                })
+            }
         })
         
         return {
-            venue: venue, 
+            venue: venue,
+            venue_address: address,
             showings: showingsWithTimes
         }
     })
