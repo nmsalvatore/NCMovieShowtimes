@@ -89,7 +89,7 @@
 
        .movie-title {
             font-size: 14px;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
         }
 
         .movie-date-range,
