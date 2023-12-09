@@ -173,8 +173,8 @@
     @media only screen and (max-width: 600px) {
        .venue-showings {
             padding: 1rem;
-            margin-bottom: 1rem;
-            margin-top: 0rem;
+            margin-bottom: 0;
+            margin-top: 0;
         }
 
         .movie-container {

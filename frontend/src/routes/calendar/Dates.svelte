@@ -136,8 +136,7 @@
     @media only screen and (max-width: 600px) {
         nav {
             padding: 1rem;
-            margin-bottom: 2rem;
-            margin-top: 0.5rem;
+            margin-bottom: 18px;
         }
 
         button {
