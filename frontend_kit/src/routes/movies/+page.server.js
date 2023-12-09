@@ -1,7 +1,9 @@
 import { getTodayDateString } from "$lib/helpers/dates.js"
 
 export async function load() {
-    const res = await fetch('http://localhost:3000/api/movies')
+    const apiUrl = import.meta.env.VITE_API_URL
+    const res = await fetch(`${apiUrl}/api/movies`)
+
     let movies = await res.json()
     const data = []
     const titles = []

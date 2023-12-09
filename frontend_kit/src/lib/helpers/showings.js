@@ -1,5 +1,6 @@
 export async function updateShowingsData(date) {
-    const response = await fetch(`http://localhost:3000/api/showings?date=${date}`)
+    const apiUrl = import.meta.env.VITE_API_URL
+    const response = await fetch(`${apiUrl}/api/showings?date=${date}`)
     const data = response.json()
     return data
 }
