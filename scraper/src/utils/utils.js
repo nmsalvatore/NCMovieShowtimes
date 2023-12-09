@@ -51,7 +51,7 @@ export function formatOnyxDate(dateString) {
         showdate = convertToLosAngelesDateString(date)
     } else {
         let [month, day, year] = formattedDateString.split('/')
-        
+
         if (Number(month) < 10) {
             month = '0' + Number(month)
         }
@@ -71,8 +71,8 @@ export function capitalize(str) {
     if (typeof str !== 'string') {
         throw new TypeError('Expected a string')
     }
-  
-    return str.toLowerCase().replace(/\b\p{L}/gu, function(match) {
-        return match.toUpperCase()
-    })
+
+    return str.toLowerCase().replace(/(?:^|\s)\p{L}/gu, function(match) {
+        return match.toUpperCase();
+    });
 }
