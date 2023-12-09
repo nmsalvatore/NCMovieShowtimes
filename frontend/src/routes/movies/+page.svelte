@@ -88,18 +88,18 @@
         }
 
        .movie-title {
-            font-size: 14px;
+            font-size: 15px;
             margin-bottom: 12px;
         }
 
         .movie-date-range,
         .movie-venue,
         .movie-specs {
-            font-size: 10px;
+            font-size: 12px;
         }
 
         .movie-container {
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
 
         img {
