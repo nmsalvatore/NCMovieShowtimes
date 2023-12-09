@@ -188,7 +188,7 @@
 
         .runtime,
         .rating {
-            font-size: 11px;
+            font-size: 12px;
         }
 
         .showdate {
@@ -200,9 +200,9 @@
         .showtime {
             margin-right: 6px;
             margin-top: 6px;
-            width: 62px;
+            width: 68px;
             padding: 12px 0;
-            font-size: 9px;
+            font-size: 10px;
         }
 
         small {
@@ -211,7 +211,7 @@
 
         img {
             margin-right: 1rem;
-            max-width: 120px;
+            max-width: 100px;
         }
 
         h2 {
