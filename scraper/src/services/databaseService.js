@@ -20,6 +20,7 @@ export default async function startDatabaseUpdateService(showings) {
         )
     } finally {
         await client.end()
+        logger.info('Database connection closed')
     }
 }
 
