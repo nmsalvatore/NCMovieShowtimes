@@ -13,12 +13,10 @@ export default async function startDatabaseUpdateService(showings) {
         await client.query('COMMIT')
     } catch (error) {
         await client.query('ROLLBACK')
-        logger.error(error)
         notify.sendEmail(
             'Web Scraper Error: Database Service', `
-            <p>An error occurred:<p>
-            <pre>${error.message}</pre>
-            <p>Please view the systemd journal for error details.</p>`
+            <p>An error has occurred.<p>
+            <p>Please view error log for details.</p>`
         )
     } finally {
         await client.end()
@@ -26,25 +24,30 @@ export default async function startDatabaseUpdateService(showings) {
 }
 
 async function insertShowingsData(showings) {
-    let newShowingCount = 0
+    try {
+        let newShowingCount = 0
 
-    for (const showing of showings) {
-        let venueID = await getVenueID(showing.venue)
-        if (!venueID) {
-            venueID = await addVenue(showing.venue, showing.address)
+        for (const showing of showings) {
+            let venueID = await getVenueID(showing.venue)
+            if (!venueID) {
+                venueID = await addVenue(showing.venue, showing.address)
+            }
+
+            let movieID = await getMovieID(showing.title)
+            if (!movieID) {
+                movieID = await addMovie(showing.title, showing.rating, showing.runtime)
+            }
+
+            const showingID = await getShowingID(movieID, venueID, showing.date, showing.time, showing.url)
+            if (!showingID) {
+                await addShowing(movieID, venueID, showing.date, showing.time, showing.url)
+                newShowingCount++
+            }
         }
 
-        let movieID = await getMovieID(showing.title)
-        if (!movieID) {
-            movieID = await addMovie(showing.title, showing.rating, showing.runtime)
-        }
-
-        const showingID = await getShowingID(movieID, venueID, showing.date, showing.time, showing.url)
-        if (!showingID) {
-            await addShowing(movieID, venueID, showing.date, showing.time, showing.url)
-            newShowingCount++
-        }
+        logger.info(`${newShowingCount} new showings have been added to the database.`)
+    } catch (error) {
+        logger.error('Error inserting showings data:', error)
+        throw error
     }
-
-    logger.info(`${newShowingCount} new showings have been added to the database.`)
 }
