@@ -3,6 +3,7 @@ import { addMovie, getMovieID, resetMoviesTable } from '../models/movies.js'
 import { addShowing, getShowingID } from '../models/showings.js'
 import { client } from '../config/db.js'
 import { notify } from '../utils/notify.js'
+import logger from '../utils/logger.js'
 
 export default async function startDatabaseUpdateService(showings) {
     try {
@@ -12,7 +13,7 @@ export default async function startDatabaseUpdateService(showings) {
         await client.query('COMMIT')
     } catch (error) {
         await client.query('ROLLBACK')
-        console.error(error)
+        logger.error(error)
         notify.sendEmail(
             'Web Scraper Error: Database Service', `
             <p>An error occurred:<p>
@@ -45,5 +46,5 @@ async function insertShowingsData(showings) {
         }
     }
 
-    console.log(`\n${newShowingCount} new showings have been added to the database.`)
+    logger.info(`${newShowingCount} new showings have been added to the database.`)
 }
