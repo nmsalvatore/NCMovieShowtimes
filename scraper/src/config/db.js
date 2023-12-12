@@ -1,5 +1,7 @@
 import pkg from 'pg'
 import 'dotenv/config'
+import logger from '../utils/logger.js'
+import { notify } from '../utils/notify.js'
 
 const { Client } = pkg
 
@@ -15,11 +17,17 @@ try {
     await client.connect()
     logger.info('Database connection established')
 } catch (error) {
-    logger.error('Failed to connect to database:', error)
-    notify.sendEmail(
-        'Web Scraper Error: Failed to connect to database', `
-        <p>An error occurred:<p>
-        <p>Please view error log details.</p>`
-    )
+    logger.error('Failed to connect to database:', error);
+
+    try {
+        await notify.sendEmail(
+            'Web Scraper Error: Failed to connect to database', `
+            <p>An error occurred:<p>
+            <p>Please view error log details.</p>`
+        )
+    } catch (emailError) {
+        logger.error('Failed to send error email:', emailError)
+    }
+
     process.exit(1)
 }
