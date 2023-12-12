@@ -3,59 +3,34 @@ import * as cheerio from 'cheerio'
 import * as utils from '../utils/utils.js'
 import { notify } from '../utils/notify.js'
 import { downloadMoviePoster } from '../utils/posters.js'
-
-
-export const onyx = { getShowings }
+import logger from '../utils/logger.js'
 
 async function getShowings() {
-    const browser = await puppeteer.launch({ headless: 'new' })
+    let browser
 
     try {
-        // Initialize showings array
-        let showings = []
-
-        // Navigate to showtimes page
+        browser = await puppeteer.launch({ headless: 'new' })
         const page = await browser.newPage()
         const url = 'https://theonyxtheatre.com/showtimes'
+
         await page.goto(url)
+        await utils.delay(5000)
+        await agreeToCookies(page)
 
-        // Deny cookies
-        await new Promise(r => setTimeout(r, 5000))
-        const agreeButton = await page.$('#didomi-notice-agree-button')
-        if (agreeButton) {
-            agreeButton.click()
-        }
-
-        // Collect all showdate buttons
-        await page.waitForSelector('[data-role="card"]', { visible: true })
-        await new Promise(r => setTimeout(r, 5000))
-        const dateButtons = await page.$$('.css-68am72')
-        
+        let showings = []
+        const dateButtons = await getDateButtons(page)
         for (const button of dateButtons) {
-            // Click date button
             button.click()
-
-            // Wait 5 seconds for page to load
-            await new Promise(r => setTimeout(r, 5000))
-
-            // Get showings data for each day
+            await utils.delay(5000)
             const daysShowings = await getDaysShowingsData(page, button)
-
-            // Concatenate showings array
             showings = showings.concat(daysShowings)
         }
 
-        console.log(`Retrieved ${showings.length} showings from The Onyx Theatre.`)
-
-        // Close browser
-        await browser.close()
-
-        // Return showings array
+        logger.info(`Retrieved ${showings.length} showings from The Onyx Theatre.`)
         return showings
 
     } catch(error) {
-        console.error(error)
-
+        logger.error(error)
         notify.sendEmail(
             'Web Scraper Error: The Onyx Theatre', `
             <p>An error occurred:<p>
@@ -64,6 +39,21 @@ async function getShowings() {
         )
 
         return []
+    } finally {
+        await browser.close()
+    }
+}
+
+async function getDateButtons(page) {
+    await page.waitForSelector('[data-role="card"]', { visible: true })
+    await utils.delay(5000)
+    return await page.$$('.css-68am72')
+}
+
+async function agreeToCookies(page) {
+    const agreeButton = await page.$('#didomi-notice-agree-button')
+    if (agreeButton) {
+        agreeButton.click()
     }
 }
 
@@ -215,3 +205,5 @@ const getPosterUrl = el => {
     const url = el.find('.css-bi7rho').first().attr('src')
     return url
 }
+
+export const onyx = { getShowings }
