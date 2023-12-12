@@ -1,10 +1,8 @@
 import 'dotenv/config'
 
-
 export function removeRating(title) {
     return title.replace(/ \(?(G|PG|PG-13|R|NC-17|NR|\d+)?\)?$/, '')
 }
-
 
 export function formatTime(time) {
     const dayPeriod = time.slice(7)
@@ -37,7 +35,6 @@ export function formatDate(date) {
     return `${month}/${day}/${year}`
 }
 
-
 export function formatOnyxDate(dateString) {
     const today = new Date()
     const fullYear = new Date().getFullYear()
@@ -65,7 +62,6 @@ export function formatOnyxDate(dateString) {
 
     return showdate
 }
-
 
 export function capitalize(str) {
     if (typeof str !== 'string') {

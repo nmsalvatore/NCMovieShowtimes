@@ -4,7 +4,6 @@ import { addShowing, getShowingID } from '../models/showings.js'
 import { client } from '../config/db.js'
 import { notify } from '../utils/notify.js'
 
-
 export default async function startDatabaseUpdateService(showings) {
     try {
         await client.query('BEGIN')
@@ -24,7 +23,6 @@ export default async function startDatabaseUpdateService(showings) {
         await client.end()
     }
 }
-
 
 async function insertShowingsData(showings) {
     let newShowingCount = 0

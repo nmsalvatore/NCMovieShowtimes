@@ -1,6 +1,5 @@
 import startScrapingService from './services/scrapingService.js'
 
-
 async function init() {
     try {
         await startScrapingService()
@@ -8,6 +7,5 @@ async function init() {
         throw Error(err)
     }
 }
-
 
 init()
