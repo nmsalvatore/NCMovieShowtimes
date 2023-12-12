@@ -22,7 +22,7 @@ async function getShowings() {
         for (const button of dateButtons) {
             button.click()
             await utils.delay(5000)
-            const daysShowings = await getDaysShowingsData(page, button)
+            const daysShowings = await getDaysShowingsData(page)
             showings = showings.concat(daysShowings)
         }
 
@@ -57,45 +57,30 @@ async function agreeToCookies(page) {
     }
 }
 
-const getDaysShowingsData = async (page, button) => {
-    // Initialize showings array for page
+async function getDaysShowingsData(page) {
     const pageShowings = []
-
-    // Load cheerio wrapper for page content
     const html = await page.content()
     const $ = cheerio.load(html)
-
-    // Get container element for all movies on page
     const movies = $('div.css-1hrrla4')
 
     for (const movie of movies) {
-        // Apply cheerio wrapper to movie container element
         const $movie = $(movie)
-
-        // Get movie-specific data
         const title = getTitle($movie)
         const date = getShowdate($movie)
         const venue = getVenue($movie)
         const address = getAddress(venue)
         const rating = getRating($movie)
         const runtime = getRuntime($movie)
-
-        // Download movie poster
         const posterUrl = getPosterUrl($movie)
+
         downloadMoviePoster(posterUrl, title + '.jpg')
 
-        // Get showtimes
         const showtimes = getShowtimes($movie)
         for (let showtime of showtimes) {
-
-            // Apply cheerio wrapper to showtime element
             const $showtime = $(showtime)
-
-            // Get time-specific data
             const time = getTime($showtime)
             const url = getURL($showtime)
 
-            // Add film data to showings array for page
             pageShowings.push({
                 title,
                 rating,
@@ -111,7 +96,6 @@ const getDaysShowingsData = async (page, button) => {
 
     return pageShowings
 }
-
 
 const getTitle = el => el.find('a.css-erexzk').first().attr('title')
 
