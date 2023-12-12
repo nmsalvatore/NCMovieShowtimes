@@ -2,7 +2,6 @@ import * as winston from 'winston'
 import 'dotenv/config'
 const { combine, timestamp, printf } = winston.format;
 
-// Custom log format
 const logFormat = printf(({ level, message, timestamp }) => {
     return `${timestamp} ${level}: ${message}`;
 });
