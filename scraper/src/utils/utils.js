@@ -1,5 +1,9 @@
 import 'dotenv/config'
 
+export function delay(milliseconds) {
+    return new Promise(r => setTimeout(r, milliseconds))
+}
+
 export function removeRating(title) {
     return title.replace(/ \(?(G|PG|PG-13|R|NC-17|NR|\d+)?\)?$/, '')
 }
