@@ -42,7 +42,7 @@ async function getShowings() {
 async function getDaysShowings(page) {
     await page.waitForSelector('div#loading')
     await page.waitForSelector('div.times-block')
-    await utils.delay(2000)
+    await utils.delay(5000)
 
     const pageShowings = []
     const html = await page.content()
