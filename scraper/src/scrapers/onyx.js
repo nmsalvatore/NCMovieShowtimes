@@ -12,16 +12,14 @@ async function getShowings() {
         browser = await puppeteer.launch({ headless: 'new' })
         const page = await browser.newPage()
         const url = 'https://theonyxtheatre.com/showtimes'
-
-        await page.goto(url)
-        await utils.delay(5000)
-        await agreeToCookies(page)
-
+        await page.goto(url, { timeout: 60000 })
+        
         let showings = []
         const dateButtons = await getDateButtons(page)
 
         for (const button of dateButtons) {
-            button.click()
+            await checkForCookiePrompt(page)
+            await button.click()
             await utils.delay(5000)
             const daysShowings = await getDaysShowingsData(page)
             showings = showings.concat(daysShowings)
@@ -50,10 +48,10 @@ async function getDateButtons(page) {
     return await page.$$('.css-68am72')
 }
 
-async function agreeToCookies(page) {
+async function checkForCookiePrompt(page) {
     const agreeButton = await page.$('#didomi-notice-agree-button')
     if (agreeButton) {
-        agreeButton.click()
+        await agreeButton.click()
     }
 }
 
