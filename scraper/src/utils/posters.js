@@ -2,6 +2,7 @@ import axios from 'axios';
 import { createWriteStream, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import logger from './logger';
 
 export async function downloadMoviePoster(url, filename) {
     const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -29,6 +30,7 @@ export async function downloadMoviePoster(url, filename) {
             writer.on('error', reject);
         });
     } catch (error) {
+        logger.error(`Error downloading movie poster "${filename}"`)
         throw error;
     }
 }
