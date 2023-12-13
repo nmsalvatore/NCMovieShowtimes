@@ -23,10 +23,12 @@ function sendEmail(subject, body) {
 
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
-                throw error
+                logger.error('Error sending email:', error)
+                reject(error)
+            } else {
+                logger.info('Email sent: ' + info.response)
+                resolve(info)
             }
-            
-            logger.info('Email sent: ' + info.response)
         }) 
     });
 }
