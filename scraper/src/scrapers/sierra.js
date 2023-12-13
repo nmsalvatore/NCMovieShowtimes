@@ -12,9 +12,10 @@ async function getShowings() {
         browser = await puppeteer.launch({ headless: 'new' })
         const page = await browser.newPage()
         await page.goto('https://www.sierratheaters.com/movies/Showtimes')
-
+        
         let showings = []
         const dayButtons = await page.$$('button.showdate')
+
         for (let button of dayButtons) {
             button.click()
             const daysShowings = await getDaysShowings(page)
@@ -22,20 +23,19 @@ async function getShowings() {
         }
 
         logger.info(`Retrieved ${showings.length} showings from Sierra Theaters.`)
-        return showings
+        await browser.close()
 
+        return showings
     } catch (error) {
-        logger.error(error)
-        notify.sendEmail(
+        logger.error('Error retrieving showings from Sierra Theaters:', error)
+        await browser.close()
+        await notify.sendEmail(
             'Web Scraper Error: Sierra Theaters', `
             <p>An error occurred:<p>
             <pre>${error.message}</pre>
-            <p>Please view the systemd journal for error details.</p>`
-        )
+            <p>Please view the systemd journal for error details.</p>`)
 
-        return []
-    } finally {
-        await browser.close()
+        throw error
     }
 }
 

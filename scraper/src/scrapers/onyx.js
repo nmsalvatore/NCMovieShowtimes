@@ -19,6 +19,7 @@ async function getShowings() {
 
         let showings = []
         const dateButtons = await getDateButtons(page)
+
         for (const button of dateButtons) {
             button.click()
             await utils.delay(5000)
@@ -27,20 +28,19 @@ async function getShowings() {
         }
 
         logger.info(`Retrieved ${showings.length} showings from The Onyx Theatre.`)
+        await browser.close()
+        
         return showings
-
     } catch(error) {
-        logger.error(error)
-        notify.sendEmail(
+        logger.error('Error retrieving showings from The Onyx Theatre:', error)
+        await browser.close()
+        await notify.sendEmail(
             'Web Scraper Error: The Onyx Theatre', `
             <p>An error occurred:<p>
             <pre>${error.message}</pre>
-            <p>Please view the systemd journal for error details.</p>`
-        )
+            <p>Please view the systemd journal for error details.</p>`)
 
-        return []
-    } finally {
-        await browser.close()
+        throw error
     }
 }
 

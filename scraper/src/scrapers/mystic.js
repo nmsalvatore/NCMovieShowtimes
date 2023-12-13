@@ -35,17 +35,19 @@ async function getShowings() {
         }
 
         logger.info(`Retrieved ${showings.length} showings from Mystic Theater.`)
+        await browser.close()
+        
         return showings
     } catch (error) {
-        logger.error(error)
-        notify.sendEmail(
+        logger.error('Error retrieving showings from The Mystic Theater:', error)
+        await browser.close()
+        await notify.sendEmail(
             'Web Scraper Error: Mystic Theater', `
             <p>An error occurred:<p>
             <pre>${error.message}</pre>
-            <p>Please view the systemd journal for error details.</p>`
-        )
+            <p>Please view the systemd journal for error details.</p>`)
 
-        return []
+        throw error
     }
 }
 
