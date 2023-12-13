@@ -14,8 +14,6 @@ async function getShowings() {
         const showings = []
         const films = $('.tribe-events-calendar-list__event-row')
 
-        browser.close()
-        
         for (let film of films) {
             const $film = $(film)
             const title = await getTitle($film)
