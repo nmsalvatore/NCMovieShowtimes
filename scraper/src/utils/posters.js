@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createWriteStream, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import logger from './logger';
+import logger from '../utils/logger.js';
 
 export async function downloadMoviePoster(url, filename) {
     const __dirname = dirname(fileURLToPath(import.meta.url));
