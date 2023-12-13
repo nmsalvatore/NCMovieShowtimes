@@ -1,7 +1,7 @@
 import 'dotenv/config'
 
-export function delay(milliseconds) {
-    return new Promise(r => setTimeout(r, milliseconds))
+export function delay(ms) {
+    return new Promise(r => setTimeout(r, ms))
 }
 
 export function removeRating(title) {
