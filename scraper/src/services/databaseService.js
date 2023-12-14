@@ -22,10 +22,10 @@ export default async function startDatabaseUpdateService(showings) {
 }
 
 async function insertShowingsData(showings) {
-    logger.info(`${showings.length} showings staged for database insertion`)
-
     try {
         let newShowingCount = 0
+        
+        logger.info(`${showings.length} showings staged for database insertion`)
 
         for (const showing of showings) {
             let venueID = await getVenueID(showing.venue)
