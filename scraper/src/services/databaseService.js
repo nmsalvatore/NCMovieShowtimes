@@ -13,11 +13,8 @@ export default async function startDatabaseUpdateService(showings) {
         await client.query('COMMIT')
     } catch (error) {
         await client.query('ROLLBACK')
-        notify.sendEmail(
-            'Web Scraper Error: Database Service', `
-            <p>An error has occurred.<p>
-            <p>Please view error log for details.</p>`
-        )
+        logger.error('Error updating database:', error)
+        throw error
     } finally {
         await client.end()
         logger.info('Database connection closed')
@@ -25,8 +22,8 @@ export default async function startDatabaseUpdateService(showings) {
 }
 
 async function insertShowingsData(showings) {
-    logger.info(`${showings.length} showings staged for database insertion.`)
-    
+    logger.info(`${showings.length} showings staged for database insertion`)
+
     try {
         let newShowingCount = 0
 
