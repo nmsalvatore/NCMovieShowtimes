@@ -25,6 +25,8 @@ export default async function startDatabaseUpdateService(showings) {
 }
 
 async function insertShowingsData(showings) {
+    logger.info(`${showings.length} showings staged for database insertion.`)
+    
     try {
         let newShowingCount = 0
 
