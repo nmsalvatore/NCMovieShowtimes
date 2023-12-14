@@ -1,15 +1,15 @@
 import got from 'got'
 import * as cheerio from 'cheerio'
 import * as utils from '../utils/utils.js'
-import { notify } from '../utils/notify.js'
 import { gpt } from '../utils/gpt.js'
 import { downloadMoviePoster } from '../utils/posters.js'
+import userAgentStrings from '../utils/agents.js'
 import logger from '../utils/logger.js'
 
 async function getShowings() {
     try {
         const url = 'https://www.kvmr.org/venue/mystic-theater/'
-        const html = await got(url).text()
+        const html = await getHTML(url)
         const $ = cheerio.load(html)
         const showings = []
         const films = $('.tribe-events-calendar-list__event-row')
@@ -35,18 +35,30 @@ async function getShowings() {
         }
 
         logger.info(`Retrieved ${showings.length} showings from Mystic Theater.`)
-
         return showings
     } catch (error) {
         logger.error('Error retrieving showings from The Mystic Theater:', error)
-
-        await notify.sendEmail(
-            'Web Scraper Error: Mystic Theater', `
-            <p>An error occurred:<p>
-            <pre>${error.message}</pre>
-            <p>Please view the systemd journal for error details.</p>`)
-
         throw error
+    }
+}
+
+async function getHTML(url) {
+    const userAgentStringsRandomized = utils.shuffle(userAgentStrings)
+    for (let index in userAgentStringsRandomized) {
+        try {
+            const string = userAgentStringsRandomized[index]
+            const options = { headers: { 'User-Agent': string }}
+            const html = await got(url, options).text()
+            logger.info(`Successfully connected to ${url}`)
+            return html
+        } catch (error) {
+            logger.error(`Failed to connect to ${url}:`, error)
+            if (index == userAgentStrings.length-1) {
+                throw error
+            } else {
+                continue
+            }
+        }
     }
 }
 

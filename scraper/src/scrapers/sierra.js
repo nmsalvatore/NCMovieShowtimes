@@ -1,8 +1,8 @@
 import puppeteer from 'puppeteer'
 import * as cheerio from 'cheerio'
 import * as utils from '../utils/utils.js'
-import { notify } from '../utils/notify.js'
 import { downloadMoviePoster } from '../utils/posters.js'
+import userAgentStrings from '../utils/agents.js'
 import logger from '../utils/logger.js'
 
 async function getShowings() {
@@ -11,7 +11,8 @@ async function getShowings() {
     try {
         browser = await puppeteer.launch({ headless: 'new' })
         const page = await browser.newPage()
-        await page.goto('https://www.sierratheaters.com/movies/Showtimes')
+        const url = 'https://www.sierratheaters.com/movies/Showtimes'
+        await navigateToURL(page, url)
         
         let showings = []
         const dayButtons = await page.$$('button.showdate')
@@ -24,18 +25,31 @@ async function getShowings() {
 
         logger.info(`Retrieved ${showings.length} showings from Sierra Theaters.`)
         await browser.close()
-
         return showings
     } catch (error) {
         logger.error('Error retrieving showings from Sierra Theaters:', error)
         await browser.close()
-        await notify.sendEmail(
-            'Web Scraper Error: Sierra Theaters', `
-            <p>An error occurred:<p>
-            <pre>${error.message}</pre>
-            <p>Please view the systemd journal for error details.</p>`)
-
         throw error
+    }
+}
+
+async function navigateToURL(page, url) {
+    const userAgentStringsRandomized = utils.shuffle(userAgentStrings)
+    for (let index in userAgentStringsRandomized) {
+        try {
+            const string = userAgentStringsRandomized[index]
+            await page.setUserAgent(string)
+            await page.goto(url, { timeout: 60000 })
+            logger.info(`Successfully connected to ${url}`)
+            break
+        } catch (error) {
+            logger.error(`Failed to connect to ${url}:`, error)
+            if (index == userAgentStrings.length-1) {
+                throw error
+            } else {
+                continue
+            }
+        }
     }
 }
 
