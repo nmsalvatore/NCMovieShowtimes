@@ -56,7 +56,7 @@ async function navigateToURL(page, url) {
 async function getDaysShowings(page) {
     await page.waitForSelector('div#loading')
     await page.waitForSelector('div.times-block')
-    await utils.delay(5000)
+    await utils.delay(10000)
 
     const pageShowings = []
     const html = await page.content()

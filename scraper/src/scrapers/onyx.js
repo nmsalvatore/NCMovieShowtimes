@@ -21,7 +21,7 @@ async function getShowings() {
         for (const button of dateButtons) {
             await checkForCookiePrompt(page)
             await button.click()
-            await utils.delay(5000)
+            await utils.delay(10000)
             const daysShowings = await getDaysShowingsData(page)
             showings = showings.concat(daysShowings)
         }
