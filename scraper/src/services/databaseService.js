@@ -2,7 +2,6 @@ import { addVenue, getVenueID } from '../models/venues.js'
 import { addMovie, getMovieID, resetMoviesTable } from '../models/movies.js'
 import { addShowing, getShowingID } from '../models/showings.js'
 import { client } from '../config/db.js'
-import { notify } from '../utils/notify.js'
 import logger from '../utils/logger.js'
 
 export default async function startDatabaseUpdateService(showings) {
@@ -42,6 +41,9 @@ async function insertShowingsData(showings) {
             if (!showingID) {
                 await addShowing(movieID, venueID, showing.date, showing.time, showing.url)
                 newShowingCount++
+            } else {
+                logger.error('Showing failed database insertion. Aborting update.')
+                throw new Error('Showing failed database insertion.')
             }
         }
 
