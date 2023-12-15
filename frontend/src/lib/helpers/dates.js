@@ -30,10 +30,28 @@ export function convertToAbbreviatedDateString(date) {
 }
 
 export async function updateDatesData() {
-    const res = await fetch("http://localhost:3000/api/dates");
+    const res = await fetch("http://localhost:3000/api/dates")
     const dates = await res.json()
-    const today = getTodayDateString()
-    return dates.filter(date => date >= today)
+
+    const todayStr = getTodayDateString()
+    const [month, day, year] = todayStr.split('/')
+    const todayDate = new Date(year, month - 1, day)
+
+    const sortedAndFilteredDates = dates
+        .map(dateStr => {
+            const [month, day, year] = dateStr.split('/')
+            return new Date(year, month - 1, day)
+        })
+        .sort((a, b) => a - b)
+        .filter(date => date >= todayDate)
+        .map(date => {
+            const day = String(date.getDate()).padStart(2, '0')
+            const month = String(date.getMonth() + 1).padStart(2, '0')
+            const year = date.getFullYear()
+            return `${month}/${day}/${year}`
+        });
+
+    return sortedAndFilteredDates
 }
 
 export function enableSideScroll(scrollContainer) {
