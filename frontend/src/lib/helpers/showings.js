@@ -33,7 +33,7 @@ export function formatShowingsByVenue(showings) {
 }
 
 function getTimesByTitle(title, arr) {
-    const times = []
+    const times = [];
     const titleShowings = getTitleShowings(title, arr)
 
     titleShowings.forEach(showing => {
@@ -43,7 +43,11 @@ function getTimesByTitle(title, arr) {
         })
     })
 
-    return times
+    times.sort((a, b) => {
+        return a.time.localeCompare(b.time)
+    });
+
+    return times;
 }
 
 function getTitleShowings(title, arr) {
