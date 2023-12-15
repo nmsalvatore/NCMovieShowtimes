@@ -1,5 +1,3 @@
-import 'dotenv/config'
-
 export function delay(ms) {
     return new Promise(r => setTimeout(r, ms))
 }
@@ -17,13 +15,13 @@ export function removeRating(title) {
 }
 
 export function formatTime(time) {
-    const dayPeriod = time.slice(7)
+    const period = time.slice(7)
     const hour = Number(time[0])
 
     if (hour < 10) {
-        return time.slice(0, 4) + dayPeriod
+        return time.slice(0, 4) + period
     } else if (hour >= 10) {
-        return time.slice(0, 5) + dayPeriod
+        return time.slice(0, 5) + period
     } else {
         return null
     }
@@ -60,26 +58,16 @@ export function formatOnyxDate(dateString) {
         showdate = convertToLosAngelesDateString(date)
     } else {
         let [month, day, year] = formattedDateString.split('/')
-
-        if (Number(month) < 10) {
-            month = '0' + Number(month)
-        }
-    
-        if (Number(day) < 10) {
-            day = '0' + Number(day)
-        }
-
+        month = month.padStart(2, 0)
+        day = day.padStart(2, 0)
         showdate = `${month}/${day}/${++year}`
+        console.log(showdate)
     }
 
     return showdate
 }
 
 export function capitalize(str) {
-    if (typeof str !== 'string') {
-        throw new TypeError('Expected a string')
-    }
-
     return str.toLowerCase().replace(/(?:^|\s)\p{L}/gu, function(match) {
         return match.toUpperCase();
     });
