@@ -9,14 +9,21 @@ export async function load() {
     const titles = []
 
     movies = await movies.sort((a, b) => {
-        const dateComparison = new Date(a.date) - new Date(b.date)
+        const dateA = new Date(a.date)
+        const dateB = new Date(b.date)
+        const dateComparison = dateA - dateB
         if (dateComparison === 0) {
             return a.movie_title.localeCompare(b.movie_title)
         }
         return dateComparison
+    });
+    
+    const todayStr = getTodayDateString()
+    const todayDate = new Date(todayStr)
+    movies = movies.filter(movie => {
+        const movieDate = new Date(movie.date)
+        return movieDate >= todayDate
     })
-
-    movies = movies.filter(movie => movie.date >= getTodayDateString())
 
     movies.forEach(movie => {
         if (!titles.some(title => title === movie.movie_title)) {
