@@ -61,7 +61,6 @@ export function formatOnyxDate(dateString) {
         month = month.padStart(2, 0)
         day = day.padStart(2, 0)
         showdate = `${month}/${day}/${++year}`
-        console.log(showdate)
     }
 
     return showdate
