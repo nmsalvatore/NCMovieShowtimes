@@ -13,10 +13,33 @@
     activeRouteID.set(1)
     activeDate.set(activeDateValue)
 
+    let shouldRenderShowings = true
+
     async function updateCalendar(e) {
+        shouldRenderShowings = false
         showings = await updateShowingsData(e.detail)
+
+        setTimeout(() => {
+            shouldRenderShowings = true
+        }, 100)
     }
 </script>
 
 <Dates {dates} on:updateActiveDate={updateCalendar}/>
-<Showings {showings} />
+
+<div class={shouldRenderShowings ? 'showings-container' : 'hidden'}>
+    <Showings {showings} />
+</div>
+
+<style>
+    .showings-container {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 1500ms, visible ease-in;
+    }
+
+    .hidden {
+        opacity: 0;
+        visibility: hidden;
+    }
+</style>
