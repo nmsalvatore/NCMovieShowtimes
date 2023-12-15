@@ -12,50 +12,51 @@
     $: showings, now = getCurrentDatetime()
 </script>
 
-
 {#if showings.length > 0}
-
     {#each showingsByVenue as showings}
-    <div class="venue-showings">
-        <h2>{showings.venue}</h2>
-        <small>{showings.venue_address}</small>
+        <div class="venue-showings">
+            <h2>{showings.venue}</h2>
+            <small>{showings.venue_address}</small>
 
-        {#each showings.showings as showing}
-        <div class="movie-container">
-            <img crossorigin="true" src={getPosterUrl(showing.title)} alt="{showing.title} Movie Poster">
+            {#each showings.showings as showing}
+                <div class="movie-container">
+                    <img 
+                        crossorigin="true" 
+                        src={getPosterUrl(showing.title)} 
+                        alt="{showing.title} 
+                            Movie Poster"
+                    >
+                    <div>
+                        <span class="movie-title">{showing.title}</span>
 
-            <div>
-                <span class="movie-title">{showing.title}</span>
-
-                {#if (showing.rating && showing.runtime)}
-                    <span class="rating">{showing.rating},</span>
-                    <span class="runtime">{showing.runtime}</span>
-                {:else if showing.rating}
-                    <span class="rating">{showing.rating}</span>
-                {:else if showing.runtime}
-                    <span class="runtime">{showing.runtime}</span>
-                {/if}
-    
-                <span class="showdate">{convertDateToLongString($activeDate)}</span>
-                <div class="showtimes">
-    
-                    {#each showing.times as showtime}
-    
-                    {#if new Date(`${$activeDate} ${showtime.time}`) > now}
-                    <a href={showtime.url} target="_blank" class="showtime">{showtime.time}</a>
-                    {:else}
-                    <a href={showtime.url} target="_blank" class="showtime old">{showtime.time}</a>
-                    {/if}
-    
-                    {/each}
+                        {#if (showing.rating && showing.runtime)}
+                            <span class="rating">{showing.rating},</span>
+                            <span class="runtime">{showing.runtime}</span>
+                        {:else if showing.rating}
+                            <span class="rating">{showing.rating}</span>
+                        {:else if showing.runtime}
+                            <span class="runtime">{showing.runtime}</span>
+                        {/if}
+            
+                        <span class="showdate">{convertDateToLongString($activeDate)}</span>
+                        <div class="showtimes">
+            
+                            {#each showing.times as showtime}
+            
+                            {#if new Date(`${$activeDate} ${showtime.time}`) > now}
+                            <a href={showtime.url} target="_blank" class="showtime">{showtime.time}</a>
+                            {:else}
+                            <a href={showtime.url} target="_blank" class="showtime old">{showtime.time}</a>
+                            {/if}
+            
+                            {/each}
+                        </div>
+                    </div>
                 </div>
-            </div>
+            {/each}
+
         </div>
-        {/each}
-
-    </div>
     {/each}
-
 {:else}
 
 <div class="venue-showings">No showings for this date.</div>
