@@ -21,7 +21,7 @@
 
         setTimeout(() => {
             shouldRenderShowings = true
-        }, 100)
+        }, 300)
     }
 </script>
 
