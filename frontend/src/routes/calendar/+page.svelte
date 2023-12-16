@@ -35,7 +35,7 @@
     .showings-container {
         opacity: 1;
         visibility: visible;
-        transition: opacity 200ms, visible ease-in;
+        transition: opacity 1000ms, visible ease-in;
     }
 
     .hidden {
