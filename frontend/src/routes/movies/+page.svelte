@@ -1,32 +1,50 @@
 <script>
     import { activeRouteID } from '$lib/stores.js'
     import { getPosterUrl } from '$lib/helpers/posters.js'
+    import { onMount } from 'svelte';
 
     export let data
 
+    let shouldRenderShowings = false
+
     $activeRouteID = 2
+
+    onMount(() => {
+        setRenderDisplay(300)
+    })
+
+    function setRenderDisplay(ms) {
+        setTimeout(() => {
+            shouldRenderShowings = true
+        }, ms)
+    }
 </script>
 
 <div class="all-movies-container">
+    <div class={shouldRenderShowings ? 'all-movies-inner-container' : 'hidden'}>
+    
     {#each data.data as movie}
-    <div class="movie-container">
-        <div class="movie-data">
-            <div class="movie-title">{movie.title}</div>
+        <div class="movie-container">
+            <div class="movie-data">
+                <div class="movie-title">{movie.title}</div>
 
-            {#if (movie.rating && movie.runtime)}
-                <div class="movie-specs">{movie.rating}, {movie.runtime}</div>
-            {:else if movie.rating}
-                <div class="movie-specs">{movie.rating}</div>
-            {:else if movie.runtime}
-                <div class="movie-specs">{movie.runtime}</div>
-            {/if}
+                {#if (movie.rating && movie.runtime)}
+                    <div class="movie-specs">{movie.rating}, {movie.runtime}</div>
+                {:else if movie.rating}
+                    <div class="movie-specs">{movie.rating}</div>
+                {:else if movie.runtime}
+                    <div class="movie-specs">{movie.runtime}</div>
+                {/if}
 
-            <div class="movie-venue">{movie.venue}</div>
-            <div class="movie-date-range">{movie.dateRange}</div>
+                <div class="movie-venue">{movie.venue}</div>
+                <div class="movie-date-range">{movie.dateRange}</div>
+            </div>
+            <img crossorigin="true" src={getPosterUrl(movie.title)} alt="{movie.title} Movie Poster">
         </div>
-        <img crossorigin="true" src={getPosterUrl(movie.title)} alt="{movie.title} Movie Poster">
-    </div>
     {/each}
+
+    </div>
+
 </div>
 
 <style>
@@ -38,6 +56,17 @@
         border-radius: 5px;
         opacity: 0.85;
         margin-left: 2rem;
+    }
+
+    .hidden {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .all-movies-inner-container {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 1500ms, visible ease-in;
     }
 
     .all-movies-container {
