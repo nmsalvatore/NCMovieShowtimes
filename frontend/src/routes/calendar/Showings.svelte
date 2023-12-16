@@ -218,7 +218,7 @@
 
         h2 {
             font-size: 18px;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
             margin-top: 16px;
         }
     }
