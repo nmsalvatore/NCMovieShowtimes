@@ -66,10 +66,11 @@
 
 <style>
     h2 {
-        margin-bottom: 8px;
+        margin-bottom: 4px;
         color: #555;
         margin-left: 4px;
-        font-size: 26px;
+        font-size: 20px;
+        font-weight: 600;
     }
 
     small {
@@ -77,7 +78,7 @@
         margin-left: 6px;
         letter-spacing: 1px;
         color: #ccc;
-        font-weight: 600;
+        font-weight: 500;
         display: block;
         margin-bottom: 40px;
     }
@@ -85,7 +86,7 @@
     img {
         width: auto;
         height: auto;
-        max-width: 120px;
+        max-width: 110px;
         height: 100%;
         border-radius: 5px;
         opacity: 0.85;
@@ -107,7 +108,7 @@
     .movie-title {
         display: block;
         margin-right: 12px;
-        font-weight: 600;
+        font-weight: 500;
         font-size: 16px;
         margin-bottom: 10px;
     }
@@ -163,7 +164,7 @@
     .movie-container {
         text-decoration: none;
         display: flex;
-        padding: 30px;
+        padding: 22px;
         margin: 12px 0;
         border-radius: 8px;
         color: #555;
@@ -184,7 +185,7 @@
 
         .movie-title {
             font-size: 15px;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .runtime,
@@ -202,7 +203,7 @@
             margin-right: 6px;
             margin-top: 6px;
             width: 68px;
-            padding: 12px 0;
+            padding: 10px 0;
             font-size: 10px;
         }
 
@@ -212,7 +213,7 @@
 
         img {
             margin-right: 1rem;
-            max-width: 100px;
+            max-width: 92px;
         }
 
         h2 {

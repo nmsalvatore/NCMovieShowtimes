@@ -16,7 +16,7 @@
         height: 100px;
         padding: 0 2rem;
         margin-top: 1rem;
-        margin-bottom: 1rem;
+        /* margin-bottom: 1rem; */
     }
 
     img {
