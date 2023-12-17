@@ -7,10 +7,27 @@
     export let showings = []
 
     let now
+    let loadedImages = 0
+    let allImagesLoaded = false
+    let uniqueMovieTitles = new Set()
 
     $: showingsByVenue = formatShowingsByVenue(showings)
     $: showings, now = getCurrentDatetime()
+    $: if (showings) {
+        allImagesLoaded = false
+        loadedImages = 0
+    }
+    $: {
+        uniqueMovieTitles = new Set(showings.map(showing => showing.movie_title))
+        allImagesLoaded = loadedImages >= uniqueMovieTitles.size;
+    }
+
+    function handlePosterLoad() {
+        loadedImages++
+    }
 </script>
+
+<div class={allImagesLoaded ? 'showings-container' : 'hidden' }>
 
 {#if showings.length > 0}
     {#each showingsByVenue as showings}
@@ -23,6 +40,7 @@
                     <img 
                         crossorigin="true" 
                         src={getPosterUrl(showing.title)} 
+                        on:load={() => handlePosterLoad(showing.title)}
                         alt="{showing.title} 
                             Movie Poster"
                     >
@@ -59,12 +77,24 @@
     {/each}
 {:else}
 
-<div class="venue-showings">No showings for this date.</div>
+    <div class="venue-showings">No showings for this date.</div>
 
 {/if}
 
+</div>
 
 <style>
+    .showings-container {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 500ms, visible ease-in;
+    }
+
+    .hidden {
+        opacity: 0;
+        visibility: hidden;
+    }
+
     h2 {
         margin-bottom: 4px;
         color: #555;
