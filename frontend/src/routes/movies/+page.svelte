@@ -1,29 +1,26 @@
 <script>
     import { activeRouteID } from '$lib/stores.js'
     import { getPosterUrl } from '$lib/helpers/posters.js'
-    import { onMount } from 'svelte';
 
     export let data
 
-    let shouldRenderShowings = false
+    let loadedImages = 0
+    let allImagesLoaded = false
+
+    $: if (data) loadedImages = 0
+    $: allImagesLoaded = loadedImages >= data.allMovies.length
 
     $activeRouteID = 2
 
-    onMount(() => {
-        setRenderDisplay(300)
-    })
-
-    function setRenderDisplay(ms) {
-        setTimeout(() => {
-            shouldRenderShowings = true
-        }, ms)
+    function onPosterLoad() {
+        loadedImages++
     }
 </script>
 
 <div class="all-movies-container">
-    <div class={shouldRenderShowings ? 'all-movies-inner-container' : 'hidden'}>
+    <div class={allImagesLoaded ? 'all-movies-inner-container' : 'hidden'}>
     
-    {#each data.data as movie}
+    {#each data.allMovies as movie}
         <div class="movie-container">
             <div class="movie-data">
                 <div class="movie-title">{movie.title}</div>
@@ -39,12 +36,16 @@
                 <div class="movie-venue">{movie.venue}</div>
                 <div class="movie-date-range">{movie.dateRange}</div>
             </div>
-            <img crossorigin="true" src={getPosterUrl(movie.title)} alt="{movie.title} Movie Poster">
+            <img 
+                crossorigin="true" 
+                src={getPosterUrl(movie.title)} 
+                on:load={() => onPosterLoad()}
+                alt="{movie.title} 
+                    Movie Poster">
         </div>
     {/each}
 
     </div>
-
 </div>
 
 <style>
