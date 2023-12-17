@@ -5,7 +5,7 @@ export async function load() {
     const res = await fetch(`${apiUrl}/api/movies`)
 
     let movies = await res.json()
-    const data = []
+    const allMovies = []
     const titles = []
 
     movies = await movies.sort((a, b) => {
@@ -35,7 +35,7 @@ export async function load() {
             const dateRange = getMovieDateRange(title, movies)
             const venue = getVenue(title, movies)
     
-            data.push({
+            allMovies.push({
                 title,
                 dateRange,
                 venue,
@@ -44,7 +44,7 @@ export async function load() {
             })
         }})
 
-    return { data }
+    return { allMovies }
 }
 
 function getMovieDateRange(title, data) {
