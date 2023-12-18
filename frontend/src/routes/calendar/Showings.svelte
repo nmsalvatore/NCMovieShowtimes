@@ -3,6 +3,7 @@
     import { formatShowingsByVenue, getCurrentDatetime } from "$lib/helpers/showings.js";
     import { activeDate } from '$lib/stores.js'
     import { getPosterUrl } from '$lib/helpers/posters.js'
+    import { fade } from 'svelte/transition'
 
     export let showings = []
 
@@ -22,77 +23,83 @@
         allImagesLoaded = loadedImages >= uniqueMovieTitles.size;
     }
 
-    function handlePosterLoad() {
+    function onPosterLoad() {
         loadedImages++
     }
 </script>
 
-<div class={allImagesLoaded ? 'showings-container' : 'hidden' }>
 
-{#if showings.length > 0}
-    {#each showingsByVenue as showings}
-        <div class="venue-showings">
-            <h2>{showings.venue}</h2>
-            <small>{showings.venue_address}</small>
-
+{#if !allImagesLoaded}
+    {#if showings.length > 0}
+        {#each showingsByVenue as showings}
             {#each showings.showings as showing}
-                <div class="movie-container">
-                    <img 
-                        crossorigin="true" 
-                        src={getPosterUrl(showing.title)} 
-                        on:load={() => handlePosterLoad(showing.title)}
-                        alt="{showing.title} 
-                            Movie Poster"
-                    >
-                    <div>
-                        <span class="movie-title">{showing.title}</span>
+                <img 
+                    class="hidden-image"
+                    crossorigin="true" 
+                    src={getPosterUrl(showing.title)} 
+                    on:load={() => onPosterLoad()}
+                    alt="{showing.title} 
+                        Movie Poster">
+            {/each}
+        {/each}
+    {/if}
+{:else}
+    <div in:fade={{ delay: 200, duration: 1000 }}>
 
-                        {#if (showing.rating && showing.runtime)}
-                            <span class="rating">{showing.rating},</span>
-                            <span class="runtime">{showing.runtime}</span>
-                        {:else if showing.rating}
-                            <span class="rating">{showing.rating}</span>
-                        {:else if showing.runtime}
-                            <span class="runtime">{showing.runtime}</span>
-                        {/if}
-            
-                        <span class="showdate">{convertDateToLongString($activeDate)}</span>
-                        <div class="showtimes">
-            
-                            {#each showing.times as showtime}
-            
-                            {#if new Date(`${$activeDate} ${showtime.time}`) > now}
-                            <a href={showtime.url} target="_blank" class="showtime">{showtime.time}</a>
-                            {:else}
-                            <a href={showtime.url} target="_blank" class="showtime old">{showtime.time}</a>
+    {#if showings.length > 0}
+        {#each showingsByVenue as showings}
+            <div class="venue-showings">
+                <h2>{showings.venue}</h2>
+                <small>{showings.venue_address}</small>
+
+                {#each showings.showings as showing}
+                    <div class="movie-container">
+                        <img 
+                            crossorigin="true" 
+                            src={getPosterUrl(showing.title)} 
+                            alt="{showing.title} 
+                                Movie Poster">
+                        <div>
+                            <span class="movie-title">{showing.title}</span>
+
+                            {#if (showing.rating && showing.runtime)}
+                                <span class="rating">{showing.rating},</span>
+                                <span class="runtime">{showing.runtime}</span>
+                            {:else if showing.rating}
+                                <span class="rating">{showing.rating}</span>
+                            {:else if showing.runtime}
+                                <span class="runtime">{showing.runtime}</span>
                             {/if}
-            
-                            {/each}
+                
+                            <span class="showdate">{convertDateToLongString($activeDate)}</span>
+                            <div class="showtimes">
+                
+                                {#each showing.times as showtime}
+                
+                                {#if new Date(`${$activeDate} ${showtime.time}`) > now}
+                                <a href={showtime.url} target="_blank" class="showtime">{showtime.time}</a>
+                                {:else}
+                                <a href={showtime.url} target="_blank" class="showtime old">{showtime.time}</a>
+                                {/if}
+                
+                                {/each}
+                            </div>
                         </div>
                     </div>
-                </div>
-            {/each}
+                {/each}
 
-        </div>
-    {/each}
-{:else}
+            </div>
+        {/each}
+    {:else}
+        <div class="venue-showings">No showings for this date.</div>
+    {/if}
 
-    <div class="venue-showings">No showings for this date.</div>
-
+    </div>
 {/if}
 
-</div>
-
 <style>
-    .showings-container {
-        opacity: 1;
-        visibility: visible;
-        transition: opacity 1500ms, visible ease-in;
-    }
-
-    .hidden {
-        opacity: 0;
-        visibility: hidden;
+    .hidden-image {
+        display: none;
     }
 
     h2 {
@@ -203,7 +210,7 @@
     }
 
     @media only screen and (max-width: 600px) {
-       .venue-showings {
+        .venue-showings {
             padding: 1rem;
             margin-bottom: 0;
             margin-top: 0;
