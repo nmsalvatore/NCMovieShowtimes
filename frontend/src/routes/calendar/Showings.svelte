@@ -92,8 +92,7 @@
     .showings-container {
         opacity: 1;
         visibility: visible;
-        transition: opacity 1000ms ease, visibility 1000ms ease;
-        transition-delay: 100ms;
+        transition: opacity 1000ms ease-in, visibility 1000ms ease-in;
     }
 
     h2 {
