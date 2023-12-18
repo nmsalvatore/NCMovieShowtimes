@@ -9,14 +9,20 @@
     let showings = data.showings
     let dates = data.dates
     let activeDateValue = data.activeDateValue
+    let clearShowingsView = false
 
     activeRouteID.set(1)
     activeDate.set(activeDateValue)
 
     async function updateCalendar(e) {
+        clearShowingsView = true
         showings = await updateShowingsData(e.detail)
+        clearShowingsView = false
     }
 </script>
 
 <Dates {dates} on:updateActiveDate={updateCalendar}/>
-<Showings {showings} />
+
+{#if !clearShowingsView}
+    <Showings {showings} />
+{/if}
