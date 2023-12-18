@@ -8,17 +8,16 @@
     let scrollContainer;
 
     onMount(async () => {
-        const leftArrow = document.querySelector('.left-arrow');
-        const rightArrow = document.querySelector('.right-arrow');
-
-        const scrollAmount = 500; // Adjust this value based on your needs
+        const leftArrow = document.querySelector('.left-arrow')
+        const rightArrow = document.querySelector('.right-arrow')
+        const scrollAmount = 500
 
         leftArrow.addEventListener('click', () => {
-            scrollContainer.scrollLeft -= scrollAmount;
+            scrollContainer.scrollLeft -= scrollAmount
         });
 
         rightArrow.addEventListener('click', () => {
-            scrollContainer.scrollLeft += scrollAmount;
+            scrollContainer.scrollLeft += scrollAmount
         });
 
         enableSideScroll(scrollContainer)
