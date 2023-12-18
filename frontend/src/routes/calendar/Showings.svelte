@@ -22,29 +22,14 @@
         uniqueMovieTitles = new Set(showings.map(showing => showing.movie_title))
         allImagesLoaded = loadedImages >= uniqueMovieTitles.size;
     }
+    $: console.log(loadedImages, uniqueMovieTitles.size)
 
     function onPosterLoad() {
         loadedImages++
     }
 </script>
 
-
-{#if !allImagesLoaded}
-    {#if showings.length > 0}
-        {#each showingsByVenue as showings}
-            {#each showings.showings as showing}
-                <img 
-                    class="hidden-image"
-                    crossorigin="true" 
-                    src={getPosterUrl(showing.title)} 
-                    on:load={() => onPosterLoad()}
-                    alt="{showing.title} 
-                        Movie Poster">
-            {/each}
-        {/each}
-    {/if}
-{:else}
-    <div in:fade={{ delay: 200, duration: 1000 }}>
+<div class={allImagesLoaded ? 'showings-container' : 'hidden'}>
 
     {#if showings.length > 0}
         {#each showingsByVenue as showings}
@@ -57,6 +42,7 @@
                         <img 
                             crossorigin="true" 
                             src={getPosterUrl(showing.title)} 
+                            on:load={onPosterLoad}
                             alt="{showing.title} 
                                 Movie Poster">
                         <div>
@@ -94,12 +80,20 @@
         <div class="venue-showings">No showings for this date.</div>
     {/if}
 
-    </div>
-{/if}
+
+</div>
 
 <style>
-    .hidden-image {
-        display: none;
+    .hidden {
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .showings-container {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 1000ms ease, visibility 1000ms ease;
+        transition-delay: 100ms;
     }
 
     h2 {
