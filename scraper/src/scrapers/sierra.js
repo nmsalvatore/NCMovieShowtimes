@@ -108,9 +108,9 @@ const getTitle = film => {
 
 const getRating = film => {
     const title = film.find('span.times-title').first().text()
-    const regex = /\((?<rating>G|PG|PG-13|R|NC-17)\)/
+    const regex = /\((?<rating>G|PG|PG-13|NR|UR|NC-17|R)\)/
     const match = regex.exec(title)
-    return match.groups.rating
+    return match ? match.groups.rating : null
 }
 
 const getRuntime = film => {
