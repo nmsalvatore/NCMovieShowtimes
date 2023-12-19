@@ -17,6 +17,5 @@ export const getEach = async () => {
         });
 
     const uniqueDates = [...new Set(sortedDates)]
-
     return uniqueDates
 }
