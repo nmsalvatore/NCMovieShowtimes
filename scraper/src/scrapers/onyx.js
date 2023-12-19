@@ -127,6 +127,8 @@ const getVenue = el => {
 const getShowdate = el => {
     const scheduleHeading = el.find('h4.scheduleHeading').first().text()
     const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    
     const tomorrow = new Date(today)
     tomorrow.setDate(tomorrow.getDate() + 1)
 
