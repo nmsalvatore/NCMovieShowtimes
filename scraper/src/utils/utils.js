@@ -11,7 +11,7 @@ export function shuffle(array) {
 }
 
 export function removeRating(title) {
-    return title.replace(/ \(?(G|PG|PG-13|R|NC-17|NR|\d+)?\)?$/, '')
+    return title.replace(/ \(?(G|PG|PG-13|R|NC-17|UR|NR|\d+)?\)?$/, '')
 }
 
 export function formatTime(time) {
