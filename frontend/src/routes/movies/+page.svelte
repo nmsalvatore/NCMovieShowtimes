@@ -99,7 +99,7 @@
     .movie-title {
         font-size: 16px;
         font-weight: 600;
-        margin-bottom: 28px;
+        margin-bottom: 18px;
         color: #555;
     }
 
