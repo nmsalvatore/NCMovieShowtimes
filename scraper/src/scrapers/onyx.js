@@ -80,10 +80,14 @@ async function getDaysShowingsData(page) {
         const title = getTitle($movie)
         const date = getShowdate($movie)
         const venue = getVenue($movie)
+
+        if (!venue) continue
+        
         const address = getAddress(venue)
         const rating = getRating($movie)
         const runtime = getRuntime($movie)
         const posterUrl = getPosterUrl($movie)
+
 
         downloadMoviePoster(posterUrl, title + '.jpg')
 
@@ -113,15 +117,13 @@ const getTitle = el => el.find('a.css-erexzk').first().attr('title')
 
 const getVenue = el => {
     const venueBlurb = el.find('.css-93dbvy').first().text()
-    let venue = 'The Onyx Theatre'
+    const regex = /Onyx Theatre|Nevada Theatre/
+    const match = venueBlurb.match(regex)
 
-    if (venueBlurb) {
-        const regex = /Onyx Theatre|Nevada Theatre/
-        const match = venueBlurb.match(regex)
-        venue = 'The ' + match[0]
+    if (match) {
+        const venue = 'The ' + match[0]
+        return venue
     }
-
-    return venue
 }
 
 const getShowdate = el => {
