@@ -8,9 +8,8 @@ export function getTodayDateString() {
 
 export function getCurrentDatetime() {
     const options = { timeZone: 'America/Los_Angeles'}
-    const date = new Date().toLocaleDateString('en-US', options)
-    const time = new Date().toLocaleTimeString('en-US', options)
-    return new Date(`${date} ${time}`)
+    const localeString = new Date().toLocaleString('en-US', options)
+    return new Date(localeString)
 }
 
 export function convertToLongDateString(dateStr) {
