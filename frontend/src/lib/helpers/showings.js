@@ -53,10 +53,3 @@ function getTimesByTitle(title, arr) {
 function getTitleShowings(title, arr) {
     return arr.filter(showing => showing.movie_title === title)
 }
-
-export function getCurrentDatetime() {
-    const options = { timeZone: 'America/Los_Angeles'}
-    const date = new Date().toLocaleDateString('en-US', options)
-    const time = new Date().toLocaleTimeString('en-US', options)
-    return new Date(`${date} ${time}`)
-}

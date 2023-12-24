@@ -1,6 +1,6 @@
 <script>
-    import { convertToLongDateString } from "$lib/helpers/dates.js"
-    import { formatShowingsByVenue, getCurrentDatetime } from "$lib/helpers/showings.js";
+    import { convertToLongDateString, getCurrentDatetime } from '$lib/helpers/dates.js'
+    import { formatShowingsByVenue } from '$lib/helpers/showings.js'
     import { activeDate } from '$lib/stores.js'
     import { getPosterUrl } from '$lib/helpers/posters.js'
 

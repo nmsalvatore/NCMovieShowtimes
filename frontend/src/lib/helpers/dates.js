@@ -6,6 +6,13 @@ export function getTodayDateString() {
     return padDateString(dateString)
 }
 
+export function getCurrentDatetime() {
+    const options = { timeZone: 'America/Los_Angeles'}
+    const date = new Date().toLocaleDateString('en-US', options)
+    const time = new Date().toLocaleTimeString('en-US', options)
+    return new Date(`${date} ${time}`)
+}
+
 export function convertToLongDateString(dateStr) {
     const date = new Date(dateStr)
     return date.toLocaleDateString('en-US', {
