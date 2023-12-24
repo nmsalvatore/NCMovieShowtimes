@@ -1,96 +1,45 @@
 export function getTodayDateString() {
     const today = new Date()
-    const dateString = today.toLocaleDateString('en-US', { timeZone: 'America/Los_Angeles'})
-    return formatMMDDYYYY(dateString)
+    today.setHours(0, 0, 0, 0)
+    const options = { timeZone: 'America/Los_Angeles' }
+    const dateString = today.toLocaleDateString('en-US', options)
+    return padDateString(dateString)
 }
 
-export function convertDateToLongString(date) {
-    const dateObj = new Date(date)
-    const formattedDate = dateObj.toLocaleDateString('en-US', {
+export function convertToLongDateString(dateStr) {
+    const date = new Date(dateStr)
+    return date.toLocaleDateString('en-US', {
         weekday: 'long',
         year: 'numeric',
         month: 'long',
         day: 'numeric'
-    });
-
-    return formattedDate;
+    })
 }
 
-function formatMMDDYYYY(date) {
-    let [month, day, year] = date.split('/')
-    month = month < 10 ? '0' + month : month
-    day = day < 10 ? '0' + day : day
-    return `${month}/${day}/${year}`
-}
-
-
-export function convertToAbbreviatedDateString(date) {
-    const [day_name, month, day] = date.toDateString().split(' ')
-    return `${day_name}, ${month} ${day}`
+export function convertToShortDateString(dateStr) {
+    const date = new Date(dateStr)
+    return date.toLocaleDateString('en-US', {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric'
+    })
 }
 
 export async function updateDatesData() {
-    const res = await fetch("http://localhost:3000/api/dates")
+    const res = await fetch('http://localhost:3000/api/dates')
     const dates = await res.json()
-
-    const todayStr = getTodayDateString()
-    const [month, day, year] = todayStr.split('/')
-    const todayDate = new Date(year, month - 1, day)
-
-    const sortedAndFilteredDates = dates
-        .map(dateStr => {
-            const [month, day, year] = dateStr.split('/')
-            return new Date(year, month - 1, day)
-        })
-        .sort((a, b) => a - b)
-        .filter(date => date >= todayDate)
-        .map(date => {
-            const day = String(date.getDate()).padStart(2, '0')
-            const month = String(date.getMonth() + 1).padStart(2, '0')
-            const year = date.getFullYear()
-            return `${month}/${day}/${year}`
-        });
-
-    return sortedAndFilteredDates
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    return dates.filter(dateString => {
+        const dateParts = dateString.split('/')
+        const date = new Date(dateParts[2], dateParts[0] - 1, dateParts[1])
+        return date >= today
+    })
 }
 
-export function enableSideScroll(scrollContainer) {
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    const slider = scrollContainer;
-  
-    slider.addEventListener("mousedown", (e) => {
-        isDown = true;
-        slider.style.cursor = "grabbing";
-        startX = e.pageX - slider.offsetLeft;
-        scrollLeft = slider.scrollLeft;
-    });
-
-    slider.addEventListener("mouseleave", () => {
-        isDown = false;
-        slider.style.cursor = "grab";
-    });
-
-    slider.addEventListener("mouseup", () => {
-        isDown = false;
-        slider.style.cursor = "grab";
-    });
-
-    slider.addEventListener("mousemove", (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * 1;
-        slider.scrollLeft = scrollLeft - walk;
-    });
-
-    return () => {
-        // Cleanup event listeners
-        slider.removeEventListener("mousedown");
-        slider.removeEventListener("mouseleave");
-        slider.removeEventListener("mouseup");
-        slider.removeEventListener("mousemove");
-    };
+function padDateString(date) {
+    let [month, day, year] = date.split('/')
+    month = month.padStart(2, 0)
+    day = day.padStart(2, 0)
+    return `${month}/${day}/${year}`
 }
