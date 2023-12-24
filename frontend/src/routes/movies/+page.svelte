@@ -67,7 +67,8 @@
     .all-movies-inner-container {
         opacity: 1;
         visibility: visible;
-        transition: opacity 1000ms ease-in, visible 1000ms ease-in;
+        transition: opacity 500ms ease-in, visibility 500ms ease-in;
+        transition-delay: 100ms;
     }
 
     .all-movies-container {
