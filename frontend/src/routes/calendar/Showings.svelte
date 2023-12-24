@@ -3,7 +3,6 @@
     import { formatShowingsByVenue, getCurrentDatetime } from "$lib/helpers/showings.js";
     import { activeDate } from '$lib/stores.js'
     import { getPosterUrl } from '$lib/helpers/posters.js'
-    import { fade } from 'svelte/transition'
 
     export let showings = []
 
