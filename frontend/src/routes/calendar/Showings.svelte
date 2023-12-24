@@ -1,5 +1,5 @@
 <script>
-    import { convertDateToLongString } from "$lib/helpers/dates.js"
+    import { convertToLongDateString } from "$lib/helpers/dates.js"
     import { formatShowingsByVenue, getCurrentDatetime } from "$lib/helpers/showings.js";
     import { activeDate } from '$lib/stores.js'
     import { getPosterUrl } from '$lib/helpers/posters.js'
@@ -14,24 +14,28 @@
 
     $: showingsByVenue = formatShowingsByVenue(showings)
     $: showings, now = getCurrentDatetime()
-    $: if (showings) {
-        allImagesLoaded = false
-        loadedImages = 0
-    }
+    $: showingsDateValid = checkShowingsDate(showings)
+    $: showings, allImagesLoaded = false
+    $: showings, loadedImages = 0
     $: {
         uniqueMovieTitles = new Set(showings.map(showing => showing.movie_title))
         allImagesLoaded = loadedImages >= uniqueMovieTitles.size;
     }
-    $: console.log(loadedImages, uniqueMovieTitles.size)
 
     function onPosterLoad() {
         loadedImages++
+    }
+
+    function checkShowingsDate(showings) {
+        const dates = new Set(showings.map(showing => showing.date))
+        return dates.size === 1 && dates.has($activeDate)
     }
 </script>
 
 <div class={allImagesLoaded ? 'showings-container' : 'hidden'}>
 
-    {#if showings.length > 0}
+    {#if showings.length > 0 && showingsDateValid }
+
         {#each showingsByVenue as showings}
             <div class="venue-showings">
                 <h2>{showings.venue}</h2>
@@ -57,17 +61,17 @@
                                 <span class="runtime">{showing.runtime}</span>
                             {/if}
                 
-                            <span class="showdate">{convertDateToLongString($activeDate)}</span>
+                            <span class="showdate">{convertToLongDateString($activeDate)}</span>
                             <div class="showtimes">
                 
                                 {#each showing.times as showtime}
-                
-                                {#if new Date(`${$activeDate} ${showtime.time}`) > now}
-                                <a href={showtime.url} target="_blank" class="showtime">{showtime.time}</a>
-                                {:else}
-                                <a href={showtime.url} target="_blank" class="showtime old">{showtime.time}</a>
-                                {/if}
-                
+
+                                    {#if new Date(`${$activeDate} ${showtime.time}`) > now}
+                                    <a href={showtime.url} target="_blank" class="showtime">{showtime.time}</a>
+                                    {:else}
+                                    <a href={showtime.url} target="_blank" class="showtime old">{showtime.time}</a>
+                                    {/if}
+
                                 {/each}
                             </div>
                         </div>
@@ -76,10 +80,10 @@
 
             </div>
         {/each}
+
     {:else}
         <div class="venue-showings">No showings for this date.</div>
     {/if}
-
 
 </div>
 
@@ -92,7 +96,8 @@
     .showings-container {
         opacity: 1;
         visibility: visible;
-        transition: opacity 1000ms ease-in, visibility 1000ms ease-in;
+        transition: opacity 500ms ease-in, visibility 500ms ease-in;
+        transition-delay: 100ms;
     }
 
     h2 {

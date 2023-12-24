@@ -1,6 +1,7 @@
 <script>
     import { onMount, createEventDispatcher } from 'svelte'
-    import { convertToAbbreviatedDateString, enableSideScroll } from '$lib/helpers/dates.js'
+    import { convertToShortDateString } from '$lib/helpers/dates.js'
+    import { enableSideScroll } from '$lib/helpers/utils.js'
     import { activeDate } from '$lib/stores.js'
 
     export let dates = []
@@ -34,13 +35,15 @@
 <div class="nav-wrapper">
     <button class="left-arrow">←</button>
     <nav class="nav-container" bind:this={scrollContainer}>
+
         {#each dates as date}
-        <button 
-            class:active={$activeDate === date}
-            on:click={() => handleButtonClick(date)}>
-            {convertToAbbreviatedDateString(new Date(date))}
-        </button>
+            <button 
+                class:active={$activeDate === date}
+                on:click={() => handleButtonClick(date)}>
+                {convertToShortDateString(date)}
+            </button>
         {/each}
+
     </nav>
     <button class="right-arrow">→</button>
 </div>
@@ -83,8 +86,8 @@
         cursor: grab;
         scrollbar-width: none;
         -ms-overflow-style: none;
-        padding: 2rem 0;
-        margin-bottom: 54px;
+        padding: 1rem 0 2rem 0;
+        margin-bottom: 60px;
         position: relative;
         scroll-behavior: smooth;
     }
@@ -120,7 +123,7 @@
 
     @media only screen and (max-width: 1080px) {
         nav {
-            padding: 2rem;
+            padding: 1rem 2rem 2rem 2rem;
         }
 
         .left-arrow {
