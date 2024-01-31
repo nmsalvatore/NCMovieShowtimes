@@ -11,7 +11,7 @@ export async function getMovieTitle(str)  {
         const completion = await openai.chat.completions.create({
             messages: [{ 
                 role: 'system',
-                content: `Extract a movie title from the following string: "${str}". Return the title with proper capitalization and remove unecessary punctuation such as quotations around the full title name. If you're familiar with a movie that is being unnecessarily abbreviated, return the full title.`,
+                content: `Extract a movie title from the following string: "${str}". Return the title with proper capitalization and remove unecessary punctuation such as quotations around the full title name. If you're familiar with a movie that is being unnecessarily abbreviated, return the full title. In the rare case that the string does not include a movie title, return a single question mark.`,
             }],
             model: 'gpt-4'
         })
