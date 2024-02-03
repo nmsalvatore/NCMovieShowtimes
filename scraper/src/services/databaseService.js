@@ -1,6 +1,6 @@
-import { addVenue, getVenueID } from '../models/venues.js'
-import { addMovie, getMovieID, resetMoviesTable } from '../models/movies.js'
-import { addShowing, getShowingID } from '../models/showings.js'
+import { addVenue, getVenueID } from '../db/venues.js'
+import { addMovie, getMovieID, resetMoviesTable } from '../db/movies.js'
+import { addShowing, getShowingID } from '../db/showings.js'
 import { client } from '../config/db.js'
 import logger from '../utils/logger.js'
 
