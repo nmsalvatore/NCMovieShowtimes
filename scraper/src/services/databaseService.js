@@ -3,6 +3,7 @@ import { addMovie, getMovieID, resetMoviesTable } from '../db/movies.js'
 import { addShowing, getShowingID } from '../db/showings.js'
 import { client } from '../config/db.js'
 import logger from '../utils/logger.js'
+import { deleteOldPosters } from '../utils/posters.js'
 
 export default async function startDatabaseUpdateService(showings) {
     try {
@@ -18,6 +19,8 @@ export default async function startDatabaseUpdateService(showings) {
         await client.end()
         logger.info('Database connection closed')
     }
+
+    deleteOldPosters(showings)
 }
 
 async function insertShowingsData(showings) {

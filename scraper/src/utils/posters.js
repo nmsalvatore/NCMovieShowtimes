@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createWriteStream, existsSync } from 'fs';
+import { unlink, readdir } from 'node:fs/promises'
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import logger from '../utils/logger.js';
@@ -38,5 +39,33 @@ export async function downloadMoviePoster(url, filename) {
     } catch (error) {
         logger.error(`Error downloading movie poster "${filename}"`)
         throw error;
+    }
+}
+
+export async function deleteOldPosters(showings) {
+    const titles = new Set(showings.map(showing => showing.title))
+    const __dirname = dirname(fileURLToPath(import.meta.url))
+    const postersDir = join(__dirname, '..', '..', '..', 'posters')
+    
+    try {
+        const files = await readdir(postersDir)
+        for (let filename of files) {
+            const posterTitle = filename.replace('.jpg', '')
+            const posterIsOld = !titles.has(posterTitle)
+
+            if (posterIsOld) {
+                try {
+                    const filePath = join(postersDir, filename)
+                    await unlink(filePath)
+                    logger.info(`${filename} has been deleted`)
+                } catch (error) {
+                    logger.error(`Error deleting old movie poster "${filename}"`)
+                    throw error
+                }
+            }
+        }
+    } catch (error) {
+        logger.error('Error deleting old movie posters')
+        throw error
     }
 }
