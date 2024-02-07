@@ -1,7 +1,8 @@
 <script>
-    import { browser } from '$app/environment';
+    import { browser } from '$app/environment'
+    import { goto } from '$app/navigation'
 
     if (browser) {
-        window.location.href = '/calendar';
+        goto('calendar')
     }
 </script>
