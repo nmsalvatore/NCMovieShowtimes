@@ -1,9 +1,10 @@
 <script>
     import Navbar from './Navbar.svelte'
+    import Logo from '$lib/assets/logo.png'
 </script>
 
 <header>
-    <img src="logo.png" alt="NCMS Logo">
+    <img src={ Logo } alt="NCMS Logo">
     <Navbar />
 </header>
 
@@ -16,7 +17,6 @@
         height: 100px;
         padding: 0 2rem;
         margin-top: 1rem;
-        /* margin-bottom: 1rem; */
     }
 
     img {
