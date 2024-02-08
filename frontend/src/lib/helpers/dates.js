@@ -6,6 +6,12 @@ export function getTodayDateString() {
     return padDateString(dateString)
 }
 
+export function getTodayRoute() {
+    const today = getTodayDateString()
+    const [ month, day, year ] = today.split('/')
+    return year + month + day
+}
+
 export function getCurrentDatetime() {
     const options = { timeZone: 'America/Los_Angeles'}
     const localeString = new Date().toLocaleString('en-US', options)
