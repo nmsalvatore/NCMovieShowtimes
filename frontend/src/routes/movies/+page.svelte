@@ -1,6 +1,7 @@
 <script>
     import { activeRouteID } from '$lib/stores.js'
     import { getPosterUrl } from '$lib/helpers/posters.js'
+    import { onMount } from 'svelte';
 
     export let data
 
@@ -10,7 +11,9 @@
     $: if (data) loadedImages = 0
     $: allImagesLoaded = loadedImages >= data.allMovies.length
 
-    $activeRouteID = 2
+    onMount(() => {
+        activeRouteID.set(2)
+    })
 
     function onPosterLoad() {
         loadedImages++
