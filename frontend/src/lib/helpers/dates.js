@@ -6,10 +6,10 @@ export function getTodayDateString() {
     return padDateString(dateString)
 }
 
-export function getTodayRoute() {
+export function getTodayPath() {
     const today = getTodayDateString()
     const [ month, day, year ] = today.split('/')
-    return year + month + day
+    return `/calendar/${year + month + day}`
 }
 
 export function getCurrentDatetime() {
@@ -34,18 +34,6 @@ export function convertToShortDateString(dateStr) {
         weekday: 'short',
         month: 'short',
         day: 'numeric'
-    })
-}
-
-export async function updateDatesData() {
-    const res = await fetch('http://localhost:3000/api/dates')
-    const dates = await res.json()
-    const today = new Date()
-    today.setHours(0, 0, 0, 0)
-    return dates.filter(dateString => {
-        const dateParts = dateString.split('/')
-        const date = new Date(dateParts[2], dateParts[0] - 1, dateParts[1])
-        return date >= today
     })
 }
 

@@ -1,14 +1,11 @@
-import { getTodayDateString } from "$lib/helpers/dates.js"
+import { getTodayDateString } from '$lib/helpers/dates.js'
+import { fetchAllMovies } from '$lib/db'
 
 export async function load() {
-    const apiUrl = import.meta.env.VITE_API_URL
-    const res = await fetch(`${apiUrl}/api/movies`)
-
-    let movies = await res.json()
+    const movies = await fetchAllMovies()
     const allMovies = []
     const titles = []
-
-    movies = await movies.sort((a, b) => {
+    const moviesSorted = await movies.sort((a, b) => {
         const dateA = new Date(a.date)
         const dateB = new Date(b.date)
         const dateComparison = dateA - dateB
@@ -20,12 +17,12 @@ export async function load() {
     
     const todayStr = getTodayDateString()
     const todayDate = new Date(todayStr)
-    movies = movies.filter(movie => {
+    const moviesFiltered = moviesSorted.filter(movie => {
         const movieDate = new Date(movie.date)
         return movieDate >= todayDate
     })
 
-    movies.forEach(movie => {
+    moviesFiltered.forEach(movie => {
         if (!titles.some(title => title === movie.movie_title)) {
             titles.push(movie.movie_title)
 

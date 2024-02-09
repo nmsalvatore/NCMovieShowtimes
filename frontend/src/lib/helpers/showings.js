@@ -1,10 +1,3 @@
-export async function updateShowingsData(date) {
-    const apiUrl = import.meta.env.VITE_API_URL
-    const response = await fetch(`${apiUrl}/api/showings?date=${date}`)
-    const data = response.json()
-    return data
-}
-
 export function formatShowingsByVenue(showings) {
     let venues = new Set(showings.map(showing => showing.venue_name));
 
