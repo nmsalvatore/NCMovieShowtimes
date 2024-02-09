@@ -2,7 +2,10 @@
     import { browser } from '$app/environment'
     import { goto } from '$app/navigation'
 
-    if (browser) {
-        goto('calendar')
+    export let data
+    
+    $: activeCalendarPath = data.activeCalendarPath
+    $: if (browser && data) {
+        goto(activeCalendarPath)
     }
 </script>
