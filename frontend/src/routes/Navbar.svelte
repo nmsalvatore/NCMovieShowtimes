@@ -39,11 +39,11 @@
         padding: 8px;
         width: 120px;
         font-size: 15px;
-        font-weight: 400;
+        font-weight: 500;
         border-radius: 5px;
-        background: #fcfafa;
+        background: #f4f4f4;
         margin-right: 12px;
-        color: #777;
+        color: #555;
     }
 
     a:last-child {
@@ -52,9 +52,8 @@
 
     a.active {
         background: #6d7a8b;
-        border: 1px solid #6d7a8b;
-        font-weight: 500;
-        color: rgba(255, 255, 255, 0.98);
+        font-weight: #fff;
+        color: white;
     }
 
     @media only screen and (max-width: 600px) {
