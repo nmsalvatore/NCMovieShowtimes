@@ -1,18 +1,26 @@
 <script>
-    import { activeRouteID, windowWidth } from '$lib/stores.js'
+    import { activeRouteID, activeCalendarPath } from '$lib/stores.js'
 
-    const links = [
-        { id: 1, href: '/calendar', label: 'Calendar' },
-        { id: 2, href: '/movies', label: 'All Movies' }
-    ]
+    function handleClick(routeID) {
+        activeRouteID.set(routeID)
+    }
 </script>
 
 <nav>
-    {#each links as link}
-        <a href={link.href} class="text-link" class:active={$activeRouteID === link.id}>
-            {link.label}
-        </a>
-    {/each}
+    <a 
+        href={ $activeCalendarPath }
+        class:active={ $activeRouteID === 1 }
+        on:click={ () => handleClick(1) }
+    >
+        Calendar
+    </a>
+    <a 
+        href="/movies"
+        class:active={ $activeRouteID === 2 }
+        on:click={ () => handleClick(2) }
+    >
+        Movies
+    </a>
 </nav>
 
 <style>
