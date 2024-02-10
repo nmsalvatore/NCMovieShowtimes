@@ -1,6 +1,6 @@
 import { onyx } from '../scrapers/onyx.js'
-import { sierra } from '../scrapers/sierra.js'
 import { mystic } from '../scrapers/mystic.js'
+import { prime } from '../scrapers/prime.js'
 import startDatabaseUpdateService from './databaseService.js'
 import logger from '../utils/logger.js'
 
@@ -9,6 +9,7 @@ export default async function startScrapingService() {
         const showings = await getAllShowings()
         await startDatabaseUpdateService(showings)
     } catch (error) {
+        console.error(error)
         logger.error('Error starting scraping service:', error)
         throw error
     }
@@ -17,15 +18,15 @@ export default async function startScrapingService() {
 async function getAllShowings() {
     try {
         const onyxShowings = await onyx.getShowings()
-        const sierraShowings = await sierra.getShowings()
+        const primeShowings = await prime.getShowings()
         const mysticShowings = await mystic.getShowings()
     
         const showings = [].concat(
             onyxShowings,
-            sierraShowings,
+            primeShowings,
             mysticShowings
         )
-    
+
         return showings
     } catch (error) {
         logger.error('Error retrieving all showings:', error)
