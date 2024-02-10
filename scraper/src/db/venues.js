@@ -1,4 +1,5 @@
 import * as db from '../config/db.js'
+import logger from '../utils/logger.js'
 
 export async function addVenue(name, address) {
     try {
