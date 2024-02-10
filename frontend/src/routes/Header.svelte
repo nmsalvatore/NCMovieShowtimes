@@ -4,7 +4,7 @@
 </script>
 
 <header>
-    <img src={ Logo } alt="NCMS Logo">
+    <a href="/calendar"><img src={ Logo } alt="NCMS Logo"></a>
     <Navbar />
 </header>
 
