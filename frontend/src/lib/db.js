@@ -10,9 +10,9 @@ export async function fetchDates() {
     })
 }
 
-export async function fetchShowings(date) {
+export async function fetchAllShowings() {
     const apiUrl = import.meta.env.VITE_API_URL
-    const response = await fetch(`${apiUrl}/api/showings?date=${date}`)
+    const response = await fetch(`${apiUrl}/api/showings`)
     const data = await response.json()
     return data
 }

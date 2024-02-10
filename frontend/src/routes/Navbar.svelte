@@ -1,23 +1,19 @@
 <script>
-    import { activeRouteID, activeCalendarPath } from '$lib/stores.js'
-
-    function handleClick(routeID) {
-        activeRouteID.set(routeID)
-    }
+    import { activeRouteID } from '$lib/stores.js'
 </script>
 
 <nav>
     <a 
-        href={ $activeCalendarPath }
+        href='/calendar'
         class:active={ $activeRouteID === 1 }
-        on:click={ () => handleClick(1) }
+        on:click={ () => activeRouteID.set(1) }
     >
         Calendar
     </a>
     <a 
-        href="/movies"
+        href='/movies'
         class:active={ $activeRouteID === 2 }
-        on:click={ () => handleClick(2) }
+        on:click={ () => activeRouteID.set(2) }
     >
         Movies
     </a>

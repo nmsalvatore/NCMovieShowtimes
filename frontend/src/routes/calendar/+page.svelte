@@ -1,11 +1,31 @@
 <script>
-    import { browser } from '$app/environment'
-    import { goto } from '$app/navigation'
+    import Showings from './Showings.svelte'
+    import Dates from './Dates.svelte'
+    import { onMount } from 'svelte'
+    import { 
+        renderShowings, 
+        activeRouteID, 
+        activeDate } from '$lib/stores'
 
     export let data
     
-    $: activeCalendarPath = data.activeCalendarPath
-    $: if (browser && data) {
-        goto(activeCalendarPath)
+    const { showings, dates, date } = data
+    
+    let activeShowings
+
+    $: if ($activeDate) {
+        activeShowings = showings.filter(showing => showing.date === $activeDate)
+        renderShowings.set(true)
     }
+
+    onMount(() => {
+        activeRouteID.set(1)
+        activeDate.set(date)
+    })
 </script>
+
+<Dates {dates} />
+
+{#if $renderShowings}
+    <Showings showings={activeShowings} />
+{/if}
