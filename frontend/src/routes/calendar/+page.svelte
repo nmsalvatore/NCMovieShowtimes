@@ -28,4 +28,12 @@
 
 {#if $renderShowings}
     <Showings showings={activeShowings} />
+{:else}
+    <div class="loading"></div>
 {/if}
+
+<style>
+    .loading {
+        height: 3000px;
+    }
+</style>
