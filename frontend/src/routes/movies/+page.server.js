@@ -1,7 +1,7 @@
 import { getTodayDateString } from '$lib/helpers/dates.js'
 import { fetchAllMovies } from '$lib/db'
 
-export async function load() {
+export async function load({ url }) {
     const movies = await fetchAllMovies()
     const allMovies = []
     const titles = []
@@ -41,7 +41,18 @@ export async function load() {
             })
         }})
 
-    return { allMovies }
+    const pageTitle = 'All Movies'
+    const description = 'A complete list of all movies currently playing in Nevada City and Grass Valley, California!'
+    const href = url.href
+    const ogTitle = 'Nevada County Movie Showtimes | All Movies'
+
+    return { 
+        allMovies, 
+        description, 
+        pageTitle, 
+        href, 
+        ogTitle
+    }
 }
 
 function getMovieDateRange(title, data) {

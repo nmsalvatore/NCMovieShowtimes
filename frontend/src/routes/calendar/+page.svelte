@@ -25,7 +25,6 @@
 </script>
 
 <Dates {dates} />
-
 {#if $renderShowings}
     <Showings showings={activeShowings} />
 {:else}
