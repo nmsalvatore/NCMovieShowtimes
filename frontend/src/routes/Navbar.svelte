@@ -15,7 +15,7 @@
         class:active={ $activeRouteID === 2 }
         on:click={ () => activeRouteID.set(2) }
     >
-        Movies
+        All Movies
     </a>
 </nav>
 
