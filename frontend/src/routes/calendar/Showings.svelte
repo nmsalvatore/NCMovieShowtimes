@@ -31,7 +31,13 @@
 
         {#each showingsByVenue as showings}
             <div class="venue-showings">
-                <h2>{showings.venue}</h2>
+
+                {#if showings.venue === 'Onyx Downtown at the Nevada Theatre'}
+                    <h2>Onyx Downtown <br>at the Nevada Theatre</h2>
+                {:else}
+                    <h2>{showings.venue}</h2>
+                {/if}
+
                 <small>{showings.venue_address}</small>
 
                 {#each showings.showings as showing}
@@ -60,9 +66,9 @@
                                 {#each showing.times as showtime}
 
                                     {#if new Date(`${$activeDate} ${showtime.time}`) > now}
-                                    <a href={showtime.url} target="_blank" class="showtime">{showtime.time}</a>
+                                        <a href={showtime.url} target="_blank" class="showtime">{showtime.time}</a>
                                     {:else}
-                                    <a href={showtime.url} target="_blank" class="showtime old">{showtime.time}</a>
+                                        <a href={showtime.url} target="_blank" class="showtime old">{showtime.time}</a>
                                     {/if}
 
                                 {/each}
@@ -99,6 +105,8 @@
         margin-left: 4px;
         font-size: 20px;
         font-weight: 600;
+        line-height: 1.5;
+        width: 240px;
     }
 
     small {
