@@ -120,10 +120,19 @@ const getVenue = el => {
     const regex = /Onyx Theatre|Nevada Theatre/
     const match = venueBlurb.match(regex)
 
-    if (match) {
-        const venue = 'The ' + match[0]
+    let venue
+
+    if (match[0] === 'Onyx Theatre') {
+        venue = 'The Onyx Theatre'
         return venue
     }
+
+    if (match[0] === 'Nevada Theatre') {
+        venue = 'Onyx Downtown at the Nevada Theatre'
+        return venue
+    }
+
+    throw new Error('Unable to identify venue in Onyx showing')
 }
 
 const getShowdate = el => {
@@ -166,7 +175,7 @@ const getAddress = venue => {
             address: '107 Argall Way, Nevada City, CA 95959'
         },
         {
-            venue: 'The Nevada Theatre',
+            venue: 'Onyx Downtown at the Nevada Theatre',
             address: '401 Broad Street, Nevada City, CA 95959'
         }
     ]

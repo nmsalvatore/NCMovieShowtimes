@@ -1,5 +1,4 @@
 import { onyx } from '../scrapers/onyx.js'
-import { mystic } from '../scrapers/mystic.js'
 import { prime } from '../scrapers/prime.js'
 import startDatabaseUpdateService from './databaseService.js'
 import logger from '../utils/logger.js'
@@ -19,12 +18,10 @@ async function getAllShowings() {
     try {
         const onyxShowings = await onyx.getShowings()
         const primeShowings = await prime.getShowings()
-        const mysticShowings = await mystic.getShowings()
     
         const showings = [].concat(
             onyxShowings,
             primeShowings,
-            mysticShowings
         )
 
         return showings
