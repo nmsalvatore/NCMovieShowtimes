@@ -32,12 +32,7 @@
         {#each showingsByVenue as showings}
             <div class="venue-showings">
 
-                {#if showings.venue === 'Onyx Downtown at the Nevada Theatre'}
-                    <h2>Onyx Downtown <br>at the Nevada Theatre</h2>
-                {:else}
-                    <h2>{showings.venue}</h2>
-                {/if}
-
+                <h2>{showings.venue}</h2>
                 <small>{showings.venue_address}</small>
 
                 {#each showings.showings as showing}
@@ -106,7 +101,6 @@
         font-size: 20px;
         font-weight: 600;
         line-height: 1.5;
-        width: 240px;
     }
 
     small {

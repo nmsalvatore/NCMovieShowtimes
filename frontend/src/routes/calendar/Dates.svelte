@@ -11,13 +11,16 @@
     onMount(async () => {
         const leftArrow = document.querySelector('.left-arrow')
         const rightArrow = document.querySelector('.right-arrow')
-        const scrollAmount = 500
+        const scrollAmount = scrollContainer.offsetWidth - 48
 
         leftArrow.addEventListener('click', () => {
+            scrollContainer.style.scrollBehavior = 'smooth'
             scrollContainer.scrollLeft -= scrollAmount
+
         });
 
         rightArrow.addEventListener('click', () => {
+            scrollContainer.style.scrollBehavior = 'smooth'
             scrollContainer.scrollLeft += scrollAmount
         });
 
@@ -39,9 +42,9 @@
 
         {#each dates as date}
             <button 
-                class:active={$activeDate === date}
-                on:click={() => handleButtonClick(date)}>
-                {convertToShortDateString(date)}
+                class:active={ $activeDate === date }
+                on:click={ () => handleButtonClick(date) }>
+                { convertToShortDateString(date) }
             </button>
         {/each}
 
@@ -96,7 +99,6 @@
         padding: 1rem 0 2rem 0;
         margin-bottom: 60px;
         position: relative;
-        scroll-behavior: smooth;
     }
 
     .dates-scrollbar::-webkit-scrollbar {

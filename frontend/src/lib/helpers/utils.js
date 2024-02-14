@@ -8,6 +8,7 @@ export function enableSideScroll(scrollContainer) {
     slider.addEventListener('mousedown', (e) => {
         isDown = true
         slider.style.cursor = 'grabbing'
+        slider.style.scrollBehavior = 'auto'
         startX = e.pageX - slider.offsetLeft
         scrollLeft = slider.scrollLeft
     })
@@ -26,7 +27,7 @@ export function enableSideScroll(scrollContainer) {
         if (!isDown) return
         e.preventDefault()
         const x = e.pageX - slider.offsetLeft
-        const walk = (x - startX) * 1
+        const walk = (x - startX) * 1.25
         slider.scrollLeft = scrollLeft - walk
     })
 
