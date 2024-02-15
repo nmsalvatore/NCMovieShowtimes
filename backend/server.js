@@ -8,7 +8,6 @@ import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import 'dotenv/config'
-
 import moviesRouter from './routes/movies.js'
 import datesRouter from './routes/dates.js'
 import showingsRouter from './routes/showings.js'
@@ -16,24 +15,10 @@ import postersRouter from './routes/posters.js'
 
 const app = express()
 const port = process.env.PORT || 3000
-
+// const host = process.env.HOST || 'localhost'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
 const errorLogStream = fs.createWriteStream(path.join(__dirname, 'error.log'), { flags: 'a' })
-
-const corsOptions = {
-    origin: (origin, callback) => {
-        const whitelist = process.env.CORS_WHITELIST.split(',')
-        if (whitelist.indexOf(origin) !== -1 || !origin) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    credentials: true,
-    optionsSuccessStatus: 200
-}
-
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     limit: 5000,
@@ -44,7 +29,6 @@ const limiter = rateLimit({
 app.use(express.json({ limit: '1mb' }))
 app.use(helmet())
 app.use(morgan('combined', { stream: accessLogStream }))
-app.use(cors(corsOptions))
 app.use(limiter)
 app.use('/api/movies', moviesRouter)
 app.use('/api/dates', datesRouter)
@@ -55,7 +39,9 @@ app.use((err, req, res, next) => {
     errorLogStream.write(errorLogEntry);
     res.status(500).send('An unexpected error occurred. Please try again later.');
 });
-
+// app.listen(port, host, () => {
+//     console.log(`App is listening on http://${host}:${port}`)
+// })
 app.listen(port, () => {
-    console.log(`App is listening on port ${port}`)
+    console.log(`App listening on port ${port}`)
 })
