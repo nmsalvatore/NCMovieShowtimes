@@ -2,7 +2,6 @@
     import { convertToLongDateString, getCurrentDatetime } from '$lib/helpers/dates.js'
     import { formatShowingsByVenue } from '$lib/helpers/showings.js'
     import { activeDate } from '$lib/stores.js'
-    import { getPosterUrl } from '$lib/helpers/posters.js'
 
     export let showings = []
 
@@ -39,9 +38,9 @@
                     <div class="movie-container">
                         <img 
                             crossorigin="true" 
-                            src={getPosterUrl(showing.title)} 
-                            on:load={onPosterLoad}
-                            alt="{showing.title} 
+                            src={ showing.posterUrl } 
+                            on:load={ onPosterLoad }
+                            alt="{ showing.title } 
                                 Movie Poster">
                         <div>
                             <span class="movie-title">{showing.title}</span>

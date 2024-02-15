@@ -1,6 +1,5 @@
 <script>
     import { activeRouteID } from '$lib/stores.js'
-    import { getPosterUrl } from '$lib/helpers/posters.js'
     import { onMount } from 'svelte';
 
     export let data
@@ -41,7 +40,7 @@
             </div>
             <img 
                 crossorigin="true" 
-                src={getPosterUrl(movie.title)} 
+                src={ movie.posterUrl } 
                 on:load={() => onPosterLoad()}
                 alt="{movie.title} 
                     Movie Poster">

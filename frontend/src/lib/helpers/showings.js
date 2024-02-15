@@ -1,3 +1,5 @@
+import { getPosterUrl } from '$lib/helpers/posters'
+
 export function formatShowingsByVenue(showings) {
     let venues = new Set(showings.map(showing => showing.venue_name));
 
@@ -10,6 +12,7 @@ export function formatShowingsByVenue(showings) {
             if (!showingsWithTimes.some(arr => arr.title === showing.movie_title)) {
                 showingsWithTimes.push({
                     title: showing.movie_title,
+                    posterUrl: getPosterUrl(showing.movie_title),
                     rating: showing.rating,
                     runtime: showing.runtime,
                     times: getTimesByTitle(showing.movie_title, venueShowings)

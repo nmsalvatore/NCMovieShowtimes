@@ -1,4 +1,5 @@
 import { getTodayDateString } from '$lib/helpers/dates.js'
+import { getPosterUrl } from '$lib/helpers/posters.js'
 import { fetchAllMovies } from '$lib/db'
 
 export async function load({ url }) {
@@ -29,6 +30,7 @@ export async function load({ url }) {
             const title = movie.movie_title
             const rating = movie.rating
             const runtime = movie.runtime
+            const posterUrl = getPosterUrl(movie.movie_title)
             const dateRange = getMovieDateRange(title, movies)
             const venue = getVenue(title, movies)
     
@@ -37,7 +39,8 @@ export async function load({ url }) {
                 dateRange,
                 venue,
                 rating,
-                runtime
+                runtime,
+                posterUrl,
             })
         }})
 
