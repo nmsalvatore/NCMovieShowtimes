@@ -1,11 +1,10 @@
-import express from 'express'
-import * as datesModel from '../models/dates.js'
+import { Router } from 'express'
+import { getDates } from '../db/dates.js'
 
-const router = express.Router()
-
+const router = Router()
 router.get('/', async (req, res) => {
     try {
-        const dates = await datesModel.getEach()
+        const dates = await getDates()
         res.json(dates)
     } catch (err) {
         console.error(err)

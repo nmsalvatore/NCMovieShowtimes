@@ -1,6 +1,6 @@
-import pool from '../config/db.js'
+import pool from './config.js'
 
-export const getAll = async () => {
+export const getMovies = async () => {
     const result = await pool.query(
         `SELECT movies.movie_title, movies.rating, movies.runtime, venues.venue_name, showings.date
         FROM showings
@@ -10,10 +10,4 @@ export const getAll = async () => {
 
     const movies = result.rows
     return movies
-}
-
-export const getByID = async id => {
-    const movies = await getAll()
-    const movie = await movies.find(movie => id === movie.movie_id)
-    return movie
 }

@@ -1,11 +1,10 @@
-import express from 'express'
-import * as moviesModel from '../models/movies.js'
+import { Router } from 'express'
+import { getMovies } from '../db/movies.js'
 
-const router = express.Router()
-
+const router = Router()
 router.get('/', async (req, res) => {
     try {
-        const movies = await moviesModel.getAll()
+        const movies = await getMovies()
         res.json(movies)
     } catch (err) {
         console.error(err)
