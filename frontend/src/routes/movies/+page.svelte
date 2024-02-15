@@ -17,6 +17,11 @@
     function onPosterLoad() {
         loadedImages++
     }
+
+    function uniqueUrl(url) {
+        const timestamp = new Date().getTime()
+        return url + `?timestamp=${timestamp}`
+    }
 </script>
 
 <div class="all-movies-container">
@@ -40,7 +45,7 @@
             </div>
             <img 
                 crossorigin="true" 
-                src={ movie.posterUrl } 
+                src={ uniqueUrl(movie.posterUrl) } 
                 on:load={() => onPosterLoad()}
                 alt="{movie.title} 
                     Movie Poster">
