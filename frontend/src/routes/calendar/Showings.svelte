@@ -22,6 +22,11 @@
     function onPosterLoad() {
         loadedImages++
     }
+
+    function uniqueUrl(url) {
+        const timestamp = new Date().getTime()
+        return url + `?timestamp=${timestamp}`
+    }
 </script>
 
 <div class={allImagesLoaded ? 'showings-container' : 'hidden'}>
@@ -38,7 +43,7 @@
                     <div class="movie-container">
                         <img 
                             crossorigin="true" 
-                            src={ showing.posterUrl } 
+                            src={ uniqueUrl(showing.posterUrl) } 
                             on:load={ onPosterLoad }
                             alt="{ showing.title } 
                                 Movie Poster">
