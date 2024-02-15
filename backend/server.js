@@ -1,9 +1,7 @@
 import express from 'express'
-import cors from 'cors'
 import morgan from 'morgan'
 import helmet from 'helmet'
 import { rateLimit } from 'express-rate-limit'
-
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -15,7 +13,6 @@ import postersRouter from './routes/posters.js'
 
 const app = express()
 const port = process.env.PORT || 3000
-// const host = process.env.HOST || 'localhost'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
 const errorLogStream = fs.createWriteStream(path.join(__dirname, 'error.log'), { flags: 'a' })
@@ -39,9 +36,6 @@ app.use((err, req, res, next) => {
     errorLogStream.write(errorLogEntry);
     res.status(500).send('An unexpected error occurred. Please try again later.');
 });
-// app.listen(port, host, () => {
-//     console.log(`App is listening on http://${host}:${port}`)
-// })
 app.listen(port, () => {
     console.log(`App listening on port ${port}`)
 })
