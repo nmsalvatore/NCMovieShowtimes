@@ -43,3 +43,13 @@ function padDateString(date) {
     day = day.padStart(2, 0)
     return `${month}/${day}/${year}`
 }
+
+export function removeOldDates(dates) {
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    return dates.filter(dateString => {
+        const dateParts = dateString.split('/')
+        const date = new Date(dateParts[2], dateParts[0] - 1, dateParts[1])
+        return date >= today
+    })
+}

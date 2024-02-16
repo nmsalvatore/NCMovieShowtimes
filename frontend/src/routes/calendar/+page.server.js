@@ -1,9 +1,10 @@
 import { fetchAllShowings, fetchDates } from '$lib/db'
-import { getTodayDateString } from '$lib/helpers/dates.js'
+import { getTodayDateString, removeOldDates } from '$lib/helpers/dates.js'
 
 export async function load({ url }) {
     const date = getTodayDateString()
-    const dates = await fetchDates()
+    const allDates = await fetchDates()
+    const dates = removeOldDates(allDates)
     const showings = await fetchAllShowings()
     const pageTitle = 'Calendar'
     const description = 'Check out movie showtimes for all theaters in Nevada City and Grass Valley, California!'

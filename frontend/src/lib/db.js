@@ -8,14 +8,7 @@ export async function fetchDates() {
             }
         })
         const dates = await res.json()
-        const today = new Date()
-        today.setHours(0, 0, 0, 0)
-    
-        return dates.filter(dateString => {
-            const dateParts = dateString.split('/')
-            const date = new Date(dateParts[2], dateParts[0] - 1, dateParts[1])
-            return date >= today
-        })
+        return dates
     } catch (error) {
         throw new Error(error)
     }
