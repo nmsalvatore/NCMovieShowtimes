@@ -4,7 +4,7 @@ export async function fetchDates() {
         const res = await fetch(`${apiUrl}/api/dates`, {
             method: 'GET',
             headers: {
-                'X-API_KEY': import.meta.env.VITE_API_KEY,
+                'X-API-KEY': import.meta.env.VITE_API_KEY,
             }
         })
         const dates = await res.json()
@@ -27,7 +27,7 @@ export async function fetchAllShowings() {
         const response = await fetch(`${apiUrl}/api/showings`, {
             method: 'GET',
             headers: {
-                'X-API_KEY': import.meta.env.VITE_API_KEY,
+                'X-API-KEY': import.meta.env.VITE_API_KEY,
             }
         })
         const showings = await response.json()
@@ -43,7 +43,7 @@ export async function fetchAllMovies() {
         const response = await fetch(`${apiUrl}/api/movies`, {
                 method: 'GET',
                 headers: {
-                    'X-API_KEY': import.meta.env.VITE_API_KEY,
+                    'X-API-KEY': import.meta.env.VITE_API_KEY,
                 }
             })
         const movies = await response.json()
