@@ -48,8 +48,8 @@
 
     a.active {
         background: #6d7a8b;
-        font-weight: #fff;
-        color: white;
+        font-weight: 500;
+        color: #fff;
     }
 
     @media only screen and (max-width: 600px) {

@@ -173,13 +173,13 @@
     .showtime {
         cursor: pointer;
         display: inline-block;
-        background: rgba(0, 0, 0, 0.06);
-        color: rgba(0, 0, 0, 0.6);
+        background: #eaeaea;
+        color: #555;
         font-size: 12px;
         font-weight: 600;
         padding: 0.7rem 1rem;
         border-radius: 5px;
-        margin-right: 12px;
+        margin-right: 8px;
         margin-top: 14px;
         width: 90px;
         text-align: center;
@@ -192,7 +192,7 @@
     }
 
     .showtime:last-child {
-        margin-right: none;
+        margin-right: 0;
     }
 
     .movie-container {
