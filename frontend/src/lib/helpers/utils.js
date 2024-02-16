@@ -38,3 +38,20 @@ export function enableSideScroll(scrollContainer) {
         slider.removeEventListener('mousemove')
     }
 }
+
+export function enableArrowClick(scrollContainer) {
+    const leftArrow = document.querySelector('.left.arrow')
+    const rightArrow = document.querySelector('.right.arrow')
+    const scrollAmount = scrollContainer.offsetWidth - 48
+
+    leftArrow.addEventListener('click', () => {
+        scrollContainer.style.scrollBehavior = 'smooth'
+        scrollContainer.scrollLeft -= scrollAmount
+
+    });
+
+    rightArrow.addEventListener('click', () => {
+        scrollContainer.style.scrollBehavior = 'smooth'
+        scrollContainer.scrollLeft += scrollAmount
+    });
+}
