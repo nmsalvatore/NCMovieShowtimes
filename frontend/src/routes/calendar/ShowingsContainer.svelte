@@ -1,17 +1,17 @@
 <script>
     import { convertToLongDateString, getCurrentDatetime } from '$lib/helpers/dates.js'
     import { formatShowingsByVenue } from '$lib/helpers/showings.js'
-    import { activeDate } from '$lib/stores.js'
+    import { activeDate, now } from '$lib/stores.js'
+    import Showtime from './Showtime.svelte';
 
     export let showings = []
 
-    let now
     let loadedImages = 0
     let allImagesLoaded = false
     let uniqueMovieTitles = new Set()
 
     $: showingsByVenue = formatShowingsByVenue(showings)
-    $: showings, now = getCurrentDatetime()
+    $: showings, now.update(getCurrentDatetime)
     $: showings, allImagesLoaded = false
     $: showings, loadedImages = 0
     $: {
@@ -63,14 +63,9 @@
                             <div class="showtimes">
                 
                                 {#each showing.times as showtime}
-
-                                    {#if new Date(`${$activeDate} ${showtime.time}`) > now}
-                                        <a href={showtime.url} target="_blank" class="showtime">{showtime.time}</a>
-                                    {:else}
-                                        <a href={showtime.url} target="_blank" class="showtime old">{showtime.time}</a>
-                                    {/if}
-
+                                    <Showtime { showtime } />
                                 {/each}
+
                             </div>
                         </div>
                     </div>
@@ -170,31 +165,6 @@
         margin-bottom: 6px;
     }
 
-    .showtime {
-        cursor: pointer;
-        display: inline-block;
-        background: #eaeaea;
-        color: #555;
-        font-size: 12px;
-        font-weight: 600;
-        padding: 0.7rem 1rem;
-        border-radius: 5px;
-        margin-right: 8px;
-        margin-top: 14px;
-        width: 90px;
-        text-align: center;
-        text-decoration: none;
-    }
-
-    .showtime.old {
-        color: rgba(0, 0, 0, 0.15);
-        pointer-events: none;
-    }
-
-    .showtime:last-child {
-        margin-right: 0;
-    }
-
     .movie-container {
         text-decoration: none;
         display: flex;
@@ -231,14 +201,6 @@
             font-size: 14px;
             margin-top: 20px;
             margin-bottom: 4px;
-        }
-
-        .showtime {
-            margin-right: 6px;
-            margin-top: 6px;
-            width: 68px;
-            padding: 10px 0;
-            font-size: 10px;
         }
 
         small {
