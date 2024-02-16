@@ -1,8 +1,9 @@
 import { Router } from 'express'
+import { authenticateWithApiKey } from '../middleware/auth.js'
 import { getShowings } from '../db/showings.js'
 
 const router = Router()
-router.get('/', async (req, res) => {
+router.get('/', authenticateWithApiKey, async (req, res) => {
     try {
         const showings = await getShowings()
         res.json(showings)
