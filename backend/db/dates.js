@@ -2,12 +2,13 @@ import pool from './config.js'
 
 export const getDates = async () => {
     const result = await pool.query('SELECT date FROM showings')
-    const dates = result.rows.map(row => row.date)
-        .map(dateString => stringToDate(dateString))
+    const dates = result.rows
+        .map(row => row.date)
+        .map(stringToDate)
         .sort((a, b) => a - b)
-        .map(date => dateToString(date))
-    const uniqueDates = getUniqueDates(dates)
-    return uniqueDates
+        .map(dateToString)
+        .reduce(getUniqueDates, [])
+    return dates
 }
 
 function stringToDate(dateString) {
@@ -22,7 +23,9 @@ function dateToString(date) {
     return `${month}/${day}/${year}`
 }
 
-function getUniqueDates(dates) {
-    const datesSet = new Set(dates)
-    return Array.from(datesSet)
+function getUniqueDates(result, date) {
+    if (!result.includes(date)) {
+        result.push(date)
+    }
+    return result
 }
