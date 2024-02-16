@@ -1,6 +1,6 @@
 <script>
-    import Showings from './Showings.svelte'
-    import Dates from './Dates.svelte'
+    import ShowingsContainer from './ShowingsContainer.svelte'
+    import DateScrollbar from './DateScrollbar.svelte'
     import { onMount } from 'svelte'
     import { 
         renderShowings, 
@@ -24,9 +24,9 @@
     })
 </script>
 
-<Dates {dates} />
+<DateScrollbar {dates} />
 {#if $renderShowings}
-    <Showings showings={activeShowings} />
+    <ShowingsContainer showings={activeShowings} />
 {:else}
     <div class="loading"></div>
 {/if}
