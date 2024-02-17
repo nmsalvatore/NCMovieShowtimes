@@ -117,8 +117,8 @@
         height: auto;
         max-width: 110px;
         height: 100%;
-        border-radius: 5px;
-        opacity: 0.85;
+        border-radius: 4px;
+        opacity: 0.95;
         margin-right: 2rem;
     }
 
@@ -170,10 +170,9 @@
         display: flex;
         padding: 22px;
         margin: 12px 0;
-        border-radius: 8px;
+        border-radius: 6px;
         color: #555;
-        background: #fcfafa;
-        border: 1px solid #fbf9f9;
+        background: #fafafa;
     }
 
     @media only screen and (max-width: 600px) {

@@ -14,12 +14,12 @@
     .showtime {
         cursor: pointer;
         display: inline-block;
-        background: #eaeaea;
-        color: #555;
+        background: #eee;
+        color: rgba(0, 0, 0, 0.65);
         font-size: 12px;
         font-weight: 600;
         padding: 0.7rem 1rem;
-        border-radius: 5px;
+        border-radius: 4px;
         margin-right: 8px;
         margin-top: 14px;
         width: 90px;
@@ -39,10 +39,10 @@
     @media only screen and (max-width: 600px) {
         .showtime {
             margin-right: 6px;
-            margin-top: 6px;
-            width: 68px;
+            margin-top: 8px;
+            width: 76px;
             padding: 10px 0;
-            font-size: 10px;
+            font-size: 11px;
         }
     }
 </style>

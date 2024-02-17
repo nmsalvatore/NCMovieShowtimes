@@ -36,8 +36,7 @@
         width: 120px;
         font-size: 15px;
         font-weight: 500;
-        border-radius: 5px;
-        background: #f4f4f4;
+        border-radius: 4px;
         margin-right: 12px;
         color: #555;
     }
@@ -47,7 +46,7 @@
     }
 
     a.active {
-        background: #6d7a8b;
+        background: #333;
         font-weight: 500;
         color: #fff;
     }

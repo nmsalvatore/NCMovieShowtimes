@@ -24,13 +24,13 @@
         padding: 12px;
         width: 140px;
         border: none;
-        border-radius: 5px;
+        border-radius: 4px;
         margin-right: 12px;
         color: #b4b4b4;
         font-size: 16px;
         font-weight: 400;
         font-family: inherit;
-        background: #f4f4f4;
+        background: #f6f6f6;
         letter-spacing: 0.3px;
     }
 
@@ -39,8 +39,8 @@
     }
 
     button.active {
-        background: lightcoral;
-        color: rgba(255, 255, 255, 0.98);
+        background: hsl(190, 50%, 37%);
+        color: #fff;
         font-weight: 500;
     }
 
