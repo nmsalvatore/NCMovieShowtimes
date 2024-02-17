@@ -31,31 +31,38 @@
         text-align: center;
         text-decoration: none;
         cursor: pointer;
-        border: none;
-        padding: 8px;
-        width: fit-content;
+        border: 1px solid #aaa;
+        background: #fff;
+        border-radius: 4px;
+        width: 240px;
+        padding: 11px;
+        width: 120px;
         letter-spacing: 0.01rem;
-        font-size: 15px;
+        font-size: 16px;
         font-weight: 500;
-        color: #aaa;
+        color: #555;
     }
 
     a:last-child {
-        margin-left: 2rem;
+        margin-left: 1rem;
     }
 
     a.active {
         font-weight: 600;
-        color: #555;
+        color: #fff;
+        background: #555;
+        border: 1px solid #555;
     }
 
     @media only screen and (max-width: 600px) {
         a {
             font-size: 14px;
+            width: 100px;
+            padding: 10px;
         }
 
         a:last-child {
-            margin-left: 1rem;
+            margin-left: 12px;
         }
     }
 </style>
