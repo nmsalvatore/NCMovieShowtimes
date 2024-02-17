@@ -31,7 +31,6 @@
         text-align: center;
         text-decoration: none;
         cursor: pointer;
-        border: 1px solid #aaa;
         background: #fff;
         border-radius: 4px;
         width: 240px;
@@ -51,7 +50,6 @@
         font-weight: 600;
         color: #fff;
         background: #555;
-        border: 1px solid #555;
     }
 
     @media only screen and (max-width: 600px) {
