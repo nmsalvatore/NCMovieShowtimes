@@ -34,13 +34,14 @@
         border: none;
         padding: 6px;
         width: fit-content;
-        font-size: 16px;
+        letter-spacing: 0.02rem;
+        font-size: 15px;
         font-weight: 500;
         color: #aaa;
     }
 
     a:last-child {
-        margin-left: 3rem;
+        margin-left: 2rem;
     }
 
     a.active {
@@ -50,7 +51,7 @@
 
     @media only screen and (max-width: 600px) {
         a {
-            font-size: 15px;
+            font-size: 14px;
         }
 
         a:last-child {

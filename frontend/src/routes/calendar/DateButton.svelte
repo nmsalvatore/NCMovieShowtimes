@@ -39,10 +39,9 @@
     }
 
     button.active {
-        background: #fff;
-        color: #555;
-        border: 2px solid #555;
-        font-weight: 600;
+        background: #333;
+        color: #fff;
+        font-weight: 500;
     }
 
     @media only screen and (max-width: 600px) {
