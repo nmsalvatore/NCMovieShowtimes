@@ -49,13 +49,14 @@
     a.active {
         font-weight: 600;
         color: #fff;
-        background: #555;
+        background: hsl(190, 50%, 35%);
     }
 
     @media only screen and (max-width: 600px) {
         a {
             font-size: 14px;
             width: 100px;
+            padding: 10px;
         }
 
         a:last-child {
