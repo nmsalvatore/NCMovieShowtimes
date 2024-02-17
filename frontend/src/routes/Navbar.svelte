@@ -32,29 +32,29 @@
         text-decoration: none;
         cursor: pointer;
         border: none;
-        padding: 8px;
-        width: 120px;
-        font-size: 15px;
+        padding: 6px;
+        width: fit-content;
+        font-size: 16px;
         font-weight: 500;
-        border-radius: 4px;
-        margin-right: 12px;
-        color: #555;
+        color: #aaa;
     }
 
     a:last-child {
-        margin-right: 0;
+        margin-left: 3rem;
     }
 
     a.active {
-        font-weight: 500;
-        color: hsl(150, 45%, 50%);
+        font-weight: 600;
+        color: #555;
     }
 
     @media only screen and (max-width: 600px) {
         a {
-            padding: 9px;
-            font-size: 14px;
-            width: 96px;
+            font-size: 15px;
+        }
+
+        a:last-child {
+            margin-left: 1rem;
         }
     }
 </style>
