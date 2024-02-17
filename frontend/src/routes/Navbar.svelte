@@ -54,7 +54,7 @@
     @media only screen and (max-width: 600px) {
         a {
             font-size: 14px;
-            padding: 8px;
+            padding: 10px;
             width: 100px;
         }
 
