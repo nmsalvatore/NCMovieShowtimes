@@ -39,7 +39,7 @@
     @media only screen and (max-width: 600px) {
         .showtime {
             margin-right: 6px;
-            margin-top: 8px;
+            margin-top: 6px;
             width: 76px;
             padding: 10px 0;
             font-size: 11px;
