@@ -32,9 +32,9 @@
         text-decoration: none;
         cursor: pointer;
         border: none;
-        padding: 6px;
+        padding: 8px;
         width: fit-content;
-        letter-spacing: 0.02rem;
+        letter-spacing: 0.01rem;
         font-size: 15px;
         font-weight: 500;
         color: #aaa;

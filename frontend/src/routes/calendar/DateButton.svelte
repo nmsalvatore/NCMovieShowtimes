@@ -39,9 +39,9 @@
     }
 
     button.active {
-        background: hsl(190, 40%, 48%);
+        background: hsl(190, 40%, 39%);
         color: #fff;
-        font-weight: 500;
+        font-weight: 600;
     }
 
     @media only screen and (max-width: 600px) {
