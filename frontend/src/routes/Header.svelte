@@ -19,6 +19,10 @@
         margin-top: 1rem;
     }
 
+    a {
+        display: flex;
+    }
+
     img {
         position: relative;
         left: -8px;
