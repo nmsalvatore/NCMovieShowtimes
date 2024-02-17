@@ -95,7 +95,7 @@
 
     h2 {
         margin-bottom: 4px;
-        color: #333;
+        color: #555;
         margin-left: 4px;
         font-size: 20px;
         font-weight: 600;
@@ -131,7 +131,7 @@
     .showdate,
     .movie-title {
         display: inline-block;
-        color: #333;
+        color: #555;
     }
 
     .movie-title {

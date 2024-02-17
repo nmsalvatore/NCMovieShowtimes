@@ -39,7 +39,7 @@
     }
 
     button.active {
-        background: #333;
+        background: hsl(190, 40%, 48%);
         color: #fff;
         font-weight: 500;
     }
