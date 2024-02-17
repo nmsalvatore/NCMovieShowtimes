@@ -33,30 +33,33 @@
         cursor: pointer;
         background: #fff;
         border-radius: 4px;
-        width: fit-content;
+        width: 120px;
         padding: 10px;
         letter-spacing: 0.01rem;
         font-size: 16px;
         font-weight: 500;
-        color: #9f9f9f;
+        color: #555;
+        background: #f4f4f4;
     }
 
     a:last-child {
-        margin-left: 2rem;
+        margin-left: 1rem;
     }
 
     a.active {
-        color: #555;
+        color: #fff;
+        background: #444;
     }
 
     @media only screen and (max-width: 600px) {
         a {
             font-size: 14px;
             padding: 8px;
+            width: 100px;
         }
 
         a:last-child {
-            margin-left: 14px;
+            margin-left: 12px;
         }
     }
 </style>
