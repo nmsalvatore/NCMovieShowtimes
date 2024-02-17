@@ -56,7 +56,6 @@
         a {
             font-size: 14px;
             width: 100px;
-            padding: 10px;
         }
 
         a:last-child {

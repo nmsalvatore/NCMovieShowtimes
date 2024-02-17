@@ -35,7 +35,7 @@
 
     @media only screen and (max-width: 600px) {
         header {
-            padding: 0.5rem 1rem 1rem 1rem;
+            padding: 0rem 1rem 1rem 1rem;
             height: auto;
             margin-bottom: 0;
         }
