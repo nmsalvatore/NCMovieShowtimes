@@ -13,7 +13,7 @@
     
     let activeShowings
 
-    $: if ($activeDate) {
+    $: if ($activeDate && showings) {
         activeShowings = showings.filter(showing => showing.date === $activeDate)
         renderShowings.set(true)
     }
@@ -28,11 +28,14 @@
 {#if $renderShowings}
     <ShowingsContainer showings={activeShowings} />
 {:else}
-    <div class="loading"></div>
+    <div class="loading">
+        <p>Loading...</p>
+    </div>
 {/if}
 
 <style>
     .loading {
         height: 3000px;
+        color: #6f6f6f;
     }
 </style>
