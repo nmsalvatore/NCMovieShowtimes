@@ -38,6 +38,10 @@
         height: 3000px;
         color: #6f6f6f;
     }
+
+    .loading > p {
+        margin-left: 4px;
+    }
     
     @media only screen and (max-width: 1080px) {
         .loading {
