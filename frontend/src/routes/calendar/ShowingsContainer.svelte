@@ -172,7 +172,8 @@
         margin: 1rem 0;
         border-radius: 6px;
         color: #555;
-        box-shadow: 0 1px 8px -5px;
+        border: 1px solid #f4f4f4;
+        box-shadow: 0 1px 8px -8px;
     }
 
     @media only screen and (max-width: 600px) {
