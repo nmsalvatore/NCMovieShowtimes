@@ -82,7 +82,7 @@
         margin: 2rem;
         padding: 3rem 2rem;
         background: #fafafa;
-        border: 1px solid #f5f5f5;
+        border: 1px solid #f9f9f9;
         border-radius: 10px;
     }
 

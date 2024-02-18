@@ -29,9 +29,9 @@
     }
 
     .showtime.old {
-        background: #f6f6f6;
-        border: 1px solid #f2f2f2;
-        color: rgba(0, 0, 0, 0.15);
+        background: none;
+        border: 1px solid #e4e4e4;
+        color: rgba(0, 0, 0, 0.22);
         pointer-events: none;
     }
 
