@@ -36,7 +36,18 @@
 <style>
     .loading {
         height: 3000px;
-        padding: 1rem;
         color: #6f6f6f;
+    }
+    
+    @media only screen and (max-width: 1080px) {
+        .loading {
+            padding: 2rem;
+        }
+    }
+
+    @media only screen and (max-width: 600px) {
+        .loading {
+            padding: 1rem;
+        }
     }
 </style>
