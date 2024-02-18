@@ -81,8 +81,8 @@
     .all-movies-container {
         margin: 2rem;
         padding: 3rem 2rem;
-        background: #fafaf9;
-        border: 1px solid #f6f6f5;
+        background: #fafafa;
+        border: 1px solid #f5f5f5;
         border-radius: 10px;
     }
 
