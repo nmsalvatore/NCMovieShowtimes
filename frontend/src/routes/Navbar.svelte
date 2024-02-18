@@ -1,24 +1,39 @@
 <script>
     import { activeRouteID } from '$lib/stores.js'
     import CalendarIcon from '$lib/assets/calendar.svg'
-    import FilmIcon from '$lib/assets/film.svg'
+    import CalendarIconSolid from '$lib/assets/calendar_solid.svg'
+    import MovieIcon from '$lib/assets/film.svg'
+    import MovieIconSolid from '$lib/assets/film_solid.svg'
+
+    let icon1 = CalendarIcon
+    let icon2 = MovieIcon
+
+    $: if ($activeRouteID === 1) {
+        icon1 = CalendarIconSolid
+        icon2 = MovieIcon
+    }
+
+    $: if ($activeRouteID === 2) {
+        icon1 = CalendarIcon
+        icon2 = MovieIconSolid
+    }
 </script>
 
 <nav>
     <a 
         href='/calendar'
         class:active={ $activeRouteID === 1 }
-        on:click={ () => activeRouteID.set(1) }
+        on:click={ activeRouteID.set(1) }
     >
-        <img src={ CalendarIcon } alt="Calendar Icon" />
+        <img src={ icon1 } alt="Calendar icon" />
         <span>Calendar</span>
     </a>
     <a 
         href='/movies'
         class:active={ $activeRouteID === 2 }
-        on:click={ () => activeRouteID.set(2) }
+        on:click={ activeRouteID.set(2) }
     >
-        <img src={ FilmIcon } alt="Film Icon" />
+        <img src={ icon2 } alt="Movie Icon" />
         <span>All Movies</span>
     </a>
 </nav>

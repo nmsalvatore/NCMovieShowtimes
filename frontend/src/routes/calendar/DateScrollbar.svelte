@@ -65,7 +65,7 @@
         scrollbar-width: none;
         -ms-overflow-style: none;
         padding: 1rem 0 2rem 0;
-        margin-bottom: 60px;
+        margin-bottom: 54px;
         position: relative;
     }
 
@@ -90,7 +90,7 @@
     @media only screen and (max-width: 600px) {
         .scrollbar {
             padding: 1rem;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
         }
 
         .arrow {

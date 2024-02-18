@@ -172,8 +172,7 @@
         margin: 1rem 0;
         border-radius: 6px;
         color: #555;
-        border: 1px solid #eee;
-        box-shadow: 0 1px 8px -7px;
+        box-shadow: 0 1px 8px -5px;
     }
 
     @media only screen and (max-width: 600px) {
@@ -184,12 +183,13 @@
         }
 
         .movie-container {
-            padding: 12px;
+            padding: 16px;
         }
 
         .movie-title {
             font-size: 15px;
             margin-bottom: 2px;
+            margin-top: 2px;
         }
 
         .runtime,

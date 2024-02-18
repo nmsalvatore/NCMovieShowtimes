@@ -14,8 +14,8 @@
     .showtime {
         cursor: pointer;
         display: inline-block;
-        background: #eeeeef;
-        border: 1px solid #ebebec;
+        background: #eeeeed;
+        border: 1px solid #ebebea;
         color: #666667;
         font-size: 12px;
         font-weight: 600;
@@ -29,7 +29,8 @@
     }
 
     .showtime.old {
-        background: #eee;
+        background: #f6f6f6;
+        border: 1px solid #f2f2f2;
         color: rgba(0, 0, 0, 0.15);
         pointer-events: none;
     }
