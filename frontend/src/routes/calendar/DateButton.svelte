@@ -41,7 +41,7 @@
 
     button.active {
         background: hsl(0, 40%, 60%);
-        border: 1px solid hsl(0, 40%, 58%);
+        border: 1px solid hsl(0, 50%, 70%);
         color: #fff;
         font-weight: 600;
     }

@@ -15,10 +15,11 @@
         cursor: pointer;
         display: inline-block;
         background: #eeeeef;
+        border: 1px solid #ebebec;
         color: #666667;
         font-size: 12px;
         font-weight: 600;
-        padding: 0.7rem 1rem;
+        padding: 10px;
         border-radius: 4px;
         margin-right: 8px;
         margin-top: 14px;
@@ -28,6 +29,7 @@
     }
 
     .showtime.old {
+        background: #eee;
         color: rgba(0, 0, 0, 0.15);
         pointer-events: none;
     }
@@ -41,7 +43,7 @@
             margin-right: 6px;
             margin-top: 6px;
             width: 76px;
-            padding: 10px 0;
+            padding: 8px 0;
             font-size: 11px;
         }
     }
