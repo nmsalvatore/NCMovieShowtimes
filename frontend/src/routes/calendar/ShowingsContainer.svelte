@@ -169,10 +169,10 @@
         text-decoration: none;
         display: flex;
         padding: 22px;
-        margin: 12px 0;
+        margin: 1rem 0;
         border-radius: 6px;
         color: #555;
-        box-shadow: 0 1px 8px -6px;
+        box-shadow: 0 1px 8px -5px;
     }
 
     @media only screen and (max-width: 600px) {

@@ -31,6 +31,7 @@
         font-weight: 400;
         font-family: inherit;
         background: #f6f6f6;
+        border: 1px solid #f2f2f2;
         letter-spacing: 0.3px;
     }
 
@@ -40,6 +41,7 @@
 
     button.active {
         background: hsl(0, 40%, 60%);
+        border: 1px solid hsl(0, 40%, 58%);
         color: #fff;
         font-weight: 600;
     }
