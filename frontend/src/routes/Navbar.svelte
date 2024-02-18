@@ -7,15 +7,28 @@
 
     let icon1 = CalendarIcon
     let icon2 = MovieIcon
+    let activeIconsRendered = false
 
-    $: if ($activeRouteID === 1) {
-        icon1 = CalendarIconSolid
-        icon2 = MovieIcon
+    $: if ($activeRouteID && !activeIconsRendered) {
+        setActiveIcon($activeRouteID)
+        activeIconsRendered = true
     }
 
-    $: if ($activeRouteID === 2) {
-        icon1 = CalendarIcon
-        icon2 = MovieIconSolid
+    function handleClick(routeId) {
+        setActiveIcon(routeId)
+        activeRouteID.set(routeId)
+    }
+
+    function setActiveIcon(id) {
+        if (id === 1) {
+            icon1 = CalendarIconSolid
+            icon2 = MovieIcon
+        }
+
+        if (id === 2) {
+            icon1 = CalendarIcon
+            icon2 = MovieIconSolid
+        }
     }
 </script>
 
@@ -23,7 +36,7 @@
     <a 
         href='/calendar'
         class:active={ $activeRouteID === 1 }
-        on:click={ activeRouteID.set(1) }
+        on:click={ () => handleClick(1) }
     >
         <img src={ icon1 } alt="Calendar icon" />
         <span>Calendar</span>
@@ -31,7 +44,7 @@
     <a 
         href='/movies'
         class:active={ $activeRouteID === 2 }
-        on:click={ activeRouteID.set(2) }
+        on:click={ () => handleClick(2) }
     >
         <img src={ icon2 } alt="Movie Icon" />
         <span>All Movies</span>
