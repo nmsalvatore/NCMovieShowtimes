@@ -43,7 +43,7 @@
             margin-right: 6px;
             margin-top: 6px;
             width: 76px;
-            padding: 8px 0;
+            padding: 9px 0;
             font-size: 11px;
         }
     }
