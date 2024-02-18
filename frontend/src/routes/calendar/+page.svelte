@@ -36,6 +36,7 @@
 <style>
     .loading {
         height: 3000px;
+        padding: 1rem;
         color: #6f6f6f;
     }
 </style>
