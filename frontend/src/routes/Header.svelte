@@ -27,7 +27,7 @@
         position: relative;
         left: -8px;
         height: 64px;
-        filter: invert(17%) sepia(0%) saturate(1%) hue-rotate(218deg) brightness(94%) contrast(88%);
+        filter: invert(17%) sepia(0%) saturate(1574%) hue-rotate(159deg) brightness(89%) contrast(87%);
         font-weight: 600;
         color: #555;
         text-align: left;

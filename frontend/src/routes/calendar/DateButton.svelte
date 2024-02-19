@@ -26,12 +26,11 @@
         border: none;
         border-radius: 4px;
         margin-right: 12px;
-        color: #b4b4b4;
+        color: #aaa;
         font-size: 16px;
         font-weight: 400;
         font-family: inherit;
         background: #f6f6f6;
-        border: 1px solid #f2f2f2;
         letter-spacing: 0.3px;
     }
 
@@ -41,7 +40,6 @@
 
     button.active {
         background: hsl(0, 40%, 60%);
-        border: 1px solid hsl(0, 50%, 70%);
         color: #fff;
         font-weight: 600;
     }

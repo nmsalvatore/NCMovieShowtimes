@@ -14,9 +14,9 @@
     .showtime {
         cursor: pointer;
         display: inline-block;
-        background: #eeeeed;
-        border: 1px solid #ebebea;
-        color: #666667;
+        background: #ececeb;
+        border: 1px solid #e9e9e8;
+        color: #555556;
         font-size: 12px;
         font-weight: 600;
         padding: 10px;
@@ -30,8 +30,8 @@
 
     .showtime.old {
         background: none;
-        border: 1px solid #e4e4e4;
-        color: rgba(0, 0, 0, 0.22);
+        border: 1px solid #e2e2e2;
+        color: rgba(0, 0, 0, 0.23);
         pointer-events: none;
     }
 

@@ -65,31 +65,29 @@
         text-decoration: none;
         cursor: pointer;
         background: #fff;
-        border-radius: 4px;
         width: fit-content;
-        padding: 10px;
         letter-spacing: 0.01rem;
         font-weight: 500;
         color: #555;
     }
 
     a:last-child {
-        margin-left: 2rem;
+        margin-left: 3rem;
     }
 
     a > img {
         height: 28px;
-        filter: invert(65%) sepia(0%) saturate(0%) hue-rotate(189deg) brightness(88%) contrast(81%);
+        filter: invert(76%) sepia(1%) saturate(0%) hue-rotate(344deg) brightness(90%) contrast(92%);
     }
 
     a > span {
         font-size: 12px;
         margin-top: 4px;
-        color: #8f8f8f;
+        color: #aaa;
     }
 
     a.active > img {
-        filter: invert(31%) sepia(0%) saturate(1%) hue-rotate(90deg) brightness(95%) contrast(80%);
+        filter: invert(17%) sepia(0%) saturate(1574%) hue-rotate(159deg) brightness(89%) contrast(87%);
     }
 
     a.active > span {
@@ -97,12 +95,8 @@
     }
 
     @media only screen and (max-width: 600px) {
-        a {
-            padding: 10px;
-        }
-
         a:last-child {
-            margin-left: 12px;
+            margin-left: 1.5rem;
         }
 
         a > img {

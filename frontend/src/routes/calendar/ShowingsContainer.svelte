@@ -95,9 +95,9 @@
 
     h2 {
         margin-bottom: 4px;
-        color: #555;
+        color: #333;
         margin-left: 4px;
-        font-size: 20px;
+        font-size: 22px;
         font-weight: 600;
         line-height: 1.5;
     }
@@ -106,10 +106,11 @@
         font-variant: all-small-caps;
         margin-left: 6px;
         letter-spacing: 1px;
-        color: #b4b4b4;
+        color: #aaa;
         font-weight: 500;
+        font-size: 16px;
         display: block;
-        margin-bottom: 40px;
+        margin-bottom: 36px;
     }
 
     img {
@@ -124,14 +125,13 @@
 
     .venue-showings {
         padding: 0 2rem;
-        margin-bottom: 5rem;
+        margin-bottom: 4rem;
         margin-top: 2rem;
     }
 
-    .showdate,
     .movie-title {
         display: inline-block;
-        color: #555;
+        color: #333;
     }
 
     .movie-title {
@@ -146,8 +146,8 @@
         display: block;
         font-weight: 500;
         font-size: 16px;
-        letter-spacing: 0.4px;
-        color: #b4b4b4;
+        letter-spacing: 0.02rem;
+        color: #aaa;
         margin-top: 24px;
         margin-left: 1px;
         font-variant: all-small-caps;
@@ -158,7 +158,7 @@
         display: inline-block;
         font-size: 13px;
         margin-left: 1px;
-        color: #777;
+        color: #666;
     }
 
     .showtimes {
@@ -169,11 +169,10 @@
         text-decoration: none;
         display: flex;
         padding: 22px;
-        margin: 1rem 0;
+        margin-bottom: 1rem;
         border-radius: 6px;
         color: #555;
-        background: #fafafa;
-        border: 1px solid #f9f9f9;
+        background: #f8f8f8;
     }
 
     @media only screen and (max-width: 600px) {
@@ -206,6 +205,7 @@
 
         small {
             margin-bottom: 26px;
+            font-size: 14px;
         }
 
         img {
@@ -216,7 +216,6 @@
         h2 {
             font-size: 18px;
             margin-bottom: 2px;
-            margin-top: 16px;
         }
     }
 

@@ -81,9 +81,8 @@
     .all-movies-container {
         margin: 2rem;
         padding: 3rem 2rem;
-        background: #fafafa;
-        border: 1px solid #f9f9f9;
-        border-radius: 10px;
+        background: #f8f8f8;
+        border-radius: 8px;
     }
 
     .movie-container {
@@ -108,15 +107,15 @@
     .movie-title {
         font-size: 16px;
         font-weight: 500;
-        margin-bottom: 18px;
-        color: #555;
+        margin-bottom: 20px;
+        color: #333;
     }
 
     .movie-specs,
     .movie-date-range,
     .movie-venue {
-        font-size: 12px;
-        color: #777;
+        font-size: 13px;
+        color: #666;
         margin-bottom: 4px;
     }
 

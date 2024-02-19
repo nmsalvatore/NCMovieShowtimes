@@ -65,7 +65,7 @@
         scrollbar-width: none;
         -ms-overflow-style: none;
         padding: 1rem 0 2rem 0;
-        margin-bottom: 54px;
+        margin-bottom: 48px;
         position: relative;
     }
 
