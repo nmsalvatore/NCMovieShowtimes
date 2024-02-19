@@ -1,83 +1,32 @@
 <script>
-    import { convertToLongDateString, getCurrentDatetime } from '$lib/helpers/dates.js'
+    import { getCurrentDatetime } from '$lib/helpers/dates.js'
     import { formatShowingsByVenue } from '$lib/helpers/showings.js'
-    import { activeDate, now } from '$lib/stores.js'
-    import Showtime from './Showtime.svelte';
+    import { now, loadedImages } from '$lib/stores.js'
+    import VenueContainer from './VenueContainer.svelte';
 
     export let showings = []
 
-    let loadedImages = 0
     let allImagesLoaded = false
     let uniqueMovieTitles = new Set()
 
     $: showingsByVenue = formatShowingsByVenue(showings)
     $: showings, now.update(getCurrentDatetime)
     $: showings, allImagesLoaded = false
-    $: showings, loadedImages = 0
+    $: showings, loadedImages.set(0)
     $: {
         uniqueMovieTitles = new Set(showings.map(showing => showing.movie_title))
-        allImagesLoaded = loadedImages >= uniqueMovieTitles.size;
-    }
-
-    function onPosterLoad() {
-        loadedImages++
-    }
-
-    function uniqueUrl(url) {
-        const timestamp = new Date().getTime()
-        return url + `?timestamp=${timestamp}`
+        allImagesLoaded = $loadedImages >= uniqueMovieTitles.size;
     }
 </script>
 
-<div class={allImagesLoaded ? 'showings-container' : 'hidden'}>
-
+<div class={allImagesLoaded ? 'visible' : 'hidden'}>
     {#if showings.length > 0}
-
         {#each showingsByVenue as showings}
-            <div class="venue-showings">
-
-                <h2>{showings.venue}</h2>
-                <small>{showings.venue_address}</small>
-
-                {#each showings.showings as showing}
-                    <div class="movie-container">
-                        <img 
-                            crossorigin="true" 
-                            src={ uniqueUrl(showing.posterUrl) } 
-                            on:load={ onPosterLoad }
-                            alt="{ showing.title } 
-                                Movie Poster">
-                        <div>
-                            <span class="movie-title">{showing.title}</span>
-
-                            {#if (showing.rating && showing.runtime)}
-                                <span class="rating">{showing.rating},</span>
-                                <span class="runtime">{showing.runtime}</span>
-                            {:else if showing.rating}
-                                <span class="rating">{showing.rating}</span>
-                            {:else if showing.runtime}
-                                <span class="runtime">{showing.runtime}</span>
-                            {/if}
-                
-                            <span class="showdate">{convertToLongDateString($activeDate)}</span>
-                            <div class="showtimes">
-                
-                                {#each showing.times as showtime}
-                                    <Showtime { showtime } />
-                                {/each}
-
-                            </div>
-                        </div>
-                    </div>
-                {/each}
-
-            </div>
+            <VenueContainer { showings } />
         {/each}
-
     {:else}
-        <div class="venue-showings">No showings for this date.</div>
+        <p>No showings for this date.</p>
     {/if}
-
 </div>
 
 <style>
@@ -86,142 +35,26 @@
         opacity: 0;
     }
 
-    .showings-container {
+    .visible {
         opacity: 1;
         visibility: visible;
         transition: opacity 500ms ease-in, visibility 500ms ease-in;
         transition-delay: 100ms;
     }
 
-    h2 {
-        margin-bottom: 4px;
-        color: #333;
-        margin-left: 4px;
-        font-size: 22px;
-        font-weight: 600;
-        line-height: 1.5;
-    }
-
-    small {
-        font-variant: all-small-caps;
-        margin-left: 6px;
-        letter-spacing: 1px;
-        color: #aaa;
-        font-weight: 500;
-        font-size: 16px;
-        display: block;
-        margin-bottom: 36px;
-    }
-
-    img {
-        width: auto;
-        height: auto;
-        max-width: 110px;
-        height: 100%;
-        border-radius: 4px;
-        opacity: 0.85;
-        margin-right: 2rem;
-    }
-
-    .venue-showings {
-        padding: 0 2rem;
-        margin-bottom: 4rem;
-        margin-top: 2rem;
-    }
-
-    .movie-title {
-        display: inline-block;
-        color: #333;
-    }
-
-    .movie-title {
-        display: block;
-        margin-right: 12px;
-        font-weight: 500;
-        font-size: 16px;
-        margin-bottom: 10px;
-    }
-
-    .showdate {
-        display: block;
-        font-weight: 500;
-        font-size: 16px;
-        letter-spacing: 0.02rem;
-        color: #aaa;
-        margin-top: 24px;
-        margin-left: 1px;
-        font-variant: all-small-caps;
-    }
-
-    .rating,
-    .runtime {
-        display: inline-block;
-        font-size: 13px;
-        margin-left: 1px;
-        color: #666;
-    }
-
-    .showtimes {
-        margin-bottom: 6px;
-    }
-
-    .movie-container {
-        text-decoration: none;
-        display: flex;
-        padding: 22px;
-        margin-bottom: 1rem;
-        border-radius: 6px;
-        color: #555;
-        background: #f8f8f8;
+    @media only screen and (max-width: 1080px) {
+        p {
+            padding: 0 2rem;
+            margin-bottom: 4rem;
+            margin-top: 2rem;
+        }
     }
 
     @media only screen and (max-width: 600px) {
-        .venue-showings {
+        p {
             padding: 1rem;
             margin-bottom: 0;
             margin-top: 0;
-        }
-
-        .movie-container {
-            padding: 12px;
-        }
-
-        .movie-title {
-            font-size: 15px;
-            margin-bottom: 2px;
-            margin-top: 2px;
-        }
-
-        .runtime,
-        .rating {
-            font-size: 12px;
-        }
-
-        .showdate {
-            font-size: 14px;
-            margin-top: 20px;
-            margin-bottom: 4px;
-        }
-
-        small {
-            margin-bottom: 26px;
-            font-size: 14px;
-        }
-
-        img {
-            margin-right: 1rem;
-            max-width: 92px;
-        }
-
-        h2 {
-            font-size: 18px;
-            margin-bottom: 2px;
-        }
-    }
-
-    @media only screen and (min-width: 1080px) {
-        .venue-showings {
-            padding: 0;
         }
     }
 </style>
