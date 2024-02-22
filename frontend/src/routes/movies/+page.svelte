@@ -137,7 +137,7 @@
         }
 
         .movie-container {
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
 
         img {
