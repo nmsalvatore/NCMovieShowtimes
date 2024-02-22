@@ -15,7 +15,7 @@
         text-decoration: none;
         display: flex;
         padding: 22px;
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
         border-radius: 6px;
         color: #555;
         background: #f4f4f4;

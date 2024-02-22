@@ -49,7 +49,7 @@
     @media only screen and (max-width: 600px) {
         div {
             padding: 1rem;
-            margin-bottom: 0;
+            margin-bottom: 1rem;
             margin-top: 0;
         }
 
