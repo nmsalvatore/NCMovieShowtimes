@@ -89,7 +89,7 @@
 
     @media only screen and (max-width: 600px) {
         .scrollbar {
-            padding: 0 1rem 1rem 1rem;
+            padding: 1rem;
             margin-bottom: 2rem;
         }
 

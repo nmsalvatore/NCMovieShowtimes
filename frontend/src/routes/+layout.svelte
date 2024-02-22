@@ -29,7 +29,7 @@
 
     @media only screen and (max-width: 600px) {
         main {
-            margin-top: 124px;
+            margin-top: 108px;
         }
     }
 </style>
