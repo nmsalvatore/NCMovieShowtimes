@@ -14,9 +14,9 @@
     .showtime {
         cursor: pointer;
         display: inline-block;
-        background: #ececeb;
-        border: 1px solid #e9e9e8;
-        color: #666667;
+        background: #eaeaea;
+        border: 1px solid #e2e2e2;
+        color: #666;
         font-size: 12px;
         font-weight: 600;
         padding: 10px;

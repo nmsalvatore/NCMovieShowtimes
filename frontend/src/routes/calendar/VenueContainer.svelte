@@ -1,6 +1,6 @@
 <script>
     import MovieContainer from './MovieContainer.svelte'
-    
+
     export let showings
 </script>
 
@@ -32,6 +32,10 @@
         font-size: 16px;
         display: block;
         margin-bottom: 36px;
+    }
+
+    div {
+        margin-bottom: 4rem;
     }
 
     @media only screen and (max-width: 1080px) {

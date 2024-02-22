@@ -64,7 +64,7 @@
         cursor: grab;
         scrollbar-width: none;
         -ms-overflow-style: none;
-        padding: 1rem 0 2rem 0;
+        padding: 24px 0 2rem 0;
         margin-bottom: 48px;
         position: relative;
     }
@@ -89,7 +89,7 @@
 
     @media only screen and (max-width: 600px) {
         .scrollbar {
-            padding: 1rem;
+            padding: 28px 1rem 1rem 1rem;
             margin-bottom: 16px;
         }
 

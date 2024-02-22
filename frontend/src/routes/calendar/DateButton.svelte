@@ -25,12 +25,13 @@
         width: 140px;
         border: none;
         border-radius: 4px;
-        margin-right: 12px;
-        color: #aaa;
+        margin-right: 8px;
+        color: #888;
         font-size: 16px;
         font-weight: 400;
         font-family: inherit;
-        background: #f6f6f6;
+        background: #f4f4f4;
+        border: 1px solid #eaeaea;
         letter-spacing: 0.3px;
     }
 
@@ -40,8 +41,9 @@
 
     button.active {
         background: hsl(0, 40%, 60%);
+        border: 1px solid hsl(0, 40%, 57%);
         color: #fff;
-        font-weight: 600;
+        font-weight: 500;
     }
 
     @media only screen and (max-width: 600px) {

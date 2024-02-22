@@ -21,3 +21,15 @@
     <slot />
 </main>
 <Footer />
+
+<style>
+    main {
+        margin-top: 132px;
+    }
+
+    @media only screen and (max-width: 600px) {
+        main {
+            margin-top: 96px;
+        }
+    }
+</style>

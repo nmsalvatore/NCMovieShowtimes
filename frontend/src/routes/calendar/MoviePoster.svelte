@@ -1,6 +1,6 @@
 <script>
     import { loadedImages } from '$lib/stores'
-    
+
     export let showing
 
     function onPosterLoad() {
@@ -27,7 +27,6 @@
         max-width: 110px;
         height: 100%;
         border-radius: 4px;
-        opacity: 0.85;
         margin-right: 2rem;
     }
 

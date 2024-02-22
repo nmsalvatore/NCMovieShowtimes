@@ -62,7 +62,6 @@
         max-width: 100px;
         height: 100%;
         border-radius: 5px;
-        opacity: 0.85;
         margin-left: 2rem;
     }
 
@@ -81,7 +80,8 @@
     .all-movies-container {
         margin: 2rem;
         padding: 3rem 2rem;
-        background: #f8f8f8;
+        background: #f4f4f4;
+        border: 1px solid #eaeaea;
         border-radius: 8px;
     }
 
