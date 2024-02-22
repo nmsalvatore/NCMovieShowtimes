@@ -39,7 +39,7 @@
 
     img {
         position: relative;
-        left: -8px;
+        left: -6px;
         height: 64px;
         filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(143deg) brightness(103%) contrast(102%);
     }

@@ -89,8 +89,8 @@
 
     @media only screen and (max-width: 600px) {
         .scrollbar {
-            padding: 28px 1rem 1rem 1rem;
-            margin-bottom: 16px;
+            padding: 0 1rem 1rem 1rem;
+            margin-bottom: 2rem;
         }
 
         .arrow {
