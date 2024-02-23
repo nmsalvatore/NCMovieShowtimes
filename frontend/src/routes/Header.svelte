@@ -19,12 +19,6 @@
         height: 84px;
         padding: 0 2rem;
         background: #333;
-        box-shadow: 0 1px 8px -5px;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 100;
     }
 
     header > div {

@@ -31,7 +31,7 @@
         font-weight: 400;
         font-family: inherit;
         background: #f4f4f4;
-        border: 1px solid #eaeaea;
+        border: 1px solid #e4e4e4;
         letter-spacing: 0.3px;
     }
 

@@ -24,12 +24,12 @@
 
 <style>
     main {
-        margin-top: 132px;
+        margin-top: 32px;
     }
 
     @media only screen and (max-width: 600px) {
         main {
-            margin-top: 96px;
+            margin-top: 16px;
         }
     }
 </style>
