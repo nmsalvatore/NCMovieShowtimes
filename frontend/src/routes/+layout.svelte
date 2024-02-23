@@ -24,12 +24,19 @@
 
 <style>
     main {
-        margin-top: 32px;
+        background: #fafafa;
+        padding: 2rem;
+    }
+
+    @media only screen and (max-width: 1080px) {
+        main {
+            padding: 2rem 0;
+        }
     }
 
     @media only screen and (max-width: 600px) {
         main {
-            margin-top: 16px;
+            padding: 0;
         }
     }
 </style>

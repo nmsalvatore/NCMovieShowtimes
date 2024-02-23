@@ -77,14 +77,6 @@
         transition-delay: 100ms;
     }
 
-    .all-movies-container {
-        margin: 2rem;
-        padding: 3rem 2rem;
-        background: #f4f4f4;
-        border: 1px solid #eaeaea;
-        border-radius: 8px;
-    }
-
     .movie-container {
         display: flex;
         flex-direction: row;
@@ -121,8 +113,7 @@
 
     @media only screen and (max-width: 600px) {
         .all-movies-container {
-            margin: 1rem;
-            padding: 2rem 1rem;
+            padding: 3rem 1rem;
         }
 
        .movie-title {

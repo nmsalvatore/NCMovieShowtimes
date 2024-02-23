@@ -13,8 +13,8 @@
 <style>
     footer {
         color: #6f6f6f;
-        padding: 1rem 1.25rem;
-        margin: 2rem 0 1rem 0;
+        background: #fafafa;
+        padding: 3rem 1.25rem 1rem 1.25rem;
         font-size: 12px;
         line-height: 2.2;
     }
@@ -42,14 +42,13 @@
 
     @media only screen and (min-width: 600px) {
         footer {
-            padding: 0 32px;
-            margin: 6rem 0 3rem 0; 
+            padding: 1rem 32px 1rem 32px;
         }
     }
 
     @media only screen and (min-width: 1080px) {
         footer {
-            padding: 0px;
+            padding: 1rem 2rem;
         }
     }
 </style>
