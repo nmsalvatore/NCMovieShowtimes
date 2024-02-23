@@ -128,7 +128,7 @@
         }
 
         .all-movies-inner-container {
-            padding: 3rem 1.5rem;
+            padding: 2rem 1.5rem;
         }
 
        .movie-title {
