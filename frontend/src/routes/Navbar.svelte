@@ -3,8 +3,18 @@
 </script>
 
 <nav>
-    <a href='/calendar' class:active={ $activeRouteID === 1 }>Calendar</a>
-    <a href='/movies' class:active={ $activeRouteID === 2 }>All Movies</a>
+    <a href='/calendar' 
+        class:active={ $activeRouteID === 1 }
+        on:click={ () => activeRouteID.set(1) }
+    >
+        Calendar
+    </a>
+    <a href='/movies'
+        class:active={ $activeRouteID === 2 }
+        on:click={ () => activeRouteID.set(2) }
+    >
+        All Movies
+    </a>
 </nav>
 
 <style>
