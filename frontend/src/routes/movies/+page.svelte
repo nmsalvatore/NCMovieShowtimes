@@ -75,6 +75,10 @@
         visibility: visible;
         transition: opacity 500ms ease-in, visibility 500ms ease-in;
         transition-delay: 100ms;
+        background: #f4f4f4;
+        padding: 3rem 2rem;
+        border: 1px solid #eee;
+        border-radius: 8px;
     }
 
     .movie-container {
@@ -111,9 +115,20 @@
         margin-bottom: 4px;
     }
 
+    @media only screen and (max-width: 1080px) {
+        .all-movies-container {
+            margin: 0 2rem;
+        }
+    }
+
     @media only screen and (max-width: 600px) {
         .all-movies-container {
-            padding: 3rem 1rem;
+            padding: 1rem;
+            margin: 0;
+        }
+
+        .all-movies-inner-container {
+            padding: 3rem 1.5rem;
         }
 
        .movie-title {
@@ -134,12 +149,6 @@
         img {
             max-width: 80px;
             margin-left: 1.5rem;
-        }
-    }
-
-    @media only screen and (min-width: 1080px) {
-        .all-movies-container {
-            margin: 2rem 0;
         }
     }
 </style>
