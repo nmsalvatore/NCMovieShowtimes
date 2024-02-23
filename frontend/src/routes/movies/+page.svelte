@@ -77,7 +77,7 @@
         transition-delay: 100ms;
         background: #f4f4f4;
         padding: 3rem 2rem;
-        border: 1px solid #eee;
+        border: 1px solid #eaeaea;
         border-radius: 8px;
     }
 
