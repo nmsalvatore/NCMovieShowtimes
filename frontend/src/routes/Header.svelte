@@ -16,9 +16,9 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        height: 84px;
+        height: 96px;
         padding: 0 2rem;
-        background: #333;
+        background: #111;
     }
 
     header > div {
@@ -40,9 +40,8 @@
 
     @media only screen and (max-width: 600px) {
         header {
-            padding: 1rem;
-            height: auto;
-            margin-bottom: 0;
+            padding: 0 1rem;
+            height: 80px;
         }
 
         img {
