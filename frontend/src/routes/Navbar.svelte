@@ -26,22 +26,21 @@
     }
 
     a {
-        height: 34px;
-        line-height: 32px;
+        height: 40px;
+        width: 120px;
+        line-height: 40px;
         text-align: center;
         text-decoration: none;
         cursor: pointer;
-        width: 100px;
-        background: #444;
-        letter-spacing: 0.01rem;
+        background: #333;
         font-weight: 500;
-        font-size: 14px;
+        font-size: 16px;
         color: #fff;
         border-radius: 4px;
     }
 
     a.active {
-        background: cadetblue;
+        background: hsl(180, 50%, 40%);
     }
 
     a:last-child {
@@ -49,6 +48,13 @@
     }
 
     @media only screen and (max-width: 600px) {
+        a {
+            height: 34px;
+            width: 100px;
+            line-height: 34px;
+            font-size: 14px;
+        }
+
         a:last-child {
             margin-left: 10px;
         }
