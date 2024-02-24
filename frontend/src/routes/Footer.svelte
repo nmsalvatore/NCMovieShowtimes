@@ -14,7 +14,7 @@
     footer {
         color: #6f6f6f;
         background: #fafafa;
-        padding: 3rem 1.25rem 1rem 1.25rem;
+        padding: 2rem;
         font-size: 12px;
         line-height: 2.2;
     }
@@ -25,6 +25,7 @@
 
     p:last-child {
         margin-top: 3rem;
+        margin-bottom: 0;
     }
 
     p > strong {
@@ -40,15 +41,9 @@
         text-decoration-color: #aab;
     }
 
-    @media only screen and (min-width: 600px) {
+    @media only screen and (max-width: 600px) {
         footer {
-            padding: 1rem 32px 1rem 32px;
-        }
-    }
-
-    @media only screen and (min-width: 1080px) {
-        footer {
-            padding: 1rem 2rem;
+            padding: 1rem;
         }
     }
 </style>
