@@ -19,7 +19,7 @@
         border-radius: 6px;
         color: #555;
         background: #fafafa;
-        border: 1px solid #f4f4f4;
+        border: 1px solid #eee;
     }
 
     @media only screen and (max-width: 600px) {
