@@ -2,20 +2,24 @@
     import { onMount } from 'svelte'
     import { enableSideScroll, enableArrowClick } from '$lib/helpers/utils.js'
     import DateButton from './DateButton.svelte'
+    import ArrowLeft from '$lib/assets/arrow-left.svg'
+    import ArrowRight from '$lib/assets/arrow-right.svg'
 
     export let dates = []
 
     let scrollContainer;
 
     onMount(async () => {
-        // enableArrowClick(scrollContainer)
+        enableArrowClick(scrollContainer)
         enableSideScroll(scrollContainer)
     });
 </script>
   
 
 <div class="container">
-    <!-- <button class="arrow left">←</button> -->
+    <button class="arrow left">
+        <img src={ ArrowLeft } alt="Left facing arrow">
+    </button>
     <div class="scrollbar" bind:this={ scrollContainer }>
 
         {#each dates as date}
@@ -23,7 +27,9 @@
         {/each}
 
     </div>
-    <!-- <button class="arrow right">→</button> -->
+    <button class="arrow right">
+        <img src={ ArrowRight } alt="Right facing arrow">
+    </button>
 </div>
 
 
@@ -34,22 +40,17 @@
         top: 0;
     }
 
-    /* .arrow {
+    .arrow {
         cursor: pointer;
         position: absolute;
-        top: 95%;
+        top: 54px;
         transform: translateY(-50%);
-        background: none;
+        background: #fff;
         border: none;
-        padding: 8px;
-        color: #b4b4b4;
-        font-size: 16px;
-        font-family: inherit;
+        opacity: 0.9;
+        padding: 1rem;
+        height: 108px;
         z-index: 10;
-    }
-
-    .arrow:hover {
-        color: #555;
     }
 
     .left.arrow {
@@ -58,7 +59,7 @@
 
     .right.arrow {
         right: 0;
-    } */
+    }
 
     .scrollbar {
         overflow-x: auto;
@@ -67,7 +68,7 @@
         scrollbar-width: none;
         -ms-overflow-style: none;
         margin-bottom: 3rem;
-        padding: 0 2rem;
+        padding: 0 56px;
         height: 108px;
         line-height: 108px;
         box-shadow: 0 1px 8px -6px;
@@ -79,22 +80,16 @@
         display: none;
     }
 
-    /* @media only screen and (max-width: 1080px) {
-        .left.arrow {
-            left: 30px;
-        }
-
-        .right.arrow {
-            right: 30px;
-        }
-    } */
-
     @media only screen and (max-width: 600px) {
         .scrollbar {
             height: 80px;
             line-height: 80px;
             padding: 0 1rem;
             margin-bottom: 2.5rem;
+        }
+
+        .arrow {
+            display: none;
         }
     }
 </style>
