@@ -18,8 +18,8 @@
         margin-bottom: 1rem;
         border-radius: 6px;
         color: #555;
-        background: #f4f4f4;
-        border: 1px solid #eaeaea;
+        background: #fafafa;
+        border: 1px solid #f4f4f4;
     }
 
     @media only screen and (max-width: 600px) {

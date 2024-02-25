@@ -33,7 +33,7 @@
         display: block;
         color: #333;
         margin-right: 12px;
-        font-weight: 500;
+        font-weight: 600;
         font-size: 16px;
         margin-bottom: 10px;
     }

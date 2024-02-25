@@ -75,10 +75,7 @@
         visibility: visible;
         transition: opacity 500ms ease-in, visibility 500ms ease-in;
         transition-delay: 100ms;
-        background: #f4f4f4;
-        padding: 3rem 2rem;
-        border: 1px solid #eaeaea;
-        border-radius: 8px;
+        padding: 4rem 3rem;
     }
 
     .movie-container {
@@ -128,7 +125,7 @@
         }
 
         .all-movies-inner-container {
-            padding: 2rem 1.5rem;
+            padding: 2rem 1rem;
         }
 
        .movie-title {

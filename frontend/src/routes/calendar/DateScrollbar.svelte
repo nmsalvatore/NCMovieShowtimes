@@ -8,14 +8,14 @@
     let scrollContainer;
 
     onMount(async () => {
-        enableArrowClick(scrollContainer)
+        // enableArrowClick(scrollContainer)
         enableSideScroll(scrollContainer)
     });
 </script>
   
 
 <div class="container">
-    <button class="arrow left">←</button>
+    <!-- <button class="arrow left">←</button> -->
     <div class="scrollbar" bind:this={ scrollContainer }>
 
         {#each dates as date}
@@ -23,16 +23,18 @@
         {/each}
 
     </div>
-    <button class="arrow right">→</button>
+    <!-- <button class="arrow right">→</button> -->
 </div>
 
 
 <style>
     .container {
         position: relative;
+        position: sticky;
+        top: 0;
     }
 
-    .arrow {
+    /* .arrow {
         cursor: pointer;
         position: absolute;
         top: 95%;
@@ -56,7 +58,7 @@
 
     .right.arrow {
         right: 0;
-    }
+    } */
 
     .scrollbar {
         overflow-x: auto;
@@ -64,20 +66,20 @@
         cursor: grab;
         scrollbar-width: none;
         -ms-overflow-style: none;
-        padding: 24px 0 2rem 0;
-        margin-bottom: 48px;
+        margin-bottom: 3rem;
+        padding: 0 2rem;
+        height: 108px;
+        line-height: 108px;
+        border-bottom: 1px solid #eee;
         position: relative;
+        background: #fff;
     }
 
     .scrollbar::-webkit-scrollbar {
         display: none;
     }
 
-    @media only screen and (max-width: 1080px) {
-        .scrollbar {
-            padding: 1rem 2rem 2rem 2rem;
-        }
-
+    /* @media only screen and (max-width: 1080px) {
         .left.arrow {
             left: 30px;
         }
@@ -85,16 +87,14 @@
         .right.arrow {
             right: 30px;
         }
-    }
+    } */
 
     @media only screen and (max-width: 600px) {
         .scrollbar {
-            padding: 2.5rem 1rem 1rem 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .arrow {
-            display: none;
+            height: 80px;
+            line-height: 80px;
+            padding: 0 1rem;
+            margin-bottom: 2.5rem;
         }
     }
 </style>

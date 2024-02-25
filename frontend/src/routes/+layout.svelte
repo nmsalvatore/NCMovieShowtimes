@@ -24,19 +24,6 @@
 
 <style>
     main {
-        background: #fafafa;
-        padding: 2rem;
-    }
-
-    @media only screen and (max-width: 1080px) {
-        main {
-            padding: 2rem 0;
-        }
-    }
-
-    @media only screen and (max-width: 600px) {
-        main {
-            padding: 0;
-        }
+        background: #fff;
     }
 </style>

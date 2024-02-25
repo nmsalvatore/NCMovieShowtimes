@@ -13,7 +13,7 @@
 <style>
     footer {
         color: #6f6f6f;
-        background: #fafafa;
+        background: #fff;
         padding: 2rem;
         font-size: 12px;
         line-height: 2.2;
