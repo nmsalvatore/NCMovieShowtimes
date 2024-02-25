@@ -11,7 +11,7 @@
 
 <style>
     div {
-        padding-bottom: 2rem;
+        padding-bottom: 2.5rem;
     }
 
     @media only screen and (max-width: 600px) {
