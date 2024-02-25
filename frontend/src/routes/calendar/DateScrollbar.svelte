@@ -70,7 +70,7 @@
         padding: 0 2rem;
         height: 108px;
         line-height: 108px;
-        border-bottom: 1px solid #eee;
+        box-shadow: 0 1px 8px -6px;
         position: relative;
         background: #fff;
     }
