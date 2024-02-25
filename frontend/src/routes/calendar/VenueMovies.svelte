@@ -11,12 +11,12 @@
 
 <style>
     div {
-        padding-bottom: 2.5rem;
+        padding-bottom: 3rem;
     }
 
     @media only screen and (max-width: 600px) {
         div {
-            padding-bottom: 1.5rem;
+            padding-bottom: 2rem;
         }
     }
 </style>
