@@ -1,18 +1,19 @@
 export function verticalScroll() {
     document.addEventListener('scroll', () => {
         const scrollbar = document.querySelector('.scrollbar')
-
-        if (window.innerWidth >= 600) {
-            if (window.scrollY >= 96) {
-                scrollbar.classList.add('shadow')
+        if (scrollbar) {
+            if (window.innerWidth >= 600) {
+                if (window.scrollY >= 96) {
+                    scrollbar.classList.add('shadow')
+                } else {
+                    scrollbar.classList.remove('shadow')
+                }
             } else {
-                scrollbar.classList.remove('shadow')
-            }
-        } else {
-            if (window.scrollY >= 80) {
-                scrollbar.classList.add('shadow')
-            } else {
-                scrollbar.classList.remove('shadow')
+                if (window.scrollY >= 80) {
+                    scrollbar.classList.add('shadow')
+                } else {
+                    scrollbar.classList.remove('shadow')
+                }
             }
         }
     });
