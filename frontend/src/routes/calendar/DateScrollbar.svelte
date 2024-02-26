@@ -67,7 +67,7 @@
         cursor: grab;
         scrollbar-width: none;
         -ms-overflow-style: none;
-        margin-bottom: 3rem;
+        margin-bottom: 4rem;
         padding: 0 56px;
         height: 108px;
         line-height: 108px;
@@ -85,7 +85,7 @@
             height: 80px;
             line-height: 80px;
             padding: 0 1rem;
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
         }
 
         .arrow {
