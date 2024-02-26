@@ -63,6 +63,8 @@
     }
 
     .scrollbar {
+        display: flex;
+        align-items: center;
         overflow-x: auto;
         white-space: nowrap;
         cursor: grab;
@@ -71,7 +73,6 @@
         margin-bottom: 4rem;
         padding: 0 56px;
         height: 108px;
-        line-height: 108px;
         border-bottom: 1px solid #e4e4e4;
         position: relative;
         background: #fff;
@@ -89,7 +90,6 @@
     @media only screen and (max-width: 600px) {
         .scrollbar {
             height: 80px;
-            line-height: 80px;
             padding: 0 1rem;
             margin-bottom: 3rem;
         }

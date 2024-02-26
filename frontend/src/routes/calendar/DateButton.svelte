@@ -28,7 +28,7 @@
     button {
         cursor: pointer;
         padding: 12px;
-        width: 140px;
+        min-width: 140px;
         border: none;
         border-radius: 4px;
         margin-right: 8px;
@@ -53,7 +53,7 @@
 
     @media only screen and (max-width: 600px) {
         button {
-            width: 120px;
+            min-width: 120px;
             font-size: 14px;
         }
     }
