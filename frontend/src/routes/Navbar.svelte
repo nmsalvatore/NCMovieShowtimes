@@ -26,9 +26,11 @@
     }
 
     a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         height: 40px;
         width: 120px;
-        line-height: 40px;
         text-align: center;
         text-decoration: none;
         cursor: pointer;
@@ -51,7 +53,6 @@
         a {
             height: 34px;
             width: 100px;
-            line-height: 34px;
             font-size: 14px;
         }
 
