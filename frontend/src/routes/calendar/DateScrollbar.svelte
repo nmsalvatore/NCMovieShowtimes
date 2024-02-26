@@ -1,6 +1,6 @@
 <script>
     import { onMount } from 'svelte'
-    import { enableSideScroll, enableArrowClick } from '$lib/helpers/utils.js'
+    import * as listeners from '$lib/listeners'
     import DateButton from './DateButton.svelte'
     import ArrowLeft from '$lib/assets/arrow-left.svg'
     import ArrowRight from '$lib/assets/arrow-right.svg'
@@ -10,13 +10,14 @@
     let scrollContainer;
 
     onMount(async () => {
-        enableArrowClick(scrollContainer)
-        enableSideScroll(scrollContainer)
+        listeners.arrowClick(scrollContainer)
+        listeners.horizontalScroll(scrollContainer)
+        listeners.verticalScroll()
     });
 </script>
   
 
-<div class="container">
+<div class="scrollbar-container" on>
     <button class="arrow left">
         <img src={ ArrowLeft } alt="Left facing arrow">
     </button>
@@ -34,7 +35,7 @@
 
 
 <style>
-    .container {
+    .scrollbar-container {
         position: relative;
         position: sticky;
         top: 0;
@@ -49,7 +50,7 @@
         border: none;
         opacity: 0.9;
         padding: 1rem;
-        height: 108px;
+        height: 106px;
         z-index: 10;
     }
 
@@ -71,13 +72,18 @@
         padding: 0 56px;
         height: 108px;
         line-height: 108px;
-        box-shadow: 0 1px 8px -6px;
+        border-bottom: 1px solid #e4e4e4;
         position: relative;
         background: #fff;
     }
 
     .scrollbar::-webkit-scrollbar {
         display: none;
+    }
+
+    :global(.scrollbar.shadow) {
+        box-shadow: 0 1px 8px -6px;
+        border-bottom: 0;
     }
 
     @media only screen and (max-width: 600px) {
