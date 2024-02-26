@@ -5,18 +5,18 @@
     export let showings
 </script>
 
-<div>
+<div class="venue-container">
     <VenueInfo { showings } />
     <VenueMovies { showings } />
 </div>
 
 <style>
-    div {
+    div.venue-container {
         padding: 0 2rem;
     }
 
     @media only screen and (max-width: 600px) {
-        div {
+        div.venue-container {
             padding: 0 1rem;
         }
     }

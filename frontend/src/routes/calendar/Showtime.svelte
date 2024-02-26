@@ -5,13 +5,13 @@
 </script>
 
 {#if new Date(`${ $activeDate } ${ showtime.time }`) > $now}
-    <a href={showtime.url} target="_blank" class="showtime">{showtime.time}</a>
+    <a class="movie-showtime" href={showtime.url} target="_blank">{showtime.time}</a>
 {:else}
-    <a href={showtime.url} target="_blank" class="showtime old">{showtime.time}</a>
+    <a class="movie-showtime old" href={showtime.url} target="_blank">{showtime.time}</a>
 {/if}
 
 <style>
-    .showtime {
+    a.movie-showtime {
         cursor: pointer;
         display: inline-block;
         background: #eee;
@@ -28,19 +28,19 @@
         text-decoration: none;
     }
 
-    .showtime.old {
+    a.movie-showtime.old {
         background: none;
         border: 1px solid #e2e2e2;
         color: rgba(0, 0, 0, 0.23);
         pointer-events: none;
     }
 
-    .showtime:last-child {
+    a.movie-showtime:last-child {
         margin-right: 0;
     }
 
     @media only screen and (max-width: 600px) {
-        .showtime {
+        a.movie-showtime {
             margin-right: 6px;
             margin-top: 6px;
             width: 76px;

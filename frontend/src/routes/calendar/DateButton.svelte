@@ -19,13 +19,14 @@
 </script>
 
 <button 
+    class="date"
     class:active={ $activeDate === date }
     on:click={ () => handleButtonClick(date) }>
     { convertToShortDateString(date) }
 </button>
 
 <style>
-    button {
+    button.date {
         cursor: pointer;
         padding: 12px;
         min-width: 140px;
@@ -40,11 +41,11 @@
         border: 1px solid #ddd;
     }
 
-    button:last-child {
+    button.date:last-child {
         margin-right: 0;
     }
 
-    button.active {
+    button.date.active {
         background: hsl(0, 50%, 57%);
         border: 1px solid hsl(0, 50%, 57%);
         color: #fff;
@@ -52,7 +53,7 @@
     }
 
     @media only screen and (max-width: 600px) {
-        button {
+        button.date {
             min-width: 120px;
             font-size: 14px;
         }

@@ -22,13 +22,13 @@
 </svelte:head>
 
 <Header />
-<main>
+<main class="page-content">
     <slot />
 </main>
 <Footer />
 
 <style>
-    main {
+    main.page-content {
         background: #fff;
     }
 </style>

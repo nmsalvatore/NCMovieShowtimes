@@ -17,31 +17,31 @@
 </script>
   
 
-<div class="scrollbar-container" on>
-    <button class="arrow left">
+<div class="dates-scrollbar-container" on>
+    <button class="nav-arrow left">
         <img src={ ArrowLeft } alt="Left facing arrow">
     </button>
-    <div class="scrollbar" bind:this={ scrollContainer }>
+    <div class="dates-scrollbar" bind:this={ scrollContainer }>
 
         {#each dates as date}
             <DateButton { date }/>
         {/each}
 
     </div>
-    <button class="arrow right">
+    <button class="nav-arrow right">
         <img src={ ArrowRight } alt="Right facing arrow">
     </button>
 </div>
 
 
 <style>
-    .scrollbar-container {
+    div.dates-scrollbar-container {
         position: relative;
         position: sticky;
         top: 0;
     }
 
-    .arrow {
+    button.nav-arrow {
         cursor: pointer;
         position: absolute;
         top: 54px;
@@ -54,15 +54,15 @@
         z-index: 10;
     }
 
-    .left.arrow {
+    button.left.nav-arrow {
         left: 0;
     }
 
-    .right.arrow {
+    button.right.nav-arrow {
         right: 0;
     }
 
-    .scrollbar {
+    div.dates-scrollbar {
         display: flex;
         align-items: center;
         overflow-x: auto;
@@ -78,23 +78,23 @@
         background: #fff;
     }
 
-    .scrollbar::-webkit-scrollbar {
+    div.dates-scrollbar::-webkit-scrollbar {
         display: none;
     }
 
-    :global(.scrollbar.shadow) {
+    :global(div.dates-scrollbar.shadow) {
         box-shadow: 0 1px 8px -6px;
         border-bottom: 0;
     }
 
     @media only screen and (max-width: 600px) {
-        .scrollbar {
+        div.dates-scrollbar {
             height: 80px;
             padding: 0 1rem;
             margin-bottom: 3rem;
         }
 
-        .arrow {
+        button.nav-arrow {
             display: none;
         }
     }

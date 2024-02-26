@@ -6,20 +6,20 @@
     export let showing
 </script>
 
-<div>
-    <span class="movie-title">{ showing.title }</span>
+<div class="movie-info">
+    <h3 class="movie-title">{ showing.title }</h3>
 
     {#if (showing.rating && showing.runtime)}
-        <span class="rating">{ showing.rating },</span>
-        <span class="runtime">{ showing.runtime }</span>
+        <span class="movie-rating">{ showing.rating },</span>
+        <span class="movie-runtime">{ showing.runtime }</span>
     {:else if showing.rating}
-        <span class="rating">{ showing.rating }</span>
+        <span class="movie-rating">{ showing.rating }</span>
     {:else if showing.runtime}
-        <span class="runtime">{ showing.runtime }</span>
+        <span class="movie-runtime">{ showing.runtime }</span>
     {/if}
 
-    <span class="showdate">{ convertToLongDateString($activeDate) }</span>
-    <div class="showtimes">
+    <span class="movie-showdate">{ convertToLongDateString($activeDate) }</span>
+    <div class="movie-showtimes">
 
         {#each showing.times as showtime}
             <Showtime { showtime } />
@@ -29,8 +29,7 @@
 </div>
 
 <style>
-    .movie-title {
-        display: block;
+    h3.movie-title {
         color: #333;
         margin-right: 12px;
         font-weight: 600;
@@ -38,7 +37,7 @@
         margin-bottom: 10px;
     }
 
-    .showdate {
+    span.movie-showdate {
         display: block;
         font-weight: 500;
         font-size: 16px;
@@ -49,31 +48,31 @@
         font-variant: all-small-caps;
     }
 
-    .showtimes {
-        margin-bottom: 6px;
-    }
-
-    .rating,
-    .runtime {
+    span.movie-rating,
+    span.movie-runtime {
         display: inline-block;
         font-size: 13px;
         margin-left: 1px;
         color: #666;
     }
 
+    div.movie-showtimes {
+        margin-bottom: 6px;
+    }
+
     @media only screen and (max-width: 600px) {
-        .movie-title {
+        h3.movie-title {
             font-size: 15px;
             margin-bottom: 2px;
             margin-top: 2px;
         }
 
-        .runtime,
-        .rating {
+        span.movie-runtime,
+        span.movie-rating {
             font-size: 12px;
         }
 
-        .showdate {
+        span.movie-showdate {
             font-size: 14px;
             margin-top: 20px;
             margin-bottom: 4px;

@@ -5,13 +5,13 @@
     export let showing
 </script>
 
-<div>
+<div class="movie-container">
     <MoviePoster { showing } />
     <MovieInfo { showing } />
 </div>
 
 <style>
-    div {
+    div.movie-container {
         text-decoration: none;
         display: flex;
         padding: 22px;
@@ -23,7 +23,7 @@
     }
 
     @media only screen and (max-width: 600px) {
-        div {
+        div.movie-container {
             padding: 12px;
         }
     }

@@ -28,24 +28,24 @@
 {#if $renderShowings}
     <ShowingsContainer showings={activeShowings} />
 {:else}
-    <div class="loading">
+    <div class="loading-container">
         <p>Loading...</p>
     </div>
 {/if}
 
 <style>
-    .loading {
+    div.loading-container {
         height: 3000px;
         color: #6f6f6f;
         padding: 2rem;
     }
 
-    .loading > p {
+    div.loading-container > p {
         margin-left: 4px;
     }
 
     @media only screen and (max-width: 600px) {
-        .loading {
+        div.loading-container {
             padding: 1rem;
         }
     }

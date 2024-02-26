@@ -2,30 +2,32 @@
     import { activeRouteID } from '$lib/stores.js'
 </script>
 
-<nav>
-    <a href='/calendar' 
+<nav class="page-links">
+    <a 
+        class="page-link"
         class:active={ $activeRouteID === 1 }
-        on:click={ () => activeRouteID.set(1) }
+        href='/calendar' 
     >
         Calendar
     </a>
-    <a href='/movies'
+    <a 
+        class="page-link"
         class:active={ $activeRouteID === 2 }
-        on:click={ () => activeRouteID.set(2) }
+        href='/movies'
     >
         All Movies
     </a>
 </nav>
 
 <style>
-    nav {
+    nav.page-links {
         display: flex;
         flex-direction: row;
         align-items: center;
         width: fit-content;
     }
 
-    a {
+    a.page-link {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -41,22 +43,22 @@
         border-radius: 4px;
     }
 
-    a.active {
+    a.page-link.active {
         background: hsl(180, 50%, 40%);
     }
 
-    a:last-child {
+    a.page-link:last-child {
         margin-left: 1rem;
     }
 
     @media only screen and (max-width: 600px) {
-        a {
+        a.page-link {
             height: 34px;
             width: 100px;
             font-size: 14px;
         }
 
-        a:last-child {
+        a.page-link:last-child {
             margin-left: 10px;
         }
     }

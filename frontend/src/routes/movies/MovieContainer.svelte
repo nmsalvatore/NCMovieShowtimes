@@ -4,25 +4,25 @@
     export let movie
 </script>
 
-<div>
+<div class="movie-container">
     <MovieInfo { movie } />
     <MoviePoster { movie } />
 </div>
 
 <style>
-    div {
+    div.movie-container {
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
         margin-bottom: 4rem;
     }
 
-    div:last-child {
+    div.movie-container:last-child {
         margin-bottom: 0;
     }
 
     @media only screen and (max-width: 600px) {
-        div {
+        div.movie-container {
             margin-bottom: 3rem;
         }
     }

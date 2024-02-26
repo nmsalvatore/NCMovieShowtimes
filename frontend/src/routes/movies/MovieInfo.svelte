@@ -2,24 +2,31 @@
     export let movie
 </script>
 
-<div>
+<div class="movie-info">
     <h2 class="movie-title">{ movie.title }</h2>
 
     {#if (movie.rating && movie.runtime)}
-        <span>{ movie.rating }, { movie.runtime }</span>
+        <span class="movie-rating">{ movie.rating }, { movie.runtime }</span>
     {:else if movie.rating }
-        <span>{ movie.rating }</span>
+        <span class="movie-rating">{ movie.rating }</span>
     {:else if movie.runtime }
-        <span>{ movie.runtime }</span>
+        <span class="movie-runtime">{ movie.runtime }</span>
     {/if}
 
-    <span>{ movie.venue }</span>
-    <span>{ movie.dateRange }</span>
+    <span class="movie-venue">{ movie.venue }</span>
+    <span class="movie-dates">{ movie.dateRange }</span>
 </div>
 
 <style>
-    div {
+    div.movie-info {
         text-align: right;
+    }
+
+    h2.movie-title {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: #333;
     }
 
     span {
@@ -29,15 +36,8 @@
         margin-bottom: 4px;
     }
 
-    h2 {
-        font-size: 16px;
-        font-weight: 600;
-        margin-bottom: 20px;
-        color: #333;
-    }
-
     @media only screen and (max-width: 600px) {
-        h2 {
+        h2.movie-title {
             font-size: 15px;
             margin-bottom: 12px;
         }

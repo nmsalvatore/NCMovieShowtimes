@@ -3,19 +3,19 @@
     export let showings
 </script>
 
-<div>
+<div class="venue-movies">
     {#each showings.showings as showing}
         <MovieContainer { showing } />
     {/each}
 </div>
 
 <style>
-    div {
+    div.venue-movies {
         padding-bottom: 3rem;
     }
 
     @media only screen and (max-width: 600px) {
-        div {
+        div.venue-movies {
             padding-bottom: 2rem;
         }
     }

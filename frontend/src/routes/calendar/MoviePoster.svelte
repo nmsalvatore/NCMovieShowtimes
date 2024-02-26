@@ -14,6 +14,7 @@
 </script>
 
 <img 
+    class="movie-poster"
     crossorigin="true" 
     src={ uniqueUrl(showing.posterUrl) } 
     on:load={ onPosterLoad }
@@ -21,7 +22,7 @@
 >
 
 <style>
-    img {
+    img.movie-poster {
         width: auto;
         height: auto;
         max-width: 110px;
@@ -31,7 +32,7 @@
     }
 
     @media only screen and (max-width: 600px) {
-        img {
+        img.movie-poster {
             margin-right: 1rem;
             max-width: 92px;
         }

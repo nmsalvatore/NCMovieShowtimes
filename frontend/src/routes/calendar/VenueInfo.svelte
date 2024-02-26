@@ -2,17 +2,17 @@
     export let showings
 </script>
 
-<div>
-    <h2>{ showings.venue }</h2>
-    <small>{ showings.venue_address }</small>
+<div class="venue-info">
+    <h2 class="venue-name">{ showings.venue }</h2>
+    <small class="venue-address">{ showings.venue_address }</small>
 </div>
 
 <style>
-    div {
+    div.venue-info {
         margin-bottom: 2rem;
     }
 
-    h2 {
+    h2.venue-name {
         color: #333;
         margin-left: 4px;
         margin-bottom: 4px;
@@ -21,7 +21,7 @@
         line-height: 1.5;
     }
 
-    small {
+    small.venue-address {
         font-variant: all-small-caps;
         margin-left: 6px;
         letter-spacing: 0.02rem;
@@ -32,15 +32,15 @@
     }
 
     @media only screen and (max-width: 600px) {
-        div {
+        div.venue-info {
             margin-bottom: 1.5rem;
         }
 
-        h2 {
+        h2.venue-name {
             font-size: 18px;
         }
 
-        small {
+        small.venue-address {
             font-size: 14px;
         }
     }

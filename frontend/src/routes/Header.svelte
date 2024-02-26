@@ -4,7 +4,9 @@
 </script>
 
 <header>
-    <a href="/calendar"><img src={ Logo } alt="NCMS Logo"></a>
+    <a href="/calendar">
+        <img class="site-logo" src={ Logo } alt="NCMS Logo">
+    </a>
     <Navbar />
 </header>
 
@@ -24,7 +26,7 @@
         display: flex;
     }
 
-    img {
+    img.site-logo {
         position: relative;
         left: -6px;
         height: 64px;
@@ -37,7 +39,7 @@
             height: 80px;
         }
 
-        img {
+        img.site-logo {
             height: 48px;
         }
     }

@@ -1,6 +1,6 @@
 export function verticalScroll() {
     document.addEventListener('scroll', () => {
-        const scrollbar = document.querySelector('.scrollbar')
+        const scrollbar = document.querySelector('.dates-scrollbar')
         if (scrollbar) {
             if (window.innerWidth >= 600) {
                 if (window.scrollY >= 96) {
@@ -61,14 +61,13 @@ export function horizontalScroll(scrollContainer) {
 }
 
 export function arrowClick(scrollContainer) {
-    const leftArrow = document.querySelector('.left.arrow')
-    const rightArrow = document.querySelector('.right.arrow')
+    const leftArrow = document.querySelector('.left.nav-arrow')
+    const rightArrow = document.querySelector('.right.nav-arrow')
     const scrollAmount = scrollContainer.offsetWidth - 48
 
     leftArrow.addEventListener('click', () => {
         scrollContainer.style.scrollBehavior = 'smooth'
         scrollContainer.scrollLeft -= scrollAmount
-
     });
 
     rightArrow.addEventListener('click', () => {
