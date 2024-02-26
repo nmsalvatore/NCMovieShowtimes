@@ -4,10 +4,8 @@
 </script>
 
 <header>
-    <div>
-        <a href="/calendar"><img src={ Logo } alt="NCMS Logo"></a>
-        <Navbar />
-    </div>
+    <a href="/calendar"><img src={ Logo } alt="NCMS Logo"></a>
+    <Navbar />
 </header>
 
 <style>
@@ -15,16 +13,11 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
         height: 96px;
         padding: 0 2rem;
         background: #111;
-    }
-
-    header > div {
-        display: flex;
-        justify-content: space-between;
-        width: 960px;
+        max-width: 960px;
     }
 
     a {
