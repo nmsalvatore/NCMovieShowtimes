@@ -2,6 +2,11 @@
     import Header from './Header.svelte'
     import Footer from './Footer.svelte'
     import { page } from '$app/stores'
+    import { onMount } from 'svelte'
+
+    onMount(() => {
+        window.scrollTo(0, 0)
+    })
 </script>
 
 <svelte:head>
