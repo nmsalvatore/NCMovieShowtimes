@@ -1,76 +1,34 @@
 <script>
-    import { activeRouteID } from '$lib/stores.js'
-    import { onMount } from 'svelte';
+    import { activeRouteID, loadedImages } from '$lib/stores.js'
+    import { onMount } from 'svelte'
+    import MovieContainer from './MovieContainer.svelte'
 
     export let data
 
-    let loadedImages = 0
     let allImagesLoaded = false
 
-    $: if (data) loadedImages = 0
-    $: allImagesLoaded = loadedImages >= data.allMovies.length
+    $: if (data) loadedImages.set(0)
+    $: allImagesLoaded = $loadedImages >= data.allMovies.length
 
     onMount(() => {
         activeRouteID.set(2)
+        loadedImages.set(0)
     })
-
-    function onPosterLoad() {
-        loadedImages++
-    }
-
-    function uniqueUrl(url) {
-        const timestamp = new Date().getTime()
-        return url + `?timestamp=${timestamp}`
-    }
 </script>
 
-<div class="all-movies-container">
-    <div class={allImagesLoaded ? 'all-movies-inner-container' : 'hidden'}>
-    
+<div class={allImagesLoaded ? 'visible' : 'hidden'}>
     {#each data.allMovies as movie}
-        <div class="movie-container">
-            <div class="movie-data">
-                <div class="movie-title">{movie.title}</div>
-
-                {#if (movie.rating && movie.runtime)}
-                    <div class="movie-specs">{movie.rating}, {movie.runtime}</div>
-                {:else if movie.rating}
-                    <div class="movie-specs">{movie.rating}</div>
-                {:else if movie.runtime}
-                    <div class="movie-specs">{movie.runtime}</div>
-                {/if}
-
-                <div class="movie-venue">{movie.venue}</div>
-                <div class="movie-date-range">{movie.dateRange}</div>
-            </div>
-            <img 
-                crossorigin="true" 
-                src={ uniqueUrl(movie.posterUrl) } 
-                on:load={() => onPosterLoad()}
-                alt="{movie.title} 
-                    Movie Poster">
-        </div>
+        <MovieContainer { movie } />
     {/each}
-
-    </div>
 </div>
 
 <style>
-    img {
-        width: auto;
-        height: auto;
-        max-width: 100px;
-        height: 100%;
-        border-radius: 5px;
-        margin-left: 2rem;
-    }
-
     .hidden {
         opacity: 0;
         visibility: hidden;
     }
 
-    .all-movies-inner-container {
+    .visible {
         opacity: 1;
         visibility: visible;
         transition: opacity 500ms ease-in, visibility 500ms ease-in;
@@ -78,74 +36,9 @@
         padding: 4rem 3rem;
     }
 
-    .movie-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        margin-bottom: 4rem;
-    }
-
-    .movie-container:last-child {
-        margin-bottom: 0;
-    }
-
-    .movie-data {
-        text-align: right;
-    }
-
-    .movie-data:last-child {
-        margin-bottom: 0;
-    }
-
-    .movie-title {
-        font-size: 16px;
-        font-weight: 600;
-        margin-bottom: 20px;
-        color: #333;
-    }
-
-    .movie-specs,
-    .movie-date-range,
-    .movie-venue {
-        font-size: 13px;
-        color: #666;
-        margin-bottom: 4px;
-    }
-
-    @media only screen and (max-width: 1080px) {
-        .all-movies-container {
-            margin: 0 2rem;
-        }
-    }
-
     @media only screen and (max-width: 600px) {
-        .all-movies-container {
-            padding: 1rem;
-            margin: 0;
-        }
-
-        .all-movies-inner-container {
-            padding: 2rem 1rem;
-        }
-
-       .movie-title {
-            font-size: 15px;
-            margin-bottom: 12px;
-        }
-
-        .movie-date-range,
-        .movie-venue,
-        .movie-specs {
-            font-size: 12px;
-        }
-
-        .movie-container {
-            margin-bottom: 3rem;
-        }
-
-        img {
-            max-width: 80px;
-            margin-left: 1.5rem;
+        .visible {
+            padding: 3rem 2rem;
         }
     }
 </style>
