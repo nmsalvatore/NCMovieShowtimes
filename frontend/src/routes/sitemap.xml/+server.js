@@ -1,5 +1,9 @@
 export async function GET() {
-    const today = new Date().toISOString().split('T')[0]
+    const today = new Date().toISOString().split('T')[0];
+
+    const headers = new Headers({
+        'Content-Type': 'application/xml'
+    });
 
     return new Response(
 `<?xml version="1.0" encoding="UTF-8" ?>
@@ -10,13 +14,11 @@ export async function GET() {
 >
     <url>
         <loc>https://ncmovies.info/calendar</loc>
-        <lastmod>${ today }</lastmod>
+        <lastmod>${today}</lastmod>
     </url>
     <url>
         <loc>https://ncmovies.info/movies</loc>
-        <lastmod>${ today }</lastmod>
+        <lastmod>${today}</lastmod>
     </url>
-</urlset>`
-    )
-  }
-  
+</urlset>`, { headers });
+}
