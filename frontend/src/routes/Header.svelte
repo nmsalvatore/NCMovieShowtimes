@@ -1,6 +1,6 @@
 <script>
     import Navbar from './Navbar.svelte'
-    import Logo from '$lib/assets/logo.png'
+    import Logo from '$lib/assets/icons/logo.png'
 </script>
 
 <header>

@@ -2,8 +2,8 @@
     import { onMount } from 'svelte'
     import * as listeners from '$lib/listeners'
     import DateButton from './DateButton.svelte'
-    import ArrowLeft from '$lib/assets/arrow-left.svg'
-    import ArrowRight from '$lib/assets/arrow-right.svg'
+    import ArrowLeft from '$lib/assets/icons/arrow-left.svg'
+    import ArrowRight from '$lib/assets/icons/arrow-right.svg'
 
     export let dates = []
 
