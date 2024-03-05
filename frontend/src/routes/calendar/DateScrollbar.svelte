@@ -44,13 +44,13 @@
     button.nav-arrow {
         cursor: pointer;
         position: absolute;
-        top: 54px;
+        top: 48px;
         transform: translateY(-50%);
         background: #fff;
         border: none;
         opacity: 0.9;
         padding: 1rem;
-        height: 106px;
+        height: 94px;
         z-index: 10;
     }
 
@@ -72,7 +72,7 @@
         -ms-overflow-style: none;
         margin-bottom: 4rem;
         padding: 0 56px;
-        height: 108px;
+        height: 96px;
         border-bottom: 1px solid #e4e4e4;
         position: relative;
         background: #fff;

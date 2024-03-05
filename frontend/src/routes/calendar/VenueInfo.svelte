@@ -17,7 +17,7 @@
         margin-left: 4px;
         margin-bottom: 4px;
         font-size: 22px;
-        font-weight: 700;
+        font-weight: 600;
         line-height: 1.5;
     }
 

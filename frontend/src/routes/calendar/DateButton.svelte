@@ -37,8 +37,8 @@
         font-size: 16px;
         font-weight: 400;
         font-family: inherit;
-        background: #f4f4f4;
-        border: 1px solid #ddd;
+        background: #fafafa;
+        border: 1px solid #eee;
     }
 
     button.date:last-child {
@@ -46,9 +46,9 @@
     }
 
     button.date.active {
-        background: hsl(0, 50%, 57%);
-        border: 1px solid hsl(0, 50%, 57%);
-        color: #fff;
+        background: #fff;
+        border: 1px solid #bbb;
+        color: #333;
         font-weight: 500;
     }
 

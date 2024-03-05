@@ -15,7 +15,7 @@
         cursor: pointer;
         display: inline-block;
         background: #eee;
-        border: 1px solid #ddd;
+        border: 1px solid #e4e4e4;
         color: #666;
         font-size: 12px;
         font-weight: 600;
