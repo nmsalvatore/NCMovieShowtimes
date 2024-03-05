@@ -28,6 +28,13 @@ async function getShowings() {
 
         logger.info(`Retrieved ${showings.length} showings from The Onyx Theatre.`)
         await browser.close()
+
+        if (!showings) {
+            const error = 'Failed to retrieve showings from The Onyx Theatre'
+            logger.error(error)
+            throw new Error(error)
+        }
+
         return showings
     } catch(error) {
         logger.error('Error retrieving showings from The Onyx Theatre:', error)
