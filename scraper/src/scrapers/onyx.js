@@ -59,7 +59,7 @@ async function navigateToURL(page, url) {
 async function getDateButtons(page) {
     await page.waitForSelector('[data-role="card"]', { visible: true })
     await utils.delay(5000)
-    return await page.$$('.css-68am72')
+    return await page.$$('.css-hj4bhw')
 }
 
 async function checkForCookiePrompt(page) {
@@ -87,7 +87,6 @@ async function getDaysShowingsData(page) {
         const rating = getRating($movie)
         const runtime = getRuntime($movie)
         const posterUrl = getPosterUrl($movie)
-
 
         downloadMoviePoster(posterUrl, title + '.jpg')
 
@@ -162,7 +161,7 @@ const getShowdate = el => {
     return showdate
 }
 
-const getShowtimes = el => el.find('a.css-1ouxaa0');
+const getShowtimes = el => el.find('a.css-xeukj3');
 
 const getTime = el => el.text()
 

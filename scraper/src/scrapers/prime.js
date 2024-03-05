@@ -86,7 +86,7 @@ async function selectTheater(page, theaterName) {
 async function getDateButtons(page) {
     await page.waitForSelector('[data-role="card"]', { visible: true })
     await utils.delay(5000)
-    return await page.$$('.css-68am72')
+    return await page.$$('.css-hj4bhw')
 }
 
 async function checkForCookiePrompt(page) {
@@ -166,7 +166,7 @@ const getShowdate = el => {
     return showdate
 }
 
-const getShowtimes = el => el.find('a.css-1yxrxcg');
+const getShowtimes = el => el.find('a.css-1trjsle');
 
 const getTime = el => el.text()
 
