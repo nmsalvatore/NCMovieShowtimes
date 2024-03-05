@@ -40,7 +40,8 @@
         text-align: center;
         text-decoration: none;
         cursor: pointer;
-        background: #333;
+        background: #262626;
+        border: 1px solid #333;
         font-weight: 500;
         font-size: 16px;
         color: #fff;

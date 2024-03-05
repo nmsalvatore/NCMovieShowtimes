@@ -9,7 +9,7 @@
 
 <style>
     div.venue-info {
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
     }
 
     h2.venue-name {
@@ -33,7 +33,7 @@
 
     @media only screen and (max-width: 600px) {
         div.venue-info {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
         }
 
         h2.venue-name {
