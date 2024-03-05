@@ -10,16 +10,14 @@
         class:active={ $activeRouteID === 1 }
         href='/calendar' 
     >
-        <img class="icon" src={ CalendarIcon } alt="Calendar icon" />
-        <span>Calendar</span>
+        Calendar
     </a>
     <a 
         class="page-link"
         class:active={ $activeRouteID === 2 }
         href='/movies'
     >
-        <img class="icon" src={ MovieIcon } alt="Movie icon" />
-        <span>All Movies</span>
+        All Movies
     </a>
 </nav>
 
@@ -35,7 +33,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 40px;
+        height: 36px;
         width: 120px;
         text-align: center;
         text-decoration: none;
@@ -43,8 +41,9 @@
         background: #262626;
         border: 1px solid #333;
         font-weight: 500;
-        font-size: 16px;
-        color: #fff;
+        letter-spacing: 0.02rem;
+        font-size: 13px;
+        color: #6f6f6f;
         border-radius: 4px;
     }
 
@@ -52,36 +51,19 @@
         margin-left: 1rem;
     }
 
-    a.page-link > img.icon {
-        filter: invert(40%) sepia(37%) saturate(0%) hue-rotate(179deg) brightness(96%) contrast(75%);
-    }
-
-    a.page-link.active > img.icon {
-        filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(201deg) brightness(106%) contrast(106%);
-    }
-
-    a.page-link > span {
-        font-size: 12px;
-        margin-left: 8px;
-        color: #6f6f6f;
-    }
-
-    a.page-link.active > span {
+    a.page-link.active {
         color: #fff;
     }
 
     @media only screen and (max-width: 600px) {
         a.page-link {
-            width: 80px;
-            font-size: 14px;
+            height: 32px;
+            width: 96px;
+            font-size: 11px;
         }
 
         a.page-link:last-child {
-            margin-left: 1rem;
-        }
-
-        a.page-link > span {
-            display: none;
+            margin-left: 0.5rem;
         }
     }
 </style>
