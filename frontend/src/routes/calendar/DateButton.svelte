@@ -46,9 +46,9 @@
     }
 
     button.date.active {
-        background: #fff;
-        border: 1px solid #bbb;
-        color: #333;
+        background: #c85b5b;
+        border: 1px solid #c8905b;
+        color: #fff;
         font-weight: 500;
     }
 

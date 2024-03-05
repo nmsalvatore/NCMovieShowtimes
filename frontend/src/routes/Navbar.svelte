@@ -71,13 +71,12 @@
 
     @media only screen and (max-width: 600px) {
         a.page-link {
-            height: 34px;
-            width: 60px;
+            width: 64px;
             font-size: 14px;
         }
 
         a.page-link:last-child {
-            margin-left: 10px;
+            margin-left: 12px;
         }
 
         a.page-link > span {
