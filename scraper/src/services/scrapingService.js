@@ -18,7 +18,6 @@ async function getAllShowings() {
     try {
         const onyxShowings = await onyx.getShowings()
         const primeShowings = await prime.getShowings()
-    
         const showings = [].concat(
             onyxShowings,
             primeShowings,
