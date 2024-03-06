@@ -42,7 +42,7 @@
         border: 1px solid #333;
         font-weight: 500;
         letter-spacing: 0.02rem;
-        font-size: 13px;
+        font-size: 16px;
         color: #6f6f6f;
         border-radius: 4px;
     }
@@ -53,17 +53,19 @@
 
     a.page-link.active {
         color: #fff;
+        background: cadetblue;
+        border: 1px solid #89b9bb;
     }
 
     @media only screen and (max-width: 600px) {
         a.page-link {
-            height: 32px;
-            width: 96px;
-            font-size: 11px;
+            height: 34px;
+            width: 100px;
+            font-size: 14px;
         }
 
         a.page-link:last-child {
-            margin-left: 0.5rem;
+            margin-left: 0.75rem;
         }
     }
 </style>
