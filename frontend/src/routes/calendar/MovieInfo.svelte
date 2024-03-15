@@ -40,12 +40,12 @@
     span.movie-showdate {
         display: block;
         font-weight: 500;
-        font-size: 16px;
+        font-size: 12px;
         letter-spacing: 0.02rem;
         color: #aaa;
         margin-top: 24px;
         margin-left: 1px;
-        font-variant: all-small-caps;
+        text-transform: uppercase;
     }
 
     span.movie-rating,
@@ -73,7 +73,7 @@
         }
 
         span.movie-showdate {
-            font-size: 14px;
+            font-size: 11px;
             margin-top: 20px;
             margin-bottom: 4px;
         }

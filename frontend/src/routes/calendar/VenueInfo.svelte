@@ -15,19 +15,19 @@
     h2.venue-name {
         color: #333;
         margin-left: 4px;
-        margin-bottom: 4px;
+        margin-bottom: 6px;
         font-size: 22px;
         font-weight: 700;
         line-height: 1.5;
     }
 
     small.venue-address {
-        font-variant: all-small-caps;
+        text-transform: uppercase;
         margin-left: 6px;
         letter-spacing: 0.02rem;
         color: #aaa;
         font-weight: 500;
-        font-size: 16px;
+        font-size: 12px;
         display: block;
     }
 
@@ -38,10 +38,11 @@
 
         h2.venue-name {
             font-size: 18px;
+            margin-bottom: 4px;
         }
 
         small.venue-address {
-            font-size: 14px;
+            font-size: 11px;
         }
     }
 </style>
