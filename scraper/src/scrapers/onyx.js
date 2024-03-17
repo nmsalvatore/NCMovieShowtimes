@@ -82,6 +82,8 @@ async function getDaysShowingsData(page) {
     const $ = cheerio.load(html)
     const movies = $('div.css-1hrrla4')
 
+    if (!movies) return pageShowings
+
     for (const movie of movies) {
         const $movie = $(movie)
         const title = getTitle($movie)
