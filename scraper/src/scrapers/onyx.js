@@ -2,6 +2,7 @@ import puppeteer from 'puppeteer'
 import * as cheerio from 'cheerio'
 import * as utils from '../utils/utils.js'
 import { downloadMoviePoster } from '../utils/posters.js'
+import { notify } from '../utils/notify.js'
 import userAgentStrings from '../utils/agents.js'
 import logger from '../utils/logger.js'
 import 'dotenv/config'
@@ -82,13 +83,11 @@ async function getDaysShowingsData(page) {
     const $ = cheerio.load(html)
     const movies = $('div.css-1hrrla4')
 
-    if (!movies) return pageShowings
-
     for (const movie of movies) {
         const $movie = $(movie)
         const title = getTitle($movie)
         const date = getShowdate($movie)
-        const venue = getVenue($movie)
+        const venue = await getVenue($movie)
 
         if (!venue) continue
         
@@ -123,24 +122,31 @@ async function getDaysShowingsData(page) {
 
 const getTitle = el => el.find('a.css-erexzk').first().attr('title')
 
-const getVenue = el => {
-    const venueBlurb = el.find('.css-93dbvy').first().text()
-    const regex = /Onyx Theatre|Nevada Theatre/
-    const match = venueBlurb.match(regex)
-
-    let venue
-
-    if (match[0] === 'Onyx Theatre') {
-        venue = 'The Onyx Theatre'
-        return venue
+const getVenue = async el => {
+    try {
+        const venueBlurb = el.find('.css-93dbvy').first().text()
+        const regex = /Onyx Theatre|Nevada Theatre/
+        const match = venueBlurb.match(regex)
+    
+        let venue
+    
+        if (match[0] === 'Onyx Theatre') {
+            venue = 'The Onyx Theatre'
+            return venue
+        }
+    
+        if (match[0] === 'Nevada Theatre') {
+            venue = 'Onyx Downtown at the Nevada Theatre'
+            return venue
+        }
+    } catch (error) {
+        await notify.sendEmail(
+            'Web Scraper Error: Unable to identify Onyx venue', `
+            <p>An error occurred:<p>
+            <pre>${error.message}</pre>
+            <p>Please view logs for details.</p>`)
+        return null
     }
-
-    if (match[0] === 'Nevada Theatre') {
-        venue = 'Onyx Downtown at the Nevada Theatre'
-        return venue
-    }
-
-    throw new Error('Unable to identify venue in Onyx showing')
 }
 
 const getShowdate = el => {
