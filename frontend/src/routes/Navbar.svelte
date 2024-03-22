@@ -33,7 +33,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 40px;
+        height: 45px;
         width: 120px;
         text-align: center;
         text-decoration: none;
@@ -60,7 +60,7 @@
 
     @media only screen and (max-width: 600px) {
         a.page-link {
-            height: 36px;
+            height: 45px;
             width: 100px;
             font-size: 14px;
         }
