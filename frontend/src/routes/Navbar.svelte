@@ -60,7 +60,7 @@
 
     @media only screen and (max-width: 600px) {
         a.page-link {
-            height: 45px;
+            height: 40px;
             width: 100px;
             font-size: 14px;
         }
