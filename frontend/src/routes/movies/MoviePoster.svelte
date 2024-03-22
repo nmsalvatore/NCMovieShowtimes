@@ -28,7 +28,6 @@
         height: 100%;
         border-radius: 5px;
         margin-left: 2rem;
-        padding: 4px;
         background: #fff;
     }
 
