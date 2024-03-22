@@ -18,7 +18,7 @@
         justify-content: space-between;
         height: 96px;
         padding: 0 2rem;
-        background: #111;
+        background: #fff;
         max-width: 960px;
     }
 
@@ -30,7 +30,7 @@
         position: relative;
         left: -6px;
         height: 64px;
-        filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(143deg) brightness(103%) contrast(102%);
+        filter: invert(18%) sepia(5%) saturate(0%) hue-rotate(151deg) brightness(95%) contrast(91%);
     }
 
     @media only screen and (max-width: 600px) {

@@ -33,12 +33,12 @@
         border: none;
         border-radius: 4px;
         margin-right: 8px;
-        color: #888;
+        color: #8f8f8f;
         font-size: 16px;
         font-weight: 400;
         font-family: inherit;
-        background: #fafafa;
-        border: 1px solid #eee;
+        background: #fff;
+        border: 1px solid #ccc;
     }
 
     button.date:last-child {
@@ -47,7 +47,7 @@
 
     button.date.active {
         background: #c85b5b;
-        border: 1px solid #c8905b;
+        border: 1px solid #c85b5b;
         color: #fff;
         font-weight: 500;
     }

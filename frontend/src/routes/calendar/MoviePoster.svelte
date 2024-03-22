@@ -29,7 +29,6 @@
         height: 100%;
         border-radius: 4px;
         margin-right: 2rem;
-        padding: 4px;
         background: #fff;
     }
 

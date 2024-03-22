@@ -73,18 +73,12 @@
         margin-bottom: 4rem;
         padding: 0 56px;
         height: 96px;
-        border-bottom: 1px solid #e4e4e4;
         position: relative;
         background: #fff;
     }
 
     div.dates-scrollbar::-webkit-scrollbar {
         display: none;
-    }
-
-    :global(div.dates-scrollbar.shadow) {
-        box-shadow: 0 1px 8px -6px;
-        border-bottom: 0;
     }
 
     @media only screen and (max-width: 600px) {

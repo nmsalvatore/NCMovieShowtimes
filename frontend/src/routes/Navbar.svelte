@@ -33,17 +33,17 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 36px;
+        height: 40px;
         width: 120px;
         text-align: center;
         text-decoration: none;
         cursor: pointer;
-        background: #262626;
-        border: 1px solid #333;
-        font-weight: 500;
+        background: #fff;
+        border: 1px solid #aaa;
+        font-weight: 400;
         letter-spacing: 0.02rem;
         font-size: 16px;
-        color: #6f6f6f;
+        color: #555;
         border-radius: 4px;
     }
 
@@ -53,13 +53,14 @@
 
     a.page-link.active {
         color: #fff;
-        background: cadetblue;
-        border: 1px solid #89b9bb;
+        background: #333;
+        border: 1px solid #333;
+        font-weight: 500;
     }
 
     @media only screen and (max-width: 600px) {
         a.page-link {
-            height: 34px;
+            height: 36px;
             width: 100px;
             font-size: 14px;
         }
