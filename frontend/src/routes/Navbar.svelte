@@ -34,7 +34,6 @@
         justify-content: center;
         align-items: center;
         text-decoration: none;
-        /* text-transform: uppercase; */
         cursor: pointer;
         font-weight: 600;
         font-size: 16px;
