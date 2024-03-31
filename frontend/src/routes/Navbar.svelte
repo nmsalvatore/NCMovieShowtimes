@@ -33,18 +33,14 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 45px;
-        width: 120px;
-        text-align: center;
         text-decoration: none;
         cursor: pointer;
-        background: #fff;
-        border: 1px solid #aaa;
         font-weight: 400;
         letter-spacing: 0.02rem;
         font-size: 16px;
-        color: #555;
+        color: #6f6f6f;
         border-radius: 4px;
+        padding: 1rem;
     }
 
     a.page-link:last-child {
@@ -52,21 +48,23 @@
     }
 
     a.page-link.active {
-        color: #fff;
-        background: #333;
-        border: 1px solid #333;
+        color: #333;
         font-weight: 500;
+        text-decoration: underline;
+        text-decoration-color: #eee;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 10px;
     }
 
     @media only screen and (max-width: 600px) {
         a.page-link {
             height: 40px;
-            width: 100px;
             font-size: 14px;
+            padding: 0.5rem;
         }
 
         a.page-link:last-child {
-            margin-left: 0.75rem;
+            margin-left: 0.5rem;
         }
     }
 </style>
