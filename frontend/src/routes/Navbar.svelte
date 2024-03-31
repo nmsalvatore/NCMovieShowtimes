@@ -36,11 +36,11 @@
         text-decoration: none;
         cursor: pointer;
         font-weight: 400;
-        letter-spacing: 0.02rem;
         font-size: 16px;
         color: #6f6f6f;
         border-radius: 4px;
         padding: 1rem;
+        margin-bottom: 10px;
     }
 
     a.page-link:last-child {
@@ -58,7 +58,6 @@
 
     @media only screen and (max-width: 600px) {
         a.page-link {
-            height: 40px;
             font-size: 14px;
             padding: 0.5rem;
         }
