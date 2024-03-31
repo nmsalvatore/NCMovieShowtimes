@@ -49,7 +49,7 @@
 
     a.page-link.active {
         color: #333;
-        font-weight: 500;
+        font-weight: 600;
         text-decoration: underline;
         text-decoration-color: #eee;
         text-decoration-thickness: 2px;
