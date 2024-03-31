@@ -34,36 +34,30 @@
         justify-content: center;
         align-items: center;
         text-decoration: none;
+        /* text-transform: uppercase; */
         cursor: pointer;
-        font-weight: 400;
+        font-weight: 600;
         font-size: 16px;
-        color: #6f6f6f;
+        width: 118px;
+        height: 50px;
+        color: #aaa;
         border-radius: 4px;
-        padding: 1rem;
-        margin-bottom: 10px;
-    }
-
-    a.page-link:last-child {
-        margin-left: 1rem;
+        margin-bottom: 3px;
     }
 
     a.page-link.active {
         color: #333;
-        font-weight: 600;
         text-decoration: underline;
         text-decoration-color: #eee;
-        text-decoration-thickness: 2px;
-        text-underline-offset: 10px;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 8px;
     }
 
     @media only screen and (max-width: 600px) {
         a.page-link {
             font-size: 14px;
-            padding: 0.5rem;
-        }
-
-        a.page-link:last-child {
-            margin-left: 0.5rem;
+            width: 96px;
+            height: 40px;
         }
     }
 </style>
