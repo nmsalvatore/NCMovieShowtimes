@@ -18,6 +18,7 @@
         justify-content: space-between;
         height: 96px;
         padding: 0 2rem;
+        margin-top: 1rem;
         background: #fff;
         max-width: 960px;
     }
@@ -37,6 +38,7 @@
         header {
             padding: 0 1rem;
             height: 80px;
+            margin-top: 0;
         }
 
         img.site-logo {
