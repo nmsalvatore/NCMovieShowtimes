@@ -87,10 +87,20 @@ async function getDaysShowingsData(page) {
         const $movie = $(movie)
         const title = getTitle($movie)
         const date = getShowdate($movie)
-        const venue = await getVenue($movie)
+
+        let venue
+
+        // manual exceptions for venues that aren't specified
+        if (title === 'Wicked Little Letters') {
+            venue = 'The Onyx Theatre'
+        } else if (title === 'No One Told Me') {
+            venue = 'Onyx Downtown at the Nevada Theatre'
+        } else {
+            venue = await getVenue($movie)
+        }
 
         if (!venue) continue
-        
+
         const address = getAddress(venue)
         const rating = getRating($movie)
         const runtime = getRuntime($movie)
