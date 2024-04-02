@@ -38,7 +38,7 @@
 
     @media only screen and (max-width: 600px) {
         .visible {
-            padding: 3rem 1rem;
+            padding: 3rem 1.75rem;
         }
     }
 </style>

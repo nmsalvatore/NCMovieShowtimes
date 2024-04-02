@@ -39,7 +39,7 @@
         font-size: 16px;
         width: 118px;
         height: 50px;
-        color: #aaa;
+        color: #c4c4c4;
         border-radius: 4px;
         margin-bottom: 3px;
     }
@@ -47,8 +47,8 @@
     a.page-link.active {
         color: #333;
         text-decoration: underline;
-        text-decoration-color: #eee;
-        text-decoration-thickness: 1px;
+        text-decoration-color: #5bc8c8;
+        text-decoration-thickness: 2px;
         text-underline-offset: 8px;
     }
 
