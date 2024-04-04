@@ -33,7 +33,7 @@
         visibility: visible;
         transition: opacity 500ms ease-in, visibility 500ms ease-in;
         transition-delay: 100ms;
-        padding: 4rem 2rem;
+        padding: 4rem 3rem;
     }
 
     @media only screen and (max-width: 600px) {

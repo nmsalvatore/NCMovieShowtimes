@@ -33,12 +33,12 @@
         border: none;
         border-radius: 4px;
         margin-right: 8px;
-        color: #8f8f8f;
+        color: #767676;
         font-size: 16px;
         font-weight: 400;
         font-family: inherit;
         background: #fff;
-        border: 1px solid #ccc;
+        border: 1px solid #aaa;
     }
 
     button.date:last-child {

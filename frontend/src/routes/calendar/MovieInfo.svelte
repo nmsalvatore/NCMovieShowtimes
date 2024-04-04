@@ -42,7 +42,7 @@
         font-weight: 500;
         font-size: 12px;
         letter-spacing: 0.02rem;
-        color: #aaa;
+        color: #737373;
         margin-top: 24px;
         margin-left: 1px;
         text-transform: uppercase;
@@ -53,7 +53,7 @@
         display: inline-block;
         font-size: 13px;
         margin-left: 1px;
-        color: #666;
+        color: #737373;
     }
 
     div.movie-showtimes {

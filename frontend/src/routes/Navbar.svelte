@@ -1,7 +1,5 @@
 <script>
     import { activeRouteID } from '$lib/stores.js'
-    import CalendarIcon from '$lib/assets/icons/calendar.svg'
-    import MovieIcon from '$lib/assets/icons/movies.svg'
 </script>
 
 <nav class="page-links">
@@ -39,7 +37,7 @@
         font-size: 16px;
         width: 118px;
         height: 50px;
-        color: #c4c4c4;
+        color: #767676;
         border-radius: 4px;
         margin-bottom: 3px;
     }
@@ -47,7 +45,7 @@
     a.page-link.active {
         color: #333;
         text-decoration: underline;
-        text-decoration-color: #5bc8c8;
+        text-decoration-color: #333;
         text-decoration-thickness: 2px;
         text-underline-offset: 8px;
     }

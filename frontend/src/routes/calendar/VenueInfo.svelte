@@ -25,7 +25,7 @@
         text-transform: uppercase;
         margin-left: 6px;
         letter-spacing: 0.02rem;
-        color: #aaa;
+        color: #767676;
         font-weight: 500;
         font-size: 12px;
         display: block;

@@ -32,7 +32,7 @@
     span {
         display: block;
         font-size: 13px;
-        color: #666;
+        color: #767676;
         margin-bottom: 4px;
     }
 
