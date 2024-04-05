@@ -30,7 +30,7 @@ async function getShowings() {
         logger.info(`Retrieved ${showings.length} showings from The Onyx Theatre.`)
         await browser.close()
 
-        if (!showings) {
+        if (showings.length === 0) {
             const error = 'Failed to retrieve showings from The Onyx Theatre'
             logger.error(error)
             throw new Error(error)
@@ -38,7 +38,7 @@ async function getShowings() {
 
         return showings
     } catch(error) {
-        logger.error('Error retrieving showings from The Onyx Theatre:', error)
+        logger.error('Error retrieving showings from The Onyx Theatre')
         await browser.close()
         throw error
     }
@@ -186,7 +186,7 @@ const getShowdate = el => {
     return showdate
 }
 
-const getShowtimes = el => el.find('a.css-xeukj3');
+const getShowtimes = el => el.find('a.css-xeukj3')
 
 const getTime = el => el.text()
 
