@@ -22,7 +22,7 @@ async function getShowings() {
         logger.info(`Retrieved ${showings.length} showings from Prime Cinemas.`)
         await browser.close()
 
-        if (!showings) {
+        if (showings.length === 0) {
             const error = 'Failed to retrieve showings from The Onyx Theatre'
             logger.error(error)
             throw new Error(error)
@@ -30,7 +30,7 @@ async function getShowings() {
         
         return showings
     } catch(error) {
-        logger.error('Error retrieving showings from Prime Cinemas:', error)
+        logger.error('Error retrieving showings from Prime Cinemas')
         await browser.close()
         throw error
     }
@@ -58,9 +58,11 @@ async function navigateToURL(page, url) {
 
 async function getTheaterShowings(page, theaterName) {
     let showings = []
+
     await selectTheater(page, theaterName)
-    const suttonDateButtons = await getDateButtons(page)
-    for (const button of suttonDateButtons) {
+    const dateButtons = await getDateButtons(page)
+
+    for (const button of dateButtons) {
         await checkForCookiePrompt(page)
         await button.click()
         await utils.delay(10000)
@@ -72,16 +74,18 @@ async function getTheaterShowings(page, theaterName) {
 }
 
 async function selectTheater(page, theaterName) {
+    // Get select location button
     await page.waitForSelector('.css-totqjd', { visible: true })
     await utils.delay(5000)
     const selectLocationButton = await page.$('.css-totqjd')
     selectLocationButton.click()
-
     await utils.delay(5000)
-    const theaterOptions = await page.$$('.css-yajxl')
+
+    // Click button for given theater
+    const theaterOptions = await page.$$('button')
     for (const option of theaterOptions) {
         const optionText = await page.evaluate(el => el.textContent, option)
-        
+
         if (optionText.includes(theaterName)) {
             option.click()
         }
@@ -123,6 +127,7 @@ async function getDaysShowingsData(page, theaterName) {
         downloadMoviePoster(posterUrl, title + '.jpg')
 
         const showtimes = getShowtimes($movie)
+
         for (let showtime of showtimes) {
             const $showtime = $(showtime)
             const time = getTime($showtime)
@@ -173,7 +178,7 @@ const getShowdate = el => {
     return showdate
 }
 
-const getShowtimes = el => el.find('a.css-1trjsle');
+const getShowtimes = el => el.find('.css-1trjsle')
 
 const getTime = el => el.text()
 
