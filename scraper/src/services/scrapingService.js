@@ -7,19 +7,19 @@ import * as utils from '../utils/utils.js'
 
 export default async function startScrapingService() {
     try {
-        const MAX_ATTEMPTS = 3
+        const maxAttempts = 3
 
-        for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+        for (let attempt = 1; attempt <= maxAttempts; attempt++) {
             // Initial showing extraction
             const showings1 = await getAllShowings()
 
             // Wait 5 minutes and log each minute
-            let totalWaitTime = 5
+            const totalWaitTime = 5
+
             for (let i = 0; i < totalWaitTime; i++) {
                 const timeLeft = totalWaitTime - i 
                 logger.info(`${timeLeft} minutes until scraper re-run`)
-                utils.delay(1000 * 60)
-
+                await utils.delay(1000 * 60)
             }
 
             // Re-run scraper to check for discrepancies
