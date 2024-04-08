@@ -91,7 +91,7 @@ async function getDaysShowingsData(page) {
         let venue
 
         // manual exceptions for venues that aren't specified
-        if (title === 'Wicked Little Letters') {
+        if (title === 'Civil War') {
             venue = 'The Onyx Theatre'
         } else if (title === 'No One Told Me') {
             venue = 'Onyx Downtown at the Nevada Theatre'
