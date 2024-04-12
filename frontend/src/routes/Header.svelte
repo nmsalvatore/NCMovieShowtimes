@@ -38,7 +38,7 @@
         header {
             padding: 0 1rem;
             height: 80px;
-            margin-top: 0.25rem;
+            margin-top: 4px;
         }
 
         img.site-logo {
