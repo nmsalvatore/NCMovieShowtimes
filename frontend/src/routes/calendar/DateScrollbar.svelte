@@ -36,7 +36,6 @@
 
 <style>
     div.dates-scrollbar-container {
-        position: relative;
         position: sticky;
         top: 0;
     }
