@@ -37,7 +37,7 @@
 <style>
     div.dates-scrollbar-container {
         position: sticky;
-        top: 0;
+        top: -1;
     }
 
     button.nav-arrow {
