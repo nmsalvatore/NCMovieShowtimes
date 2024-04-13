@@ -206,29 +206,25 @@ const getVenue = name => {
 }
 
 const getRating = el => {
-    const rating = el.find('div.css-uyt4dk').first().text();
+    const specs = el.find('div.css-1ilu45h').first().text().split('•')
     const regex = /G|PG|PG-13|NR|UR|NC-17|R/
-    const match = rating.match(regex)
 
-    if (match) {
-        return rating
+    for (let item of specs) {
+        if (item.match(regex)) {
+            return item
+        }
     }
 }
 
 const getRuntime = el => {
-    const first = el.find('div.css-uyt4dk').first().text().replace('•', '').trim()
-    const next = el.find('div.css-uyt4dk').next().text().replace('•', '').trim()
+    const specs = el.find('div.css-1ilu45h').first().text().split('•')
     const regex = /hr|min/
 
-    let runtime
-    
-    if (first.match(regex)) {
-        runtime = first
-    } else if (next.match(regex)) {
-        runtime = next
+    for (let item of specs) {
+        if (item.match(regex)) {
+            return item
+        }
     }
-
-    return runtime
 }
 
 const getPosterUrl = el => {
