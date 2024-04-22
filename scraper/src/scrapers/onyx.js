@@ -184,7 +184,7 @@ const getShowdate = el => {
     return showdate
 }
 
-const getShowtimes = el => el.find('a.css-xeukj3')
+const getShowtimes = el => el.find('a.css-1eccfll')
 
 const getTime = el => el.text()
 
