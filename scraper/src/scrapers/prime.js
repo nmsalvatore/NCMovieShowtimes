@@ -146,8 +146,6 @@ async function getDaysShowingsData(page, theaterName) {
         }
     }
 
-    console.log(pageShowings)
-
     return pageShowings
 }
 
