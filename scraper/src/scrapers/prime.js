@@ -75,9 +75,9 @@ async function getTheaterShowings(page, theaterName) {
 
 async function selectTheater(page, theaterName) {
     // Get select location button
-    await page.waitForSelector('.css-totqjd', { visible: true })
+    await page.waitForSelector('.css-1yi1yyg', { visible: true })
     await utils.delay(5000)
-    const selectLocationButton = await page.$('.css-totqjd')
+    const selectLocationButton = await page.$('.css-1yi1yyg')
     selectLocationButton.click()
     await utils.delay(5000)
 
@@ -146,6 +146,8 @@ async function getDaysShowingsData(page, theaterName) {
         }
     }
 
+    console.log(pageShowings)
+
     return pageShowings
 }
 
@@ -178,7 +180,7 @@ const getShowdate = el => {
     return showdate
 }
 
-const getShowtimes = el => el.find('.css-1trjsle')
+const getShowtimes = el => el.find('.css-xi8vlr')
 
 const getTime = el => el.text()
 
