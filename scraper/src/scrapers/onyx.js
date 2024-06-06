@@ -102,7 +102,6 @@ async function getDaysShowingsData(page) {
 
         const showtimes = getShowtimes($movie);
         for (let showtime of showtimes) {
-            console.log("in showtimes");
             const $showtime = $(showtime);
             const time = getTime($showtime);
             const url = getURL($showtime);
