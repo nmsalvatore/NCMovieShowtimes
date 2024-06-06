@@ -89,15 +89,7 @@ async function getDaysShowingsData(page) {
         const $movie = $(movie);
         const title = getTitle($movie);
         const date = getShowdate($movie);
-
-        let venue;
-
-        // manual exceptions for venues that aren't specified
-        if (title === "Furiosa: A Mad Max Saga") {
-            venue = "The Onyx Theatre";
-        } else {
-            venue = await getVenue($movie);
-        }
+        const venue = await getVenue($movie);
 
         if (!venue) continue;
 
@@ -110,6 +102,7 @@ async function getDaysShowingsData(page) {
 
         const showtimes = getShowtimes($movie);
         for (let showtime of showtimes) {
+            console.log("in showtimes");
             const $showtime = $(showtime);
             const time = getTime($showtime);
             const url = getURL($showtime);
@@ -188,7 +181,7 @@ const getShowdate = (el) => {
     return showdate;
 };
 
-const getShowtimes = (el) => el.find("a.css-1eccfll");
+const getShowtimes = (el) => el.find("a.css-vcyca9");
 
 const getTime = (el) => el.text();
 
