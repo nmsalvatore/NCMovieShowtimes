@@ -125,32 +125,28 @@ async function getDaysShowingsData(page) {
 const getTitle = (el) => el.find("a.css-erexzk").first().attr("title");
 
 const getVenue = async (el) => {
-    try {
-        const venueBlurb = el.find(".css-93dbvy").first().text();
-        const regex = /Onyx Theatre|Nevada Theatre/;
-        const match = venueBlurb.match(regex);
+    const venueBlurb = el.find(".css-93dbvy").first().text();
+    const regex = /Onyx Theatre|Nevada Theatre/;
+    const match = venueBlurb.match(regex);
 
-        let venue;
+    let venue, matchedVenue;
 
-        if (match[0] === "Onyx Theatre") {
-            venue = "The Onyx Theatre";
-            return venue;
+    if (match) {
+        matchedVenue = match[0];
+
+        switch (matchedVenue) {
+            case "Onyx Theatre":
+                venue = "The Onyx Theatre";
+                break;
+            case "Nevada Theatre":
+                venue = "Onyx Downtown at the Nevada Theatre";
+                break;
         }
 
-        if (match[0] === "Nevada Theatre") {
-            venue = "Onyx Downtown at the Nevada Theatre";
-            return venue;
-        }
-    } catch (error) {
-        await notify.sendEmail(
-            "Web Scraper Error: Unable to identify Onyx venue",
-            `
-            <p>An error occurred:<p>
-            <pre>${error.message}</pre>
-            <p>Please view logs for details.</p>`,
-        );
-        return null;
+        return venue;
     }
+
+    return "The Onyx Theatre";
 };
 
 const getShowdate = (el) => {
