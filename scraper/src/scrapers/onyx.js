@@ -94,6 +94,8 @@ async function getDaysShowingsData(page) {
         const date = getShowdate($movie);
         const venue = await getVenue($movie);
 
+        logger.info(`Getting showtimes for ${date}`);
+
         if (!venue) continue;
 
         const address = getAddress(venue);
