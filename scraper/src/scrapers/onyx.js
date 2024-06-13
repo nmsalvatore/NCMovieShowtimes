@@ -11,7 +11,10 @@ async function getShowings() {
     let browser;
 
     try {
-        browser = await puppeteer.launch({ headless: "new" });
+        browser = await puppeteer.launch({
+            headless: "new",
+            protocolTimeout: 60000,
+        });
         const page = await browser.newPage();
         const url = "https://theonyxtheatre.com/showtimes";
         await navigateToURL(page, url);
@@ -129,12 +132,10 @@ const getVenue = async (el) => {
     const regex = /Onyx Theatre|Nevada Theatre/;
     const match = venueBlurb.match(regex);
 
-    let venue, matchedVenue;
+    let venue;
 
     if (match) {
-        matchedVenue = match[0];
-
-        switch (matchedVenue) {
+        switch (match[0]) {
             case "Onyx Theatre":
                 venue = "The Onyx Theatre";
                 break;
