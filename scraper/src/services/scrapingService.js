@@ -5,6 +5,7 @@ import logger from "../utils/logger.js";
 
 export default async function startScrapingService() {
     try {
+        const maxAttempts = 3;
         for (let attempt = 1; attempt <= maxAttempts; attempt++) {
             const showings1 = await getAllShowings();
             const showings2 = await getAllShowings();
