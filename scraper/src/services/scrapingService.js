@@ -2,26 +2,11 @@ import { onyx } from "../scrapers/onyx.js";
 import { prime } from "../scrapers/prime.js";
 import startDatabaseUpdateService from "./databaseService.js";
 import logger from "../utils/logger.js";
-import * as utils from "../utils/utils.js";
 
 export default async function startScrapingService() {
     try {
-        const maxAttempts = 3;
-
         for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-            // Initial showing extraction
             const showings1 = await getAllShowings();
-
-            // Wait 5 minutes and log each minute
-            const totalWaitTime = 5;
-
-            for (let i = 0; i < totalWaitTime; i++) {
-                const timeLeft = totalWaitTime - i;
-                logger.info(`${timeLeft} minutes until scraper re-run`);
-                await utils.delay(1000 * 60);
-            }
-
-            // Re-run scraper to check for discrepancies
             const showings2 = await getAllShowings();
 
             if (JSON.stringify(showings1) === JSON.stringify(showings2)) {
