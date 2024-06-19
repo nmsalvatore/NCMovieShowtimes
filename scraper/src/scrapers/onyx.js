@@ -33,7 +33,6 @@ async function getShowings() {
         logger.info(
             `Retrieved ${showings.length} showings from The Onyx Theatre.`,
         );
-        await browser.close();
 
         if (showings.length === 0) {
             const error = "Failed to retrieve showings from The Onyx Theatre";
@@ -44,8 +43,9 @@ async function getShowings() {
         return showings;
     } catch (error) {
         logger.error("Error retrieving showings from The Onyx Theatre");
-        await browser.close();
         throw error;
+    } finally {
+        await browser.close();
     }
 }
 
@@ -93,8 +93,6 @@ async function getDaysShowingsData(page) {
         const title = getTitle($movie);
         const date = getShowdate($movie);
         const venue = await getVenue($movie);
-
-        logger.info(`Getting showtimes for ${date}`);
 
         if (!venue) continue;
 

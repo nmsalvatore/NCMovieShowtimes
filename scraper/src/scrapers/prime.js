@@ -22,7 +22,6 @@ async function getShowings() {
         logger.info(
             `Retrieved ${showings.length} showings from Prime Cinemas.`,
         );
-        await browser.close();
 
         if (showings.length === 0) {
             const error = "Failed to retrieve showings from The Onyx Theatre";
@@ -33,8 +32,9 @@ async function getShowings() {
         return showings;
     } catch (error) {
         logger.error("Error retrieving showings from Prime Cinemas");
-        await browser.close();
         throw error;
+    } finally {
+        await browser.close();
     }
 }
 
