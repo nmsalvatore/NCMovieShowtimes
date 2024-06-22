@@ -16,7 +16,11 @@ async function getShowings() {
         await navigateToURL(page, url);
 
         const delOroShowings = await getTheaterShowings(page, "Del Oro");
+        console.log(delOroShowings.length);
+
         const suttonShowings = await getTheaterShowings(page, "Sutton");
+        console.log(suttonShowings.length);
+
         const showings = [].concat(delOroShowings, suttonShowings);
 
         logger.info(
@@ -24,7 +28,7 @@ async function getShowings() {
         );
 
         if (showings.length === 0) {
-            const error = "Failed to retrieve showings from The Onyx Theatre";
+            const error = "Failed to retrieve showings from Prime Cinemas";
             logger.error(error);
             throw new Error(error);
         }
@@ -147,6 +151,8 @@ async function getDaysShowingsData(page, theaterName) {
             });
         }
     }
+
+    console.log(pageShowings);
 
     return pageShowings;
 }

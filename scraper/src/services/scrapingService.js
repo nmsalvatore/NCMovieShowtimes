@@ -1,27 +1,13 @@
-import { onyx } from "../scrapers/onyx.js";
-import { prime } from "../scrapers/prime.js";
+import getOnyxShowings from "../scrapers_v2/onyx.js";
+import getSuttonShowings from "../scrapers_v2/sutton.js";
+import getDelOroShowings from "../scrapers_v2/deloro.js";
 import startDatabaseUpdateService from "./databaseService.js";
 import logger from "../utils/logger.js";
 
 export default async function startScrapingService() {
     try {
-        const maxAttempts = 3;
-        for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-            const showings1 = await getAllShowings();
-            const showings2 = await getAllShowings();
-
-            if (JSON.stringify(showings1) === JSON.stringify(showings2)) {
-                logger.info("Showings consistency has been validated.");
-                await startDatabaseUpdateService(showings1);
-                return;
-            } else {
-                logger.error("Discrepancies found between showings retrievals");
-            }
-        }
-
-        const error = "Showings consistency could not be validated";
-        logger.error(error);
-        throw new Error(error);
+        const showings = await getAllShowings();
+        await startDatabaseUpdateService(showings);
     } catch (error) {
         logger.error("Error starting scraping service");
         throw error;
@@ -30,10 +16,14 @@ export default async function startScrapingService() {
 
 async function getAllShowings() {
     try {
-        const onyxShowings = await onyx.getShowings();
-        const primeShowings = await prime.getShowings();
-        const showings = [].concat(onyxShowings, primeShowings);
-
+        const onyxShowings = await getOnyxShowings();
+        const suttonShowings = await getSuttonShowings();
+        const delOroShowings = await getDelOroShowings();
+        const showings = [].concat(
+            onyxShowings,
+            suttonShowings,
+            delOroShowings,
+        );
         return showings;
     } catch (error) {
         logger.error("Error retrieving all showings");
