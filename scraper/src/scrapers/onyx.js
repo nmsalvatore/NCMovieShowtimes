@@ -1,229 +1,222 @@
-import puppeteer from "puppeteer";
-import * as cheerio from "cheerio";
-import * as utils from "../utils/utils.js";
 import { downloadMoviePoster } from "../utils/posters.js";
-import { notify } from "../utils/notify.js";
-import userAgentStrings from "../utils/agents.js";
-import logger from "../utils/logger.js";
-import "dotenv/config";
 
-async function getShowings() {
-    let browser;
+async function getSchedule() {
+    const movieIdsAsString = await getMovieIdsAsString();
+    const startDate = getStartDate();
+    const endDate = getEndDate();
 
-    try {
-        browser = await puppeteer.launch({
-            headless: "new",
-            protocolTimeout: 60000,
-        });
-        const page = await browser.newPage();
-        const url = "https://theonyxtheatre.com/showtimes";
-        await navigateToURL(page, url);
+    const response = await fetch(
+        "https://www.theonyxtheatre.com/api/gatsby-source-boxofficeapi/schedule",
+        {
+            credentials: "include",
+            referrer: "https://www.theonyxtheatre.com/showtimes/",
+            body: `{"circuit":null,"theaters":[{"id":"X065X","timeZone":"America/Los_Angeles"}],"movieIds":${movieIdsAsString},"from":"${startDate}","to":"${endDate}","nin":[],"sin":[],"websiteId":"V2Vic2l0ZU1hbmFnZXJXZWJzaXRlOjhmNzhiNTE3LTlhZjUtNDEzZi04ZWU0LWVjYzNlNmI3NmI0Zg=="}`,
+            method: "POST",
+            mode: "cors",
+        },
+    );
 
-        let showings = [];
-        const dateButtons = await getDateButtons(page);
-
-        for (const button of dateButtons) {
-            await checkForCookiePrompt(page);
-            await button.click();
-            await utils.delay(10000);
-            const daysShowings = await getDaysShowingsData(page);
-            showings = showings.concat(daysShowings);
-        }
-
-        logger.info(
-            `Retrieved ${showings.length} showings from The Onyx Theatre.`,
-        );
-
-        if (showings.length === 0) {
-            const error = "Failed to retrieve showings from The Onyx Theatre";
-            logger.error(error);
-            throw new Error(error);
-        }
-
-        return showings;
-    } catch (error) {
-        logger.error("Error retrieving showings from The Onyx Theatre");
-        throw error;
-    } finally {
-        await browser.close();
-    }
+    const data = await response.json();
+    const dates = await data.X065X.schedule;
+    return dates;
 }
 
-async function navigateToURL(page, url) {
-    const userAgentStringsRandomized = utils.shuffle(userAgentStrings);
-    for (let index in userAgentStringsRandomized) {
-        try {
-            const string = userAgentStringsRandomized[index];
-            await page.setUserAgent(string);
-            await page.goto(url, { timeout: 60000 });
-            logger.info(`Successfully connected to ${url}`);
-            break;
-        } catch (error) {
-            logger.error(`Failed to connect to ${url}:`, error);
-            if (index == userAgentStrings.length - 1) {
-                throw error;
-            } else {
-                continue;
+async function getOnyxShowings() {
+    const schedule = await getSchedule();
+    const showings = [];
+
+    for (const id in schedule) {
+        const movieShowtimesByDate = await schedule[id];
+
+        for (const movieDate in movieShowtimesByDate) {
+            const daysMovieShowtimeData = await movieShowtimesByDate[movieDate];
+
+            for (const showtimeData of daysMovieShowtimeData) {
+                const title = await getMovieTitleById(id);
+                const venue = await getMovieVenue(showtimeData);
+                const address = await getAddress(venue);
+                const time = await getMovieTime(showtimeData);
+                const url = await getShowingUrl(showtimeData);
+                const poster = await getMoviePoster(id);
+                const rating = await getMovieRating(id);
+                const runtime = await getMovieRuntime(id);
+                const synopsis = await getMovieSynopsis(id);
+                const date = formatDate(movieDate);
+
+                downloadMoviePoster(poster, title + ".jpg");
+
+                const showing = {
+                    title,
+                    rating,
+                    runtime,
+                    synopsis,
+                    venue,
+                    address,
+                    date,
+                    time,
+                    url,
+                    poster,
+                };
+
+                showings.push(showing);
             }
         }
     }
+
+    return showings;
 }
 
-async function getDateButtons(page) {
-    await page.waitForSelector('[data-role="card"]', { visible: true });
-    await utils.delay(5000);
-    return await page.$$(".css-hj4bhw");
+async function getMovieNodes() {
+    const response = await fetch(
+        "https://www.theonyxtheatre.com/page-data/sq/d/1945441818.json",
+    );
+    const data = await response.json();
+    const nodes = await data.data.allMovie.nodes;
+    return nodes;
 }
 
-async function checkForCookiePrompt(page) {
-    const agreeButton = await page.$("#didomi-notice-agree-button");
-    if (agreeButton) {
-        await agreeButton.click();
-    }
+async function getMovieIds() {
+    const nodes = await getMovieNodes();
+    const ids = await nodes.map((node) => node.id);
+    return ids;
 }
 
-async function getDaysShowingsData(page) {
-    const pageShowings = [];
-    const html = await page.content();
-    const $ = cheerio.load(html);
-    const movies = $("div.css-1hrrla4");
+async function getMovieIdsAsString() {
+    const ids = await getMovieIds();
+    const idsAsString = JSON.stringify(ids);
+    return idsAsString;
+}
 
-    for (const movie of movies) {
-        const $movie = $(movie);
-        const title = getTitle($movie);
-        const date = getShowdate($movie);
-        const venue = await getVenue($movie);
+async function getMovieInfoById(id) {
+    const nodes = await getMovieNodes();
 
-        if (!venue) continue;
-
-        const address = getAddress(venue);
-        const rating = getRating($movie);
-        const runtime = getRuntime($movie);
-        const posterUrl = getPosterUrl($movie);
-
-        downloadMoviePoster(posterUrl, title + ".jpg");
-
-        const showtimes = getShowtimes($movie);
-        for (let showtime of showtimes) {
-            const $showtime = $(showtime);
-            const time = getTime($showtime);
-            const url = getURL($showtime);
-
-            pageShowings.push({
-                title,
-                rating,
-                runtime,
-                venue,
-                address,
-                date,
-                time,
-                url,
-            });
+    for (const node of nodes) {
+        if (node.id === id) {
+            return node;
         }
     }
 
-    return pageShowings;
+    throw Error(`Could not find movie with id ${id}`);
 }
 
-const getTitle = (el) => el.find("a.css-erexzk").first().attr("title");
+async function getMovieTitleById(id) {
+    const info = await getMovieInfoById(id);
+    return info.title;
+}
 
-const getVenue = async (el) => {
-    const venueBlurb = el.find(".css-93dbvy").first().text();
-    const regex = /Onyx Theatre|Nevada Theatre/;
-    const match = venueBlurb.match(regex);
-
-    let venue;
-
-    if (match) {
-        switch (match[0]) {
-            case "Onyx Theatre":
-                venue = "The Onyx Theatre";
-                break;
-            case "Nevada Theatre":
-                venue = "Onyx Downtown at the Nevada Theatre";
-                break;
-        }
-
-        return venue;
-    }
-
-    return "The Onyx Theatre";
-};
-
-const getShowdate = (el) => {
-    const scheduleHeading = el.find("h4.scheduleHeading").first().text();
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-
-    const todayDateString = utils.convertToLosAngelesDateString(today);
-    const tomorrowDateString = utils.convertToLosAngelesDateString(tomorrow);
-
-    let showdate;
-
-    switch (scheduleHeading) {
-        case "Today":
-            showdate = todayDateString;
-            break;
-        case "Tomorrow":
-            showdate = tomorrowDateString;
-            break;
-        default:
-            showdate = utils.formatOnyxDate(scheduleHeading);
-    }
-
-    return showdate;
-};
-
-const getShowtimes = (el) => el.find("a.css-vcyca9");
-
-const getTime = (el) => el.text();
-
-const getURL = (el) => el.attr().href;
-
-const getAddress = (venue) => {
-    const locations = [
-        {
-            venue: "The Onyx Theatre",
-            address: "107 Argall Way, Nevada City, CA 95959",
-        },
-        {
-            venue: "Onyx Downtown at the Nevada Theatre",
-            address: "401 Broad Street, Nevada City, CA 95959",
-        },
-    ];
-
-    const result = locations.find((location) => location.venue === venue);
-    return result.address || null;
-};
-
-const getRating = (el) => {
-    const specs = el.find("div.css-1ilu45h").first().text().split("•");
-    const regex = /G|PG|PG-13|NR|UR|NC-17|R/;
-
-    for (let item of specs) {
-        if (item.match(regex)) {
-            return item;
-        }
-    }
-};
-
-const getRuntime = (el) => {
-    const specs = el.find("div.css-1ilu45h").first().text().split("•");
-    const regex = /hr|min/;
-
-    for (let item of specs) {
-        if (item.match(regex)) {
-            return item;
-        }
-    }
-};
-
-const getPosterUrl = (el) => {
-    const url = el.find(".css-bi7rho").first().attr("src");
+async function getShowingUrl(data) {
+    const url = data.data.ticketing[0].urls[0];
     return url;
-};
+}
 
-export const onyx = { getShowings };
+async function getMoviePoster(id) {
+    const info = await getMovieInfoById(id);
+    const url = info.poster;
+
+    if (url.startsWith("http")) {
+        return url;
+    }
+
+    const root = "http://all.web.img.acsta.net/";
+    return root + url;
+}
+
+async function getMovieSynopsis(id) {
+    const info = await getMovieInfoById(id);
+    return info.synopsis;
+}
+
+async function getMovieRating(id) {
+    const info = await getMovieInfoById(id);
+    return info.certificate;
+}
+
+async function getMovieRuntime(id) {
+    const info = await getMovieInfoById(id);
+    const seconds = info.runtime;
+    const hours = Math.floor(seconds / (60 * 60));
+    const remainingSeconds = seconds % (60 * 60);
+    const minutes = Math.floor(remainingSeconds / 60);
+    const runtime = `${hours} hr ${minutes} min`;
+    return runtime;
+}
+
+async function getMovieVenue(data) {
+    const tags = await data.tags;
+    const venuesByTag = {
+        "Showtime.Restriction.Adults": "The Onyx Theatre",
+        "Auditorium.Experience.TraditionalAuditorium":
+            "Onyx Downtown at the Nevada Theatre",
+    };
+
+    const tag = tags[0];
+    if (tag in venuesByTag) {
+        return venuesByTag[tag];
+    }
+
+    throw Error(
+        `Could not identify venue for movie with id ${data.id.split("-")[0]}`,
+    );
+}
+
+async function getMovieTime(data) {
+    const time = await data.startsAt.split("T")[1];
+    let [hours, mins] = time.split(":");
+    let period = "PM";
+
+    hours = Number(hours);
+    if (hours > 12) {
+        hours -= 12;
+    } else if (hours < 12) {
+        period = "AM";
+    }
+
+    return `${hours}:${mins} ${period}`;
+}
+
+function getAddress(venue) {
+    const addresses = {
+        "The Onyx Theatre": "107 Argall Way, Nevada City, CA 95959",
+        "Onyx Downtown at the Nevada Theatre":
+            "401 Broad Street, Nevada City, CA 95959",
+    };
+
+    if (venue in addresses) {
+        return addresses[venue];
+    }
+
+    throw Error("Could not retrieve venue address");
+}
+
+function getTodayFormatted() {
+    const date = new Date();
+    const today = date.toLocaleDateString("en-US", {
+        timeZone: "America/Los_Angeles",
+        month: "2-digit",
+        day: "2-digit",
+        year: "numeric",
+    });
+    return today;
+}
+
+function getStartDate() {
+    const today = getTodayFormatted();
+    const [month, day, year] = today.split("/");
+    const startDate = `${year}-${month}-${day}T03:00:00`;
+    return startDate;
+}
+
+function getEndDate() {
+    const today = getTodayFormatted();
+    const [month, day, year] = today.split("/");
+    const nextYear = Number(year) + 1;
+    const endDate = `${nextYear}-${month}-${day}T03:00:00`;
+    return endDate;
+}
+
+function formatDate(date) {
+    const [year, month, day] = date.split("-");
+    return `${month}/${day}/${year}`;
+}
+
+export default getOnyxShowings;
