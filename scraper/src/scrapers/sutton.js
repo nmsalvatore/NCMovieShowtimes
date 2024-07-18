@@ -69,7 +69,7 @@ async function getSuttonShowings() {
 
 async function getMovieNodes() {
     const response = await fetch(
-        "https://www.prime-cinemas.com/page-data/sq/d/1945441818.json",
+        "https://www.prime-cinemas.com/page-data/sq/d/1443148036.json",
     );
     const data = await response.json();
     const nodes = await data.data.allMovie.nodes;

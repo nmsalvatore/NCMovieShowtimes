@@ -4,13 +4,14 @@ async function getSchedule() {
     const movieIdsAsString = await getMovieIdsAsString();
     const startDate = getStartDate();
     const endDate = getEndDate();
+    const bodyString = `{"circuit":null,"theaters":[{"id":"X065X","timeZone":"America/Los_Angeles"}],"movieIds":${movieIdsAsString},"from":"${startDate}","to":"${endDate}","nin":[],"sin":[],"websiteId":"V2Vic2l0ZU1hbmFnZXJXZWJzaXRlOjhmNzhiNTE3LTlhZjUtNDEzZi04ZWU0LWVjYzNlNmI3NmI0Zg=="}`;
 
     const response = await fetch(
         "https://www.theonyxtheatre.com/api/gatsby-source-boxofficeapi/schedule",
         {
             credentials: "include",
             referrer: "https://www.theonyxtheatre.com/showtimes/",
-            body: `{"circuit":null,"theaters":[{"id":"X065X","timeZone":"America/Los_Angeles"}],"movieIds":${movieIdsAsString},"from":"${startDate}","to":"${endDate}","nin":[],"sin":[],"websiteId":"V2Vic2l0ZU1hbmFnZXJXZWJzaXRlOjhmNzhiNTE3LTlhZjUtNDEzZi04ZWU0LWVjYzNlNmI3NmI0Zg=="}`,
+            body: bodyString,
             method: "POST",
             mode: "cors",
         },
@@ -22,9 +23,9 @@ async function getSchedule() {
 }
 
 async function getOnyxShowings() {
-    const schedule = await getSchedule();
     const showings = [];
 
+    const schedule = await getSchedule();
     for (const id in schedule) {
         const movieShowtimesByDate = await schedule[id];
 
@@ -68,7 +69,7 @@ async function getOnyxShowings() {
 
 async function getMovieNodes() {
     const response = await fetch(
-        "https://www.theonyxtheatre.com/page-data/sq/d/1945441818.json",
+        "https://cms-assets.webediamovies.pro/prod/the-onyx-theatre/669879108762661ea59669ae/public/page-data/sq/d/1443148036.json",
     );
     const data = await response.json();
     const nodes = await data.data.allMovie.nodes;
